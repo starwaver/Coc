@@ -1,0 +1,175 @@
+{
+    "id": "char_1001",
+    "name": "Jonathan Reed",
+    "playerName": "Alice Smith",
+    "type": "PC",
+    "age": 35,
+    "gender": "Male",
+    "occupation": "Private Investigator",
+    "birthplace": "Boston, Massachusetts",
+    "residence": "New York City, New York",
+    "attributes": {
+      "str": 60,
+      "con": 55,
+      "siz": 65,
+      "dex": 70,
+      "app": 50,
+      "int": 75,
+      "pow": 65,
+      "edu": 80,
+      "luck": 55
+    },
+    "derivedAttributes": {
+      "hp": 12,
+      "san": 65,
+      "mp": 13,
+      "db": "+1D4",
+      "build": 1,
+      "move": 8
+    },
+    "skills": {
+      "accounting": 10,
+      "anthropology": 5,
+      "appraise": 20,
+      "archaeology": 5,
+      "artCraft": [
+        {
+          "type": "Sketching",
+          "value": 30
+        }
+      ],
+      "artillery": 5,
+      "charm": 15,
+      "climb": 40,
+      "computerUse": 5,
+      "creditRating": 40,
+      "cthulhuMythos": 0,
+      "disguise": 50,
+      "dodge": 35,
+      "driveAuto": 60,
+      "electricalRepair": 10,
+      "electronics": 5,
+      "fastTalk": 25,
+      "fighting": [
+        {
+          "type": "Brawl",
+          "value": 55
+        }
+      ],
+      "firearms": [
+        {
+          "type": "Handgun",
+          "value": 70
+        }
+      ],
+      "firstAid": 30,
+      "history": 20,
+      "intimidate": 40,
+      "jump": 30,
+      "languageOwn": 80,
+      "languageOther": [
+        {
+          "language": "French",
+          "value": 30
+        }
+      ],
+      "law": 25,
+      "libraryUse": 50,
+      "listen": 60,
+      "locksmith": 35,
+      "mechanicalRepair": 20,
+      "medicine": 5,
+      "naturalWorld": 15,
+      "navigate": 40,
+      "occult": 10,
+      "operateHeavyMachinery": 10,
+      "persuade": 45,
+      "pharmacy": 5,
+      "pilot": [
+        {
+          "type": "Car",
+          "value": 60
+        }
+      ],
+      "psychology": 55,
+      "psychoanalysis": 10,
+      "ride": 20,
+      "science": [
+        {
+          "type": "Forensics",
+          "value": 40
+        }
+      ],
+      "sleightOfHand": 25,
+      "spotHidden": 70,
+      "stealth": 50,
+      "survival": [
+        {
+          "type": "Urban",
+          "value": 35
+        }
+      ],
+      "swim": 25,
+      "throw": 30,
+      "track": 45
+    },
+    "inventory": [
+      {
+        "itemName": "Notepad",
+        "description": "Leather-bound notepad for taking notes",
+        "quantity": 1
+      },
+      {
+        "itemName": "Magnifying Glass",
+        "description": "A tool for close inspection of evidence",
+        "quantity": 1
+      },
+      {
+        "itemName": "Flashlight",
+        "description": "Battery-powered flashlight",
+        "quantity": 1
+      }
+    ],
+    "weapons": [
+      {
+        "weaponName": "Colt M1911",
+        "skill": "Firearms (Handgun)",
+        "damage": "1D10+2",
+        "range": "15 yards",
+        "attacksPerRound": "1",
+        "ammo": "7",
+        "malfunction": "100"
+      },
+      {
+        "weaponName": "Brass Knuckles",
+        "skill": "Fighting (Brawl)",
+        "damage": "1D3+DB",
+        "range": "Melee",
+        "attacksPerRound": "1",
+        "ammo": "N/A",
+        "malfunction": "N/A"
+      }
+    ],
+    "spells": [
+      {
+        "spellName": "None",
+        "description": "",
+        "cost": ""
+      }
+    ],
+    "backstory": {
+      "personalDescription": "A tall man with a sharp gaze and a perpetual five o'clock shadow.",
+      "ideologyBeliefs": "Believes in justice and uncovering the truth at all costs.",
+      "significantPeople": "Mentor: Detective Samuel Hayes, deceased.",
+      "meaningfulLocations": "Old office in Boston where he solved his first big case.",
+      "treasuredPossessions": "Pocket watch inherited from his father.",
+      "traits": "Observant, skeptical, and somewhat cynical.",
+      "injuriesScars": "Bullet scar on his left shoulder from a past case.",
+      "phobiasManias": "Claustrophobia stemming from a childhood incident.",
+      "arcaneTomesSpellsArtifacts": "None",
+      "encountersWithStrangeEntities": "Has heard rumors but remains skeptical."
+    },
+    "notes": "Currently investigating a series of mysterious disappearances in the city.",
+    "image": "https://example.com/images/jonathan_reed.jpg"
+  }
+  

@@ -1,0 +1,356 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "GeneralCharacter",
+    "description": "Schema for general characters (PCs, NPCs, Monsters)",
+    "type": "object",
+    "required": ["id", "name"],
+    "properties": {
+      "id": {
+        "type": "string",
+        "description": "Unique character identifier"
+      },
+      "name": {
+        "type": "string",
+        "description": "Character's name"
+      },
+      "type": {
+        "type": "string",
+        "enum": ["PC", "NPC", "Monster"],
+        "description": "Type of character"
+      },
+      "playerName": {
+        "type": "string",
+        "description": "Name of the player controlling the character",
+        "nullable": true
+      },
+      "age": {
+        "type": "integer",
+        "minimum": 0,
+        "description": "Character's age",
+        "nullable": true
+      },
+      "gender": {
+        "type": "string",
+        "description": "Character's gender",
+        "nullable": true
+      },
+      "occupation": {
+        "type": "string",
+        "description": "Character's occupation",
+        "nullable": true
+      },
+      "birthplace": {
+        "type": "string",
+        "description": "Place of birth",
+        "nullable": true
+      },
+      "residence": {
+        "type": "string",
+        "description": "Current residence",
+        "nullable": true
+      },
+      "description": {
+        "type": "string",
+        "description": "Description of the character",
+        "nullable": true
+      },
+      "attributes": {
+        "type": "object",
+        "description": "Core characteristics",
+        "properties": {
+          "str": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 250,
+            "description": "Strength"
+          },
+          "con": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 250,
+            "description": "Constitution"
+          },
+          "siz": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 250,
+            "description": "Size"
+          },
+          "dex": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 250,
+            "description": "Dexterity"
+          },
+          "app": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 250,
+            "description": "Appearance",
+            "nullable": true
+          },
+          "int": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 250,
+            "description": "Intelligence"
+          },
+          "pow": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 250,
+            "description": "Power"
+          },
+          "edu": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 250,
+            "description": "Education",
+            "nullable": true
+          },
+          "luck": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 99,
+            "description": "Luck",
+            "nullable": true
+          }
+        },
+        "required": ["str", "con", "siz", "dex", "int", "pow"]
+      },
+      "derivedAttributes": {
+        "type": "object",
+        "description": "Attributes derived from core characteristics",
+        "properties": {
+          "hp": {
+            "type": "integer",
+            "description": "Hit Points"
+          },
+          "san": {
+            "type": "integer",
+            "description": "Sanity Points",
+            "nullable": true
+          },
+          "mp": {
+            "type": "integer",
+            "description": "Magic Points"
+          },
+          "db": {
+            "type": "string",
+            "description": "Damage Bonus"
+          },
+          "build": {
+            "type": "integer",
+            "description": "Build"
+          },
+          "move": {
+            "type": "integer",
+            "description": "Movement Rate"
+          },
+          "armor": {
+            "type": "integer",
+            "minimum": 0,
+            "description": "Armor points reducing damage",
+            "nullable": true
+          }
+        },
+        "required": ["hp", "mp", "db", "build", "move"]
+      },
+      "skills": {
+        "type": "object",
+        "description": "Character skills and their proficiency levels",
+        "additionalProperties": {
+          "type": ["integer", "object", "array"],
+          "description": "Skill value or specialized skills"
+        },
+        "nullable": true
+      },
+      "abilities": {
+        "type": "array",
+        "description": "Special abilities or attacks",
+        "items": {
+          "type": "string"
+        },
+        "nullable": true
+      },
+      "sanityLoss": {
+        "type": "object",
+        "description": "Sanity loss to players when encountering this entity",
+        "properties": {
+          "min": {
+            "type": ["integer", "string"],
+            "description": "Minimum sanity loss"
+          },
+          "max": {
+            "type": ["integer", "string"],
+            "description": "Maximum sanity loss"
+          }
+        },
+        "required": ["min", "max"],
+        "nullable": true
+      },
+      "inventory": {
+        "type": "array",
+        "description": "List of items the character possesses",
+        "items": {
+          "type": "object",
+          "required": ["itemName", "quantity"],
+          "properties": {
+            "itemName": {
+              "type": "string",
+              "description": "Name of the item"
+            },
+            "description": {
+              "type": "string",
+              "description": "Description of the item",
+              "nullable": true
+            },
+            "quantity": {
+              "type": "integer",
+              "minimum": 1,
+              "description": "Quantity of the item"
+            }
+          }
+        },
+        "nullable": true
+      },
+      "weapons": {
+        "type": "array",
+        "description": "List of weapons the character possesses",
+        "items": {
+          "type": "object",
+          "required": ["weaponName", "skill", "damage"],
+          "properties": {
+            "weaponName": {
+              "type": "string",
+              "description": "Name of the weapon"
+            },
+            "skill": {
+              "type": "string",
+              "description": "Skill used to operate the weapon"
+            },
+            "damage": {
+              "type": "string",
+              "description": "Damage dealt by the weapon"
+            },
+            "range": {
+              "type": "string",
+              "description": "Effective range of the weapon",
+              "nullable": true
+            },
+            "attacksPerRound": {
+              "type": "string",
+              "description": "Number of attacks per round",
+              "nullable": true
+            },
+            "ammo": {
+              "type": "string",
+              "description": "Ammunition count or type",
+              "nullable": true
+            },
+            "malfunction": {
+              "type": "string",
+              "description": "Malfunction rating or number",
+              "nullable": true
+            }
+          }
+        },
+        "nullable": true
+      },
+      "spells": {
+        "type": "array",
+        "description": "List of spells known to the character",
+        "items": {
+          "type": "object",
+          "required": ["spellName"],
+          "properties": {
+            "spellName": {
+              "type": "string",
+              "description": "Name of the spell"
+            },
+            "description": {
+              "type": "string",
+              "description": "Description of the spell",
+              "nullable": true
+            },
+            "cost": {
+              "type": "string",
+              "description": "Cost to cast the spell",
+              "nullable": true
+            }
+          }
+        },
+        "nullable": true
+      },
+      "backstory": {
+        "type": "object",
+        "description": "Character's background and history",
+        "properties": {
+          "personalDescription": {
+            "type": "string",
+            "description": "Brief physical description",
+            "nullable": true
+          },
+          "ideologyBeliefs": {
+            "type": "string",
+            "description": "Character's ideologies and beliefs",
+            "nullable": true
+          },
+          "significantPeople": {
+            "type": "string",
+            "description": "Important people in character's life",
+            "nullable": true
+          },
+          "meaningfulLocations": {
+            "type": "string",
+            "description": "Places of significance",
+            "nullable": true
+          },
+          "treasuredPossessions": {
+            "type": "string",
+            "description": "Items of great personal value",
+            "nullable": true
+          },
+          "traits": {
+            "type": "string",
+            "description": "Personality traits or quirks",
+            "nullable": true
+          },
+          "injuriesScars": {
+            "type": "string",
+            "description": "Notable injuries or scars",
+            "nullable": true
+          },
+          "phobiasManias": {
+            "type": "string",
+            "description": "Any phobias or manias",
+            "nullable": true
+          },
+          "arcaneTomesSpellsArtifacts": {
+            "type": "string",
+            "description": "Details of any arcane knowledge or items",
+            "nullable": true
+          },
+          "encountersWithStrangeEntities": {
+            "type": "string",
+            "description": "Previous experiences with Mythos entities",
+            "nullable": true
+          }
+        },
+        "nullable": true
+      },
+      "notes": {
+        "type": "string",
+        "description": "Additional notes or information",
+        "nullable": true
+      },
+      "image": {
+        "type": "string",
+        "format": "uri",
+        "description": "URL or path to character image",
+        "nullable": true
+      }
+    },
+    "additionalProperties": false
+  }
+  

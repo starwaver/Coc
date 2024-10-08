@@ -1,0 +1,641 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "CallOfCthulhuCharacter",
+  "description": "Schema for Call of Cthulhu character data",
+  "type": "object",
+  "required": ["id", "name", "type", "attributes", "derivedAttributes", "skills"],
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "Unique character identifier"
+    },
+    "name": {
+      "type": "string",
+      "description": "Character's full name"
+    },
+    "playerName": {
+      "type": "string",
+      "description": "Name of the player controlling the character"
+    },
+    "type": {
+      "type": "string",
+      "enum": ["PC", "NPC"],
+      "description": "\"PC\" for Player Character or \"NPC\" for Non-Player Character"
+    },
+    "age": {
+      "type": "integer",
+      "minimum": 0,
+      "description": "Character's age"
+    },
+    "gender": {
+      "type": "string",
+      "description": "Character's gender"
+    },
+    "occupation": {
+      "type": "string",
+      "description": "Character's occupation"
+    },
+    "birthplace": {
+      "type": "string",
+      "description": "Place of birth"
+    },
+    "residence": {
+      "type": "string",
+      "description": "Current residence"
+    },
+    "attributes": {
+      "type": "object",
+      "description": "Core characteristics",
+      "required": ["str", "con", "siz", "dex", "app", "int", "pow", "edu", "luck"],
+      "properties": {
+        "str": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 99,
+          "description": "Strength (1-99)"
+        },
+        "con": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 99,
+          "description": "Constitution (1-99)"
+        },
+        "siz": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 99,
+          "description": "Size (1-99)"
+        },
+        "dex": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 99,
+          "description": "Dexterity (1-99)"
+        },
+        "app": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 99,
+          "description": "Appearance (1-99)"
+        },
+        "int": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 99,
+          "description": "Intelligence (1-99)"
+        },
+        "pow": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 99,
+          "description": "Power (1-99)"
+        },
+        "edu": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 99,
+          "description": "Education (1-99)"
+        },
+        "luck": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 99,
+          "description": "Luck (1-99)"
+        }
+      }
+    },
+    "derivedAttributes": {
+      "type": "object",
+      "description": "Attributes derived from core characteristics",
+      "properties": {
+        "hp": {
+          "type": "integer",
+          "description": "Hit Points"
+        },
+        "san": {
+          "type": "integer",
+          "description": "Sanity Points"
+        },
+        "mp": {
+          "type": "integer",
+          "description": "Magic Points"
+        },
+        "db": {
+          "type": "string",
+          "enum": ["-2", "-1", "0", "+1D4", "+1D6", "+2D6"],
+          "description": "Damage Bonus"
+        },
+        "build": {
+          "type": "integer",
+          "description": "Build"
+        },
+        "move": {
+          "type": "integer",
+          "description": "Movement Rate"
+        }
+      }
+    },
+    "skills": {
+      "type": "object",
+      "description": "Character skills and their proficiency levels",
+      "properties": {
+        "accounting": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 99
+        },
+        "anthropology": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 99
+        },
+        "appraise": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 99
+        },
+        "archaeology": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 99
+        },
+        "artCraft": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["type", "value"],
+            "properties": {
+              "type": {
+                "type": "string",
+                "description": "Art or Craft specialization"
+              },
+              "value": {
+                "type": "integer",
+                "minimum": 0,
+                "maximum": 99
+              }
+            }
+          },
+          "description": "List of Art/Craft specializations"
+        },
+        "artillery": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 99
+        },
+        "charm": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 99
+        },
+        "climb": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 99
+        },
+        "computerUse": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 99
+        },
+        "creditRating": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 99
+        },
+        "cthulhuMythos": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 99
+        },
+        "disguise": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 99
+        },
+        "dodge": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 99
+        },
+        "driveAuto": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 99
+        },
+        "electricalRepair": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 99
+        },
+        "electronics": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 99
+        },
+        "fastTalk": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 99
+        },
+        "fighting": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["type", "value"],
+            "properties": {
+              "type": {
+                "type": "string",
+                "description": "Fighting specialization"
+              },
+              "value": {
+                "type": "integer",
+                "minimum": 0,
+                "maximum": 99
+              }
+            }
+          },
+          "description": "List of Fighting specializations"
+        },
+        "firearms": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["type", "value"],
+            "properties": {
+              "type": {
+                "type": "string",
+                "description": "Firearms specialization"
+              },
+              "value": {
+                "type": "integer",
+                "minimum": 0,
+                "maximum": 99
+              }
+            }
+          },
+          "description": "List of Firearms specializations"
+        },
+        "firstAid": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 99
+        },
+        "history": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 99
+        },
+        "intimidate": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 99
+        },
+        "jump": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 99
+        },
+        "languageOwn": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 99,
+          "description": "Native language proficiency"
+        },
+        "languageOther": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["language", "value"],
+            "properties": {
+              "language": {
+                "type": "string",
+                "description": "Other language name"
+              },
+              "value": {
+                "type": "integer",
+                "minimum": 0,
+                "maximum": 99
+              }
+            }
+          },
+          "description": "List of other languages known"
+        },
+        "law": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 99
+        },
+        "libraryUse": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 99
+        },
+        "listen": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 99
+        },
+        "locksmith": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 99
+        },
+        "mechanicalRepair": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 99
+        },
+        "medicine": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 99
+        },
+        "naturalWorld": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 99
+        },
+        "navigate": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 99
+        },
+        "occult": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 99
+        },
+        "operateHeavyMachinery": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 99
+        },
+        "persuade": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 99
+        },
+        "pharmacy": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 99
+        },
+        "pilot": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["type", "value"],
+            "properties": {
+              "type": {
+                "type": "string",
+                "description": "Pilot specialization"
+              },
+              "value": {
+                "type": "integer",
+                "minimum": 0,
+                "maximum": 99
+              }
+            }
+          },
+          "description": "List of Pilot specializations"
+        },
+        "psychology": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 99
+        },
+        "psychoanalysis": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 99
+        },
+        "ride": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 99
+        },
+        "science": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["type", "value"],
+            "properties": {
+              "type": {
+                "type": "string",
+                "description": "Science specialization"
+              },
+              "value": {
+                "type": "integer",
+                "minimum": 0,
+                "maximum": 99
+              }
+            }
+          },
+          "description": "List of Science specializations"
+        },
+        "sleightOfHand": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 99
+        },
+        "spotHidden": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 99
+        },
+        "stealth": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 99
+        },
+        "survival": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["type", "value"],
+            "properties": {
+              "type": {
+                "type": "string",
+                "description": "Survival specialization"
+              },
+              "value": {
+                "type": "integer",
+                "minimum": 0,
+                "maximum": 99
+              }
+            }
+          },
+          "description": "List of Survival specializations"
+        },
+        "swim": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 99
+        },
+        "throw": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 99
+        },
+        "track": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 99
+        }
+      },
+      "additionalProperties": {
+        "type": "integer",
+        "minimum": 0,
+        "maximum": 99
+      }
+    },
+    "inventory": {
+      "type": "array",
+      "description": "List of items the character possesses",
+      "items": {
+        "type": "object",
+        "required": ["itemName", "quantity"],
+        "properties": {
+          "itemName": {
+            "type": "string",
+            "description": "Name of the item"
+          },
+          "description": {
+            "type": "string",
+            "description": "Description of the item"
+          },
+          "quantity": {
+            "type": "integer",
+            "minimum": 1,
+            "description": "Quantity of the item"
+          }
+        }
+      }
+    },
+    "weapons": {
+      "type": "array",
+      "description": "List of weapons the character carries",
+      "items": {
+        "type": "object",
+        "required": ["weaponName", "skill", "damage"],
+        "properties": {
+          "weaponName": {
+            "type": "string",
+            "description": "Name of the weapon"
+          },
+          "skill": {
+            "type": "string",
+            "description": "Skill used to operate the weapon"
+          },
+          "damage": {
+            "type": "string",
+            "enum": [
+              "1D3", "1D4", "1D6", "1D8", "1D10", "1D12", "1D20",
+              "2D4", "2D6", "2D8", "2D10", "3D6",
+              "1D6+1", "1D8+1", "1D10+1",
+              "1D6+2", "1D8+2", "1D10+2",
+              "1D3+DB", "1D4+DB", "1D6+DB", "1D8+DB", "1D10+DB",
+              "Special"
+            ],
+            "description": "Damage dealt by the weapon"
+          },
+          "range": {
+            "type": "string",
+            "description": "Effective range of the weapon"
+          },
+          "attacksPerRound": {
+            "type": "string",
+            "description": "Number of attacks per round"
+          },
+          "ammo": {
+            "type": "string",
+            "description": "Ammunition count or type"
+          },
+          "malfunction": {
+            "type": "string",
+            "description": "Malfunction rating or number"
+          }
+        }
+      }
+    },
+    "spells": {
+      "type": "array",
+      "description": "List of spells known to the character",
+      "items": {
+        "type": "object",
+        "required": ["spellName"],
+        "properties": {
+          "spellName": {
+            "type": "string",
+            "description": "Name of the spell"
+          },
+          "description": {
+            "type": "string",
+            "description": "Description of the spell"
+          },
+          "cost": {
+            "type": "string",
+            "description": "Cost to cast the spell (Magic Points or other)"
+          }
+        }
+      }
+    },
+    "backstory": {
+      "type": "object",
+      "description": "Character's background and history",
+      "properties": {
+        "personalDescription": {
+          "type": "string",
+          "description": "Brief physical description"
+        },
+        "ideologyBeliefs": {
+          "type": "string",
+          "description": "Character's ideologies and beliefs"
+        },
+        "significantPeople": {
+          "type": "string",
+          "description": "Important people in character's life"
+        },
+        "meaningfulLocations": {
+          "type": "string",
+          "description": "Places of significance"
+        },
+        "treasuredPossessions": {
+          "type": "string",
+          "description": "Items of great personal value"
+        },
+        "traits": {
+          "type": "string",
+          "description": "Personality traits or quirks"
+        },
+        "injuriesScars": {
+          "type": "string",
+          "description": "Notable injuries or scars"
+        },
+        "phobiasManias": {
+          "type": "string",
+          "description": "Any phobias or manias"
+        },
+        "arcaneTomesSpellsArtifacts": {
+          "type": "string",
+          "description": "Details of any arcane knowledge or items"
+        },
+        "encountersWithStrangeEntities": {
+          "type": "string",
+          "description": "Previous experiences with Mythos entities"
+        }
+      }
+    },
+    "notes": {
+      "type": "string",
+      "description": "Additional notes or information"
+    },
+    "image": {
+      "type": "string",
+      "format": "uri",
+      "description": "URL or path to character image (optional)"
+    }
+  },
+  "additionalProperties": false
+}
