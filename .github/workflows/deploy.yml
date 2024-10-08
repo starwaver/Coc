@@ -28,7 +28,7 @@ jobs:
 
       - name: build
         env:
-          BASE_PATH: '/Coc/coc-helper'
+          BASE_PATH: '/Coc'
         run: |
           npm run build
 
