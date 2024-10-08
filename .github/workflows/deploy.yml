@@ -28,7 +28,7 @@ jobs:
 
       - name: build
         env:
-          BASE_PATH: '/coc-helper'
+          BASE_PATH: '/Coc'
         run: |
           npm run build
           touch build/.nojekyll
