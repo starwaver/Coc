@@ -1,148 +1,96 @@
-<script>
-    import { onMount } from 'svelte';
-    import { writable } from 'svelte/store';
+<script lang="ts">
+  import Attribute from './Attribute.svelte';
+  import type { CharacterType, AttributeType } from '../types/types';
 
-    // Create a store for character data
-    const character = writable({
-        id: "",
-        name: "",
-        playerName: "",
-        type: "PC",
-        age: 0,
-        gender: "",
-        occupation: "",
-        birthplace: "",
-        residence: "",
-        attributes: {
-            str: 50,
-            con: 50,
-            siz: 50,
-            dex: 50,
-            app: 50,
-            int: 50,
-            pow: 50,
-            edu: 50,
-            luck: 50
-        },
-        derivedAttributes: {
-            hp: 10,
-            san: 50,
-            mp: 10,
-            db: "0",
-            build: 0,
-            move: 8
-        },
-        skills: {},
-        inventory: [],
-        weapons: [],
-        spells: [],
-        backstory: {},
-        notes: "",
-        image: ""
-    });
+  export let character: CharacterType = {
+    name: "Character Name",
+    portrait: "character_placeholder.png",
+    attributes: [
+      { name: "Strength (STR)", value: 50 },
+      { name: "Dexterity (DEX)", value: 60 },
+      { name: "Intelligence (INT)", value: 70 },
+      { name: "Constitution (CON)", value: 55 },
+      { name: "Appearance (APP)", value: 65 },
+      { name: "Power (POW)", value: 40 },
+      { name: "Size (SIZ)", value: 75 },
+      { name: "Education (EDU)", value: 80 },
+      { name: "Luck", value: 50 },
+    ]
+  };
 
-    let formValues = {
-        name: "",
-        playerName: "",
-        type: "PC",
-        age: 0,
-        gender: "",
-        occupation: "",
-        birthplace: "",
-        residence: "",
-        notes: ""
-    };
-
-    function updateCharacter() {
-        character.update((char) => {
-            char.name = formValues.name;
-            char.playerName = formValues.playerName;
-            char.type = formValues.type;
-            char.age = parseInt(formValues.age) || 0;
-            char.gender = formValues.gender;
-            char.occupation = formValues.occupation;
-            char.birthplace = formValues.birthplace;
-            char.residence = formValues.residence;
-            char.notes = formValues.notes;
-            return char;
-        });
-    }
-
-    function saveCharacter() {
-        character.subscribe((char) => {
-            const file = new Blob([JSON.stringify(char, null, 2)], { type: 'application/json' });
-            const a = document.createElement('a');
-            a.href = URL.createObjectURL(file);
-            a.download = `${char.name || 'character'}.json`;
-            a.click();
-        })();
-    }
+  function updateAttributeValue(event: CustomEvent<{ name: string; value: number }>): void {
+    const { name, value } = event.detail;
+    character.attributes = character.attributes.map((attr: AttributeType) =>
+      attr.name === name ? { ...attr, value } : attr
+    );
+  }
 </script>
 
+
 <style>
-    body {
-        font-family: Arial, sans-serif;
-        padding: 20px;
-    }
-    .character-sheet {
-        max-width: 800px;
-        margin: 0 auto;
-    }
-    .character-sheet label {
-        font-weight: bold;
-    }
-    .character-sheet input, .character-sheet textarea {
-        width: 100%;
-        padding: 5px;
-        margin-bottom: 10px;
-    }
-    .character-sheet button {
-        padding: 10px;
-        background-color: #007BFF;
-        color: white;
-        border: none;
-        cursor: pointer;
-    }
-    .character-sheet button:hover {
-        background-color: #0056b3;
-    }
+  .main-dashboard {
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #7c7c7c;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    color: #f0f0f0;
+  }
+
+  .character-header {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+
+  .character-portrait {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    border: 4px solid #f0f0f0;
+  }
+
+  .character-name {
+    font-size: 2em;
+    margin-top: 10px;
+  }
+
+  .section {
+    margin-bottom: 20px;
+  }
+
+  .attributes-container {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 15px;
+    margin-bottom: 20px;
+    padding: 20px;
+    background-color: #666;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+  }
+
+  h2 {
+    border-bottom: 2px solid #444;
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+  }
 </style>
 
-<div class="character-sheet">
-    <h1>Call of Cthulhu Character Sheet</h1>
-    <form on:input={() => updateCharacter()}>
-        <label for="name">Character Name:</label>
-        <input type="text" id="name" bind:value={formValues.name}>
+<div class="main-dashboard">
+  <!-- Main Dashboard -->
+  <div class="character-header">
+    <img src={character.portrait} alt="Character Portrait" class="character-portrait">
+    <h1 class="character-name">{character.name}</h1>
+  </div>
 
-        <label for="playerName">Player Name:</label>
-        <input type="text" id="playerName" bind:value={formValues.playerName}>
-
-        <label for="type">Character Type:</label>
-        <select id="type" bind:value={formValues.type}>
-            <option value="PC">Player Character</option>
-            <option value="NPC">Non-Player Character</option>
-        </select>
-
-        <label for="age">Age:</label>
-        <input type="number" id="age" bind:value={formValues.age}>
-
-        <label for="gender">Gender:</label>
-        <input type="text" id="gender" bind:value={formValues.gender}>
-
-        <label for="occupation">Occupation:</label>
-        <input type="text" id="occupation" bind:value={formValues.occupation}>
-
-        <label for="birthplace">Birthplace:</label>
-        <input type="text" id="birthplace" bind:value={formValues.birthplace}>
-
-        <label for="residence">Residence:</label>
-        <input type="text" id="residence" bind:value={formValues.residence}>
-
-        <label for="notes">Notes:</label>
-        <textarea id="notes" bind:value={formValues.notes}></textarea>
-
-        <button type="button" on:click={saveCharacter}>Save Character</button>
-    </form>
-    <h2>Character JSON Data</h2>
-    <pre>{JSON.stringify($character, null, 2)}</pre>
+  <!-- Attributes Section -->
+  <section id="attributes" class="section">
+    <h2>Attributes</h2>
+    <div class="attributes-container">
+      {#each character.attributes as attribute (attribute.name)}
+        <Attribute {attribute} on:updateValue={updateAttributeValue} />
+      {/each}
+    </div>
+  </section>
 </div>
