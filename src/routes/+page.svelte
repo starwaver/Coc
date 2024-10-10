@@ -6,7 +6,7 @@
   let character: CharacterType | null = null;
 
   onMount(async () => {
-    const response = await fetch('/api/character.json'); // Fetch from the API endpoint
+    const response = await fetch('/data/example_character.json'); // Fetch from the API endpoint
     if (response.ok) {
       character = await response.json();
     }
@@ -77,9 +77,6 @@
     <div class="character-header">
       <img src={character.image} alt="Character Portrait" class="character-portrait">
       <h1 class="character-name">{character.name}</h1>
-    </div>
-    <div class="tabs">
-      <button class="tab">Attributes</button>
     </div>
 
     <!-- Attributes Section -->
