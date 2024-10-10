@@ -1,28 +1,22 @@
 <script lang="ts">
   import Attribute from './Attribute.svelte';
+  import { onMount } from 'svelte';
   import type { CharacterType, AttributeType } from '../types/types';
 
-  export let character: CharacterType = {
-    name: "Character Name",
-    portrait: "character_placeholder.png",
-    attributes: [
-      { name: "Strength (STR)", value: 50 },
-      { name: "Dexterity (DEX)", value: 60 },
-      { name: "Intelligence (INT)", value: 70 },
-      { name: "Constitution (CON)", value: 55 },
-      { name: "Appearance (APP)", value: 65 },
-      { name: "Power (POW)", value: 40 },
-      { name: "Size (SIZ)", value: 75 },
-      { name: "Education (EDU)", value: 80 },
-      { name: "Luck", value: 50 },
-    ]
-  };
+  let character: CharacterType | null = null;
 
-  function updateAttributeValue(event: CustomEvent<{ name: string; value: number }>): void {
+  onMount(async () => {
+    const response = await fetch('/api/character.json'); // Fetch from the API endpoint
+    if (response.ok) {
+      character = await response.json();
+    }
+  });
+
+  function updateAttributeValue(event: CustomEvent<{ name: keyof AttributeType; value: number }>): void {
     const { name, value } = event.detail;
-    character.attributes = character.attributes.map((attr: AttributeType) =>
-      attr.name === name ? { ...attr, value } : attr
-    );
+    if (character && character.attributes) {
+      character.attributes[name] = value;
+    }
   }
 </script>
 
@@ -77,20 +71,27 @@
   }
 </style>
 
-<div class="main-dashboard">
-  <!-- Main Dashboard -->
-  <div class="character-header">
-    <img src={character.portrait} alt="Character Portrait" class="character-portrait">
-    <h1 class="character-name">{character.name}</h1>
-  </div>
-
-  <!-- Attributes Section -->
-  <section id="attributes" class="section">
-    <h2>Attributes</h2>
-    <div class="attributes-container">
-      {#each character.attributes as attribute (attribute.name)}
-        <Attribute {attribute} on:updateValue={updateAttributeValue} />
-      {/each}
+{#if character}
+  <div class="main-dashboard">
+    <!-- Main Dashboard -->
+    <div class="character-header">
+      <img src={character.image} alt="Character Portrait" class="character-portrait">
+      <h1 class="character-name">{character.name}</h1>
     </div>
-  </section>
-</div>
+    <div class="tabs">
+      <button class="tab">Attributes</button>
+    </div>
+
+    <!-- Attributes Section -->
+    <section id="attributes" class="section">
+      <h2>Attributes</h2>
+      <div class="attributes-container">
+        {#each Object.entries(character.attributes) as [key, value]}
+          <Attribute attribute={{ name: key.toUpperCase(), value }} on:updateValue={updateAttributeValue} />
+        {/each}
+      </div>
+    </section>
+  </div>
+{:else}
+  <p>Loading character data...</p>
+{/if}
