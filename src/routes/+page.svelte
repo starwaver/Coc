@@ -6,7 +6,7 @@
   let character: CharacterType | null = null;
 
   onMount(async () => {
-    const response = await fetch('/data/example_character.json'); // Fetch from the API endpoint
+    const response = await fetch('./data/example_character.json'); // Fetch from the API endpoint
     if (response.ok) {
       character = await response.json();
     }
