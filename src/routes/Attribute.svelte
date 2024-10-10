@@ -8,23 +8,27 @@
     let newValue = attribute.value;
   
     function toggleEdit() {
-      isEditing = !isEditing;
-      if (!isEditing) {
-        dispatch('updateValue', { name: attribute.name, value: newValue });
-      }
+    isEditing = !isEditing;
+    if (!isEditing) {
+      dispatch('updateValue', { name: attribute.name.toLowerCase(), value: newValue });
     }
+  }
   </script>
   
   <div class="attribute">
-    <span class="attribute-name">{attribute.name}
+    
         {#if isEditing}
+        <span class="attribute-name">{attribute.name}
         <input type="number" bind:value={newValue} class="attribute-input" />
         <button on:click={toggleEdit}>Save</button>
+        </span>
       {:else}
+      <span class="attribute-name">{attribute.name}
         <button class="edit-button" on:click={toggleEdit}>✏️</button>
+      </span>
+      <span class="attribute-value">{attribute.value}</span>
       {/if}
-    </span>
-    <span class="attribute-value">{attribute.value}</span>
+    
     <div class="attribute-reference">
       <span class="attribute-half">{Math.floor(attribute.value / 2)}</span> | <span class="attribute-fifth">{Math.floor(attribute.value / 5)}</span>
     </div>
@@ -59,6 +63,7 @@
       border-bottom: 2px solid #00cc66;
       margin-bottom: 5px;
       padding: 5px;
+      max-width: 100px;
     }
   
     .edit-button {

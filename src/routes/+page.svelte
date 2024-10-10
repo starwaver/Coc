@@ -1,22 +1,22 @@
 <script lang="ts">
   import Attribute from './Attribute.svelte';
+  import DerivedAttributes from './DerivedAttributes.svelte'
+  import { characterStore, initializeCharacter } from '$lib/stores/characterStore';
   import { onMount } from 'svelte';
-  import type { CharacterType, AttributeType } from '../types/types';
+  import { get } from 'svelte/store';
+  import type { AttributeType } from '$lib/types';
 
-  let character: CharacterType | null = null;
-
-  onMount(async () => {
-    const response = await fetch('./data/example_character.json'); // Fetch from the API endpoint
-    if (response.ok) {
-      character = await response.json();
-    }
+  onMount(() => {
+    initializeCharacter();
   });
 
   function updateAttributeValue(event: CustomEvent<{ name: keyof AttributeType; value: number }>): void {
-    const { name, value } = event.detail;
-    if (character && character.attributes) {
-      character.attributes[name] = value;
-    }
+    characterStore.update(character => {
+      if (character && character.attributes) {
+        character.attributes[event.detail.name] = event.detail.value;
+      }
+      return character;
+    });
   }
 </script>
 
@@ -64,6 +64,17 @@
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
   }
 
+  .derived-attributes-container {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 15px;
+    margin-bottom: 20px;
+    padding: 20px;
+    background-color: #444;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+  }
+
   h2 {
     border-bottom: 2px solid #444;
     padding-bottom: 10px;
@@ -71,23 +82,26 @@
   }
 </style>
 
-{#if character}
+{#if $characterStore}
   <div class="main-dashboard">
     <!-- Main Dashboard -->
     <div class="character-header">
-      <img src={character.image} alt="Character Portrait" class="character-portrait">
-      <h1 class="character-name">{character.name}</h1>
+      <img src={$characterStore.image} alt="Character Portrait" class="character-portrait">
+      <h1 class="character-name">{$characterStore.name}</h1>
     </div>
 
     <!-- Attributes Section -->
     <section id="attributes" class="section">
       <h2>Attributes</h2>
       <div class="attributes-container">
-        {#each Object.entries(character.attributes) as [key, value]}
+        {#each Object.entries($characterStore.attributes) as [key, value]}
           <Attribute attribute={{ name: key.toUpperCase(), value }} on:updateValue={updateAttributeValue} />
         {/each}
       </div>
     </section>
+
+    <!-- Derived Attributes Section -->
+    <DerivedAttributes />
   </div>
 {:else}
   <p>Loading character data...</p>

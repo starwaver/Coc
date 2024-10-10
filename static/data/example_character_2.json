@@ -19,14 +19,6 @@
       "edu": 85,
       "luck": 60
     },
-    "derivedAttributes": {
-      "hp": 11,
-      "san": 75,
-      "mp": 15,
-      "db": "0",
-      "build": 0,
-      "move": 9
-    },
     "skills": {
       "libraryUse": 80,
       "psychology": 70,

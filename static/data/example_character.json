@@ -19,14 +19,6 @@
       "edu": 80,
       "luck": 55
     },
-    "derivedAttributes": {
-      "hp": 12,
-      "san": 65,
-      "mp": 13,
-      "db": "+1D4",
-      "build": 1,
-      "move": 8
-    },
     "skills": {
       "accounting": 10,
       "anthropology": 5,
