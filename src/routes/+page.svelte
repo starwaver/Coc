@@ -75,6 +75,21 @@
   // Add this derived store to get the current language
   $: currentLanguage = $languageStore as Language;
   $: t = translations[currentLanguage];
+
+  const isEditingAttributes = writable(false);
+
+  function toggleAttributesEditMode(save: boolean = true) {
+    isEditingAttributes.update(value => {
+      if (value && save) {
+        // Save logic here if needed
+      }
+      return !value;
+    });
+  }
+
+  function cancelAttributesEdit() {
+    toggleAttributesEditMode(false);
+  }
 </script>
 
 <style>
@@ -166,12 +181,27 @@
     <!-- Attributes Section -->
     <section id="attributes" class="section">
       <div class="section-header">
-        <h2>Attributes</h2>
-        <!-- Add a button here if needed -->
+        <h2>{t.attributes}</h2>
+        {#if $isEditingAttributes}
+          <button class="section-button" on:click={() => toggleAttributesEditMode(true)}>
+            {t.save}
+          </button>
+          <button class="section-button cancel-button" on:click={cancelAttributesEdit}>
+            {t.cancel}
+          </button>
+        {:else}
+          <button class="section-button" on:click={() => toggleAttributesEditMode(true)}>
+            {t.editAttributes}
+          </button>
+        {/if}
       </div>
       <div class="section-container">
         {#each Object.entries($characterStore.attributes) as [key, value]}
-          <Attribute attribute={{ name: key.toUpperCase(), value }} on:updateValue={updateAttributeValue} />
+          <Attribute 
+            attribute={{ name: key.toUpperCase(), value }} 
+            on:updateValue={updateAttributeValue}
+            isEditing={$isEditingAttributes}
+          />
         {/each}
       </div>
     </section>

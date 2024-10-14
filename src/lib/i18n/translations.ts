@@ -11,7 +11,9 @@ export const translations = {
     cancel: "Cancel",
     editSkills: "Edit Skills",
     totalOccupationPoints: "Total Occupation Points",
-    totalInterestPoints: "Total Interest Points"
+    totalInterestPoints: "Total Interest Points",
+    editAttributes: "Edit Attributes",
+    attributes: "Attributes"
   },
   cn: {
     base: "基础",
@@ -23,7 +25,9 @@ export const translations = {
     cancel: "取消",
     editSkills: "编辑技能",
     totalOccupationPoints: "总职业点数",
-    totalInterestPoints: "总兴趣点数"
+    totalInterestPoints: "总兴趣点数",
+    editAttributes: "编辑属性",
+    attributes: "属性"
   }
 } as const;
 
