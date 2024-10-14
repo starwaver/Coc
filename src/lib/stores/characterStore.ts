@@ -114,24 +114,43 @@ export const initializeCharacter = async (jsonFile?: string) => {
       const response = await fetch(jsonFile);
       const jsonData = await response.json();
       characterData = { ...defaultCharacterData, ...jsonData };
-      characterData.skills = (jsonData.skills as Array<{ name: string; base_percent: number }>).reduce((acc, skill) => {
-        acc[skill.name] = {
-          name: skill.name,
-          basePoint: skill.base_percent,
-          occupationPoint: 0,
-          interestPoint: 0,
-          growthPoint: 0,
-          hasSucceeded: false,
-        };
-        return acc;
-      }, {} as Record<string, {
-        name: string;
-        hasSucceeded: boolean;
-        basePoint: number;
-        occupationPoint: number;
-        interestPoint: number;
-        growthPoint: number; 
-      }>);
+      
+      if (Array.isArray(jsonData.skills)) {
+        characterData.skills = jsonData.skills.reduce((acc: Record<string, {
+          name: string;
+          hasSucceeded: boolean;
+          basePoint: number;
+          occupationPoint: number;
+          interestPoint: number;
+          growthPoint: number;
+        }>, skill: {
+          name: string;
+          basePoint: number;
+          occupationPoint: number;
+          interestPoint: number;
+          growthPoint: number;
+          hasSucceeded: boolean;
+        }) => {
+          acc[skill.name] = {
+            name: skill.name,
+            basePoint: skill.basePoint,
+            occupationPoint: skill.occupationPoint,
+            interestPoint: skill.interestPoint,
+            growthPoint: skill.growthPoint,
+            hasSucceeded: skill.hasSucceeded,
+          };
+          return acc;
+        }, {} as Record<string, {
+          name: string;
+          hasSucceeded: boolean;
+          basePoint: number;
+          occupationPoint: number;
+          interestPoint: number;
+          growthPoint: number; 
+        }>);
+      } else {
+        console.warn("Skills data in JSON is not in the expected format. Using default skills.");
+      }
     } catch (error) { 
       console.error("Failed to load character data from JSON:", error);
     }

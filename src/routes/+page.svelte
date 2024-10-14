@@ -4,7 +4,6 @@
   import Skill from './Skills.svelte';
   import { characterStore, initializeCharacter } from '$lib/stores/characterStore';
   import { onMount } from 'svelte';
-  import { get } from 'svelte/store';
   import type { AttributeType, SkillType } from '$lib/types';
 
   onMount(() => {
