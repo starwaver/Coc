@@ -13,7 +13,8 @@ export const translations = {
     totalOccupationPoints: "Total Occupation Points",
     totalInterestPoints: "Total Interest Points",
     editAttributes: "Edit Attributes",
-    attributes: "Attributes"
+    attributes: "Attributes",
+    derivedAttributes: "Derived Attributes"
   },
   cn: {
     base: "基础",
@@ -27,7 +28,8 @@ export const translations = {
     totalOccupationPoints: "总职业点数",
     totalInterestPoints: "总兴趣点数",
     editAttributes: "编辑属性",
-    attributes: "属性"
+    attributes: "属性",
+    derivedAttributes: "衍生属性"
   }
 } as const;
 

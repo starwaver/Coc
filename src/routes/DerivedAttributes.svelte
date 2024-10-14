@@ -3,7 +3,6 @@
     import { characterStore } from '$lib/stores/characterStore';
     import type { CharacterType } from '$lib/types';
   
-    // Make characterStore writable so we can update derived attributes dynamically
     const character = writable<CharacterType | null>(null);
   
     characterStore.subscribe(value => {
@@ -59,38 +58,29 @@
       else if (dex > siz && str > siz) return 9;
       else return 8;
     }
-  </script>
+</script>
   
-  <style>
+<style>
     .derived-attributes-container {
       display: grid;
       grid-template-columns: repeat(3, minmax(0, 1fr));
       gap: 15px;
       margin-bottom: 20px;
-      padding: 20px;
-      background-color: #444;
-      border-radius: 10px;
-      box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+      padding: 10px;
+      background-color: #3a3a3a;
+      border-radius: 5px;
+      box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
     }
+</style>
   
-    h2 {
-      border-bottom: 2px solid #444;
-      padding-bottom: 10px;
-      margin-bottom: 20px;
-    }
-  </style>
-  
-  <section id="derived-attributes" class="section">
-    <h2>Derived Attributes</h2>
-    <div class="derived-attributes-container">
-      {#if $derivedAttributes}
-        {#each Object.entries($derivedAttributes) as [key, value]}
-          <div>
-            <strong>{key.toUpperCase()}:</strong> {value}
-          </div>
-        {/each}
-      {:else}
-        <p>Loading derived attributes...</p>
-      {/if}
-    </div>
-  </section>
+<div class="derived-attributes-container">
+  {#if $derivedAttributes}
+    {#each Object.entries($derivedAttributes) as [key, value]}
+      <div>
+        <strong>{key.toUpperCase()}:</strong> {value}
+      </div>
+    {/each}
+  {:else}
+    <p>Loading derived attributes...</p>
+  {/if}
+</div>
