@@ -1,10 +1,14 @@
 // src/stores/characterStore.ts
-import { writable } from 'svelte/store';
-import type { CharacterType, AttributeType, DerivedAttributeType } from '$lib/types';
+import { writable, derived } from 'svelte/store';
+import type { CharacterType, AttributeType, DerivedAttributeType, SkillType } from '$lib/types';
+import type { Language } from '$lib/i18n/translations';
 import skillList from '$lib/skill_list.json';
 
 // Create a writable store with the initial value as null
 export const characterStore = writable<CharacterType | null>(null);
+
+// Add this new store for language
+export const languageStore = writable<Language>('en');
 
 // Utility function to generate a random ID
 function generateRandomId() {
@@ -42,8 +46,8 @@ const defaultCharacterData: CharacterType = {
     move: 0,
   },
   skills: skillList.skills.reduce((acc, skill) => {
-    acc[skill.name] = {
-      name: skill.name,
+    acc[skill.name.en] = {
+      name: { en: skill.name.en },
       basePoint: skill.base_percent,
       occupationPoint: 0,
       interestPoint: 0,
@@ -51,14 +55,7 @@ const defaultCharacterData: CharacterType = {
       hasSucceeded: false,
     };
     return acc;
-  }, {} as Record<string, {
-    name: string;
-    hasSucceeded: boolean;
-    basePoint: number;
-    occupationPoint: number;
-    interestPoint: number;
-    growthPoint: number; 
-  }>),
+  }, {} as Record<string, SkillType>),
 };
 
 export const calculateDerivedAttributes = (attributes: AttributeType): DerivedAttributeType => {
@@ -116,23 +113,9 @@ export const initializeCharacter = async (jsonFile?: string) => {
       characterData = { ...defaultCharacterData, ...jsonData };
       
       if (Array.isArray(jsonData.skills)) {
-        characterData.skills = jsonData.skills.reduce((acc: Record<string, {
-          name: string;
-          hasSucceeded: boolean;
-          basePoint: number;
-          occupationPoint: number;
-          interestPoint: number;
-          growthPoint: number;
-        }>, skill: {
-          name: string;
-          basePoint: number;
-          occupationPoint: number;
-          interestPoint: number;
-          growthPoint: number;
-          hasSucceeded: boolean;
-        }) => {
+        characterData.skills = jsonData.skills.reduce((acc: Record<string, SkillType>, skill: any) => {
           acc[skill.name] = {
-            name: skill.name,
+            name: { en: skill.name },
             basePoint: skill.basePoint,
             occupationPoint: skill.occupationPoint,
             interestPoint: skill.interestPoint,
@@ -140,14 +123,7 @@ export const initializeCharacter = async (jsonFile?: string) => {
             hasSucceeded: skill.hasSucceeded,
           };
           return acc;
-        }, {} as Record<string, {
-          name: string;
-          hasSucceeded: boolean;
-          basePoint: number;
-          occupationPoint: number;
-          interestPoint: number;
-          growthPoint: number; 
-        }>);
+        }, {} as Record<string, SkillType>);
       } else {
         console.warn("Skills data in JSON is not in the expected format. Using default skills.");
       }
@@ -158,3 +134,21 @@ export const initializeCharacter = async (jsonFile?: string) => {
 
   characterStore.set(characterData);
 };
+
+// Add this new derived store
+export const localizedSkills = derived(
+  [characterStore, languageStore],
+  ([$characterStore, $languageStore]) => {
+    if (!$characterStore) return {};
+    
+    return Object.entries($characterStore.skills).reduce((acc, [key, skill]) => {
+      const skillInfo = skillList.skills.find(s => s.name.en === key);
+      acc[key] = {
+        ...skill,
+        name: skillInfo?.name || { en: key, cn: key },
+        description: skillInfo?.description || { en: '', cn: '' }
+      };
+      return acc;
+    }, {} as Record<string, SkillType & { name: { [key: string]: string }, description: { [key: string]: string } }>);
+  }
+);

@@ -1,375 +1,587 @@
 {
   "skills": [
     {
-      "name": "Accounting",
-      "name_cn": "会计",
-      "description": "Used to calculate financial matters, manage accounts, and handle business-related numerical tasks.",
-      "description_cn": "用于计算财务事项、管理账目和处理与业务相关的数字任务。",
+      "name": {
+        "en": "Accounting",
+        "cn": "会计"
+      },
+      "description": {
+        "en": "Used to calculate financial matters, manage accounts, and handle business-related numerical tasks.",
+        "cn": "用于计算财务事项、管理账目和处理与业务相关的数字任务。"
+      },
       "base_percent": 25
     },
     {
-      "name": "Animal Handling",
-      "name_cn": "动物驯养",
-      "description": "Used to handle, train, and understand animals.",
-      "description_cn": "用于处理、训练和理解动物。",
+      "name": {
+        "en": "Animal Handling",
+        "cn": "动物驯养"
+      },
+      "description": {
+        "en": "Used to handle, train, and understand animals.",
+        "cn": "用于处理、训练和理解动物。"
+      },
       "base_percent": 20
     },
     {
-      "name": "Anthropology",
-      "name_cn": "人类学",
-      "description": "Used to understand human cultures, societies, and historical developments.",
-      "description_cn": "用于理解人类文化、社会和历史发展。",
+      "name": {
+        "en": "Anthropology",
+        "cn": "人类学"
+      },
+      "description": {
+        "en": "Used to understand human cultures, societies, and historical developments.",
+        "cn": "用于理解人类文化、社会和历史发展。"
+      },
       "base_percent": 15
     },
     {
-      "name": "Appraise",
-      "name_cn": "估价",
-      "description": "Used to determine the value of objects, antiques, and valuables.",
-      "description_cn": "用于确定物品、古董和贵重物品的价值。",
+      "name": {
+        "en": "Appraise",
+        "cn": "估价"
+      },
+      "description": {
+        "en": "Used to determine the value of objects, antiques, and valuables.",
+        "cn": "用于确定物品、古董和贵重物品的价值。"
+      },
       "base_percent": 20
     },
     {
-      "name": "Archaeology",
-      "name_cn": "考古学",
-      "description": "Used to conduct excavations, analyze artifacts, and understand ancient civilizations.",
-      "description_cn": "用于进行挖掘、分析文物和理解古代文明。",
+      "name": {
+        "en": "Archaeology",
+        "cn": "考古学"
+      },
+      "description": {
+        "en": "Used to conduct excavations, analyze artifacts, and understand ancient civilizations.",
+        "cn": "用于进行挖掘、分析文物和理解古代文明。"
+      },
       "base_percent": 15
     },
     {
-      "name": "Art and Craft",
-      "name_cn": "艺术与手工",
-      "description": "Used to create artistic works or craft items. This skill can have various specializations such as Painting, Sculpture, etc.",
-      "description_cn": "用于创作艺术作品或手工制品。这项技能可以有各种专业化，如绘画、雕塑等。",
+      "name": {
+        "en": "Art and Craft",
+        "cn": "艺术与手工"
+      },
+      "description": {
+        "en": "Used to create artistic works or craft items. This skill can have various specializations such as Painting, Sculpture, etc.",
+        "cn": "用于创作艺术作品或手工制品。这项技能可以有各种专业化，如绘画、雕塑等。"
+      },
       "base_percent": 30
     },
     {
-      "name": "Artillery",
-      "name_cn": "炮术",
-      "description": "Used to operate and manage heavy artillery weapons.",
-      "description_cn": "用于操作和管理重型火炮武器。",
+      "name": {
+        "en": "Artillery",
+        "cn": "炮术"
+      },
+      "description": {
+        "en": "Used to operate and manage heavy artillery weapons.",
+        "cn": "用于操作和管理重型火炮武器。"
+      },
       "base_percent": 15
     },
     {
-      "name": "Charm",
-      "name_cn": "魅力",
-      "description": "Used to influence or persuade others through charisma and likability.",
-      "description_cn": "通过个人魅力和讨人喜欢的特质来影响或说服他人。",
+      "name": {
+        "en": "Charm",
+        "cn": "魅力"
+      },
+      "description": {
+        "en": "Used to influence or persuade others through charisma and likability.",
+        "cn": "通过个人魅力和讨人喜欢的特质来影响或说服他人。"
+      },
       "base_percent": 25
     },
     {
-      "name": "Climb",
-      "name_cn": "攀爬",
-      "description": "Used to scale walls, trees, and other vertical obstacles.",
-      "description_cn": "用于攀爬墙壁、树木和其他垂直障碍物。",
+      "name": {
+        "en": "Climb",
+        "cn": "攀爬"
+      },
+      "description": {
+        "en": "Used to scale walls, trees, and other vertical obstacles.",
+        "cn": "用于攀爬墙壁、树木和其他垂直障碍物。"
+      },
       "base_percent": 50
     },
     {
-      "name": "Computer Use",
-      "name_cn": "计算机使用",
-      "description": "Used to operate computers, perform data analysis, and handle modern technological tasks.",
-      "description_cn": "用于操作计算机、执行数据分析和处理现代技术任务。",
+      "name": {
+        "en": "Computer Use",
+        "cn": "计算机使用"
+      },
+      "description": {
+        "en": "Used to operate computers, perform data analysis, and handle modern technological tasks.",
+        "cn": "用于操作计算机、执行数据分析和处理现代技术任务。"
+      },
       "base_percent": 30
     },
     {
-      "name": "Credit Rating",
-      "name_cn": "信用评级",
-      "description": "Represents a character's financial standing and reputation in society.",
-      "description_cn": "代表角色在社会中的财务状况和声誉。",
+      "name": {
+        "en": "Credit Rating",
+        "cn": "信用评级"
+      },
+      "description": {
+        "en": "Represents a character's financial standing and reputation in society.",
+        "cn": "代表角色在社会中的财务状况和声誉。"
+      },
       "base_percent": 0
     },
     {
-      "name": "Cthulhu Mythos",
-      "name_cn": "克苏鲁神话",
-      "description": "Knowledge of the forbidden lore, ancient deities, and cosmic horrors related to the Mythos.",
-      "description_cn": "关于禁忌知识、古老神祇和与神话相关的宇宙恐怖的了解。",
+      "name": {
+        "en": "Cthulhu Mythos",
+        "cn": "克苏鲁神话"
+      },
+      "description": {
+        "en": "Knowledge of the forbidden lore, ancient deities, and cosmic horrors related to the Mythos.",
+        "cn": "关于禁忌知识、古老神祇和与神话相关的宇宙恐怖的了解。"
+      },
       "base_percent": 0
     },
     {
-      "name": "Demolitions",
-      "name_cn": "爆破",
-      "description": "Used to handle, set up, and disarm explosive devices.",
-      "description_cn": "用于处理、设置和拆除爆炸装置。",
+      "name": {
+        "en": "Demolitions",
+        "cn": "爆破"
+      },
+      "description": {
+        "en": "Used to handle, set up, and disarm explosive devices.",
+        "cn": "用于处理、设置和拆除爆炸装置。"
+      },
       "base_percent": 15
     },
     {
-      "name": "Disguise",
-      "name_cn": "伪装",
-      "description": "Used to alter appearance or impersonate someone else.",
-      "description_cn": "用于改变外貌或冒充他人。",
+      "name": {
+        "en": "Disguise",
+        "cn": "伪装"
+      },
+      "description": {
+        "en": "Used to alter appearance or impersonate someone else.",
+        "cn": "用于改变外貌或冒充他人。"
+      },
       "base_percent": 25
     },
     {
-      "name": "Diving",
-      "name_cn": "潜水",
-      "description": "Used to perform underwater activities, including swimming and underwater exploration.",
-      "description_cn": "用于进行水下活动，包括游泳和水下探索。",
+      "name": {
+        "en": "Diving",
+        "cn": "潜水"
+      },
+      "description": {
+        "en": "Used to perform underwater activities, including swimming and underwater exploration.",
+        "cn": "用于进行水下活动，包括游泳和水下探索。"
+      },
       "base_percent": 40
     },
     {
-      "name": "Dodge",
-      "name_cn": "闪避",
-      "description": "Used to evade physical attacks or hazards.",
-      "description_cn": "用于躲避物理攻击或危险。",
+      "name": {
+        "en": "Dodge",
+        "cn": "闪避"
+      },
+      "description": {
+        "en": "Used to evade physical attacks or hazards.",
+        "cn": "用于躲避物理攻击或危险。"
+      },
       "base_percent": 40
     },
     {
-      "name": "Drive Auto",
-      "name_cn": "汽车驾驶",
-      "description": "Used to operate and control motor vehicles.",
-      "description_cn": "用于操作和控制机动车辆。",
+      "name": {
+        "en": "Drive Auto",
+        "cn": "汽车驾驶"
+      },
+      "description": {
+        "en": "Used to operate and control motor vehicles.",
+        "cn": "用于操作和控制机动车辆。"
+      },
       "base_percent": 50
     },
     {
-      "name": "Electrical Repair",
-      "name_cn": "电气修理",
-      "description": "Used to fix and maintain electrical systems and devices.",
-      "description_cn": "用于修理和维护电气系统和设备。",
+      "name": {
+        "en": "Electrical Repair",
+        "cn": "电气修理"
+      },
+      "description": {
+        "en": "Used to fix and maintain electrical systems and devices.",
+        "cn": "用于修理和维护电气系统和设备。"
+      },
       "base_percent": 25
     },
     {
-      "name": "Electronics",
-      "name_cn": "电子学",
-      "description": "Used to understand and work with electronic equipment and systems.",
-      "description_cn": "用于理解和操作电子设备和系统。",
+      "name": {
+        "en": "Electronics",
+        "cn": "电子学"
+      },
+      "description": {
+        "en": "Used to understand and work with electronic equipment and systems.",
+        "cn": "用于理解和操作电子设备和系统。"
+      },
       "base_percent": 30
     },
     {
-      "name": "Fast Talk",
-      "name_cn": "话术",
-      "description": "Used to persuade or deceive others through quick and smooth talking.",
-      "description_cn": "通过快速流畅的言辞来说服或欺骗他人。",
+      "name": {
+        "en": "Fast Talk",
+        "cn": "话术"
+      },
+      "description": {
+        "en": "Used to persuade or deceive others through quick and smooth talking.",
+        "cn": "通过快速流畅的言辞来说服或欺骗他人。"
+      },
       "base_percent": 35
     },
     {
-      "name": "Fighting",
-      "name_cn": "格斗",
-      "description": "Used in hand-to-hand combat situations. This skill can have various specializations such as Boxing, Wrestling, etc.",
-      "description_cn": "用于近身战斗情况。这项技能可以有各种专业化，如拳击、摔跤等。",
+      "name": {
+        "en": "Fighting",
+        "cn": "格斗"
+      },
+      "description": {
+        "en": "Used in hand-to-hand combat situations. This skill can have various specializations such as Boxing, Wrestling, etc.",
+        "cn": "用于近身战斗情况。这项技能可以有各种专业化，如拳击、摔跤等。"
+      },
       "base_percent": 40
     },
     {
-      "name": "Firearms",
-      "name_cn": "火器",
-      "description": "Used to operate and handle firearms. This skill can have various specializations such as Pistols, Rifles, etc.",
-      "description_cn": "用于操作和使用火器。这项技能可以有各种专业化，如手枪、步枪等。",
+      "name": {
+        "en": "Firearms",
+        "cn": "火器"
+      },
+      "description": {
+        "en": "Used to operate and handle firearms. This skill can have various specializations such as Pistols, Rifles, etc.",
+        "cn": "用于操作和使用火器。这项技能可以有各种专业化，如手枪、步枪等。"
+      },
       "base_percent": 40
     },
     {
-      "name": "First Aid",
-      "name_cn": "急救",
-      "description": "Used to provide basic medical assistance and stabilize injured individuals.",
-      "description_cn": "用于提供基本医疗援助和稳定受伤人员。",
+      "name": {
+        "en": "First Aid",
+        "cn": "急救"
+      },
+      "description": {
+        "en": "Used to provide basic medical assistance and stabilize injured individuals.",
+        "cn": "用于提供基本医疗援助和稳定受伤人员。"
+      },
       "base_percent": 40
     },
     {
-      "name": "History",
-      "name_cn": "历史",
-      "description": "Used to recall historical events, figures, and contexts.",
-      "description_cn": "用于回忆历史事件、人物和背景。",
+      "name": {
+        "en": "History",
+        "cn": "历史"
+      },
+      "description": {
+        "en": "Used to recall historical events, figures, and contexts.",
+        "cn": "用于回忆历史事件、人物和背景。"
+      },
       "base_percent": 25
     },
     {
-      "name": "Hypnosis",
-      "name_cn": "催眠",
-      "description": "Used to influence or control others through hypnotic techniques.",
-      "description_cn": "通过催眠技术来影响或控制他人。",
+      "name": {
+        "en": "Hypnosis",
+        "cn": "催眠"
+      },
+      "description": {
+        "en": "Used to influence or control others through hypnotic techniques.",
+        "cn": "通过催眠技术来影响或控制他人。"
+      },
       "base_percent": 15
     },
     {
-      "name": "Intimidate",
-      "name_cn": "恐吓",
-      "description": "Used to influence others through fear or threats.",
-      "description_cn": "通过恐惧或威胁来影响他人。",
+      "name": {
+        "en": "Intimidate",
+        "cn": "恐吓"
+      },
+      "description": {
+        "en": "Used to influence others through fear or threats.",
+        "cn": "通过恐惧或威胁来影响他人。"
+      },
       "base_percent": 35
     },
     {
-      "name": "Jump",
-      "name_cn": "跳跃",
-      "description": "Used to leap over obstacles or cover distances vertically.",
-      "description_cn": "用于跳过障碍物或垂直覆盖距离。",
+      "name": {
+        "en": "Jump",
+        "cn": "跳跃"
+      },
+      "description": {
+        "en": "Used to leap over obstacles or cover distances vertically.",
+        "cn": "用于跳过障碍物或垂直覆盖距离。"
+      },
       "base_percent": 50
     },
     {
-      "name": "Language (Own)",
-      "name_cn": "语言（母语）",
-      "description": "Represents proficiency in the character's native language.",
-      "description_cn": "代表角色母语的熟练程度。",
+      "name": {
+        "en": "Language (Own)",
+        "cn": "语言（母语）"
+      },
+      "description": {
+        "en": "Represents proficiency in the character's native language.",
+        "cn": "代表角色母语的熟练程度。"
+      },
       "base_percent": 50
     },
     {
-      "name": "Law",
-      "name_cn": "法律",
-      "description": "Used to understand and apply legal principles, statutes, and procedures.",
-      "description_cn": "用于理解和应用法律原则、法规和程序。",
+      "name": {
+        "en": "Law",
+        "cn": "法律"
+      },
+      "description": {
+        "en": "Used to understand and apply legal principles, statutes, and procedures.",
+        "cn": "用于理解和应用法律原则、法规和程序。"
+      },
       "base_percent": 20
     },
     {
-      "name": "Library Use",
-      "name_cn": "图书馆使用",
-      "description": "Used to conduct research, find information, and navigate library resources.",
-      "description_cn": "用于进行研究、查找信息和导航图书馆资源。",
+      "name": {
+        "en": "Library Use",
+        "cn": "图书馆使用"
+      },
+      "description": {
+        "en": "Used to conduct research, find information, and navigate library resources.",
+        "cn": "用于进行研究、查找信息和导航图书馆资源。"
+      },
       "base_percent": 40
     },
     {
-      "name": "Listen",
-      "name_cn": "聆听",
-      "description": "Used to hear and discern sounds, conversations, or environmental noises.",
-      "description_cn": "用于听取和辨别声音、对话或环境噪音。",
+      "name": {
+        "en": "Listen",
+        "cn": "聆听"
+      },
+      "description": {
+        "en": "Used to hear and discern sounds, conversations, or environmental noises.",
+        "cn": "用于听取和辨别声音、对话或环境噪音。"
+      },
       "base_percent": 50
     },
     {
-      "name": "Locksmith",
-      "name_cn": "锁匠",
-      "description": "Used to pick locks, disable security devices, and create keys.",
-      "description_cn": "用于开锁、禁用安全设备和制作钥匙。",
+      "name": {
+        "en": "Locksmith",
+        "cn": "锁匠"
+      },
+      "description": {
+        "en": "Used to pick locks, disable security devices, and create keys.",
+        "cn": "用于开锁、禁用安全设备和制作钥匙。"
+      },
       "base_percent": 30
     },
     {
-      "name": "Lore",
-      "name_cn": "学问",
-      "description": "Represents specialized knowledge in various academic or professional fields. Specializations can include areas like Medicine, Engineering, etc.",
-      "description_cn": "代表各种学术或专业领域的专门知识。专业化可以包括医学、工程等领域。",
+      "name": {
+        "en": "Lore",
+        "cn": "学问"
+      },
+      "description": {
+        "en": "Represents specialized knowledge in various academic or professional fields. Specializations can include areas like Medicine, Engineering, etc.",
+        "cn": "代表各种学术或专业领域的专门知识。专业化可以包括医学、工程等领域。"
+      },
       "base_percent": 10
     },
     {
-      "name": "Mechanical Repair",
-      "name_cn": "机械修理",
-      "description": "Used to fix and maintain machinery and mechanical systems.",
-      "description_cn": "用于修理和维护机械和机械系统。",
+      "name": {
+        "en": "Mechanical Repair",
+        "cn": "机械修理"
+      },
+      "description": {
+        "en": "Used to fix and maintain machinery and mechanical systems.",
+        "cn": "用于修理和维护机械和机械系统。"
+      },
       "base_percent": 25
     },
     {
-      "name": "Medicine",
-      "name_cn": "医学",
-      "description": "Used to diagnose and treat illnesses, injuries, and medical conditions.",
-      "description_cn": "用于诊断和治疗疾病、伤害和医疗状况。",
+      "name": {
+        "en": "Medicine",
+        "cn": "医学"
+      },
+      "description": {
+        "en": "Used to diagnose and treat illnesses, injuries, and medical conditions.",
+        "cn": "用于诊断和治疗疾病、伤害和医疗状况。"
+      },
       "base_percent": 25
     },
     {
-      "name": "Natural World",
-      "name_cn": "自然世界",
-      "description": "Used to understand flora, fauna, and natural phenomena.",
-      "description_cn": "用于理解植物、动物和自然现象。",
+      "name": {
+        "en": "Natural World",
+        "cn": "自然世界"
+      },
+      "description": {
+        "en": "Used to understand flora, fauna, and natural phenomena.",
+        "cn": "用于理解植物、动物和自然现象。"
+      },
       "base_percent": 25
     },
     {
-      "name": "Navigate",
-      "name_cn": "导航",
-      "description": "Used to determine locations, plot courses, and find directions.",
-      "description_cn": "用于确定位置、规划路线和寻找方向。",
+      "name": {
+        "en": "Navigate",
+        "cn": "导航"
+      },
+      "description": {
+        "en": "Used to determine locations, plot courses, and find directions.",
+        "cn": "用于确定位置、规划路线和寻找方向。"
+      },
       "base_percent": 30
     },
     {
-      "name": "Occult",
-      "name_cn": "神秘学",
-      "description": "Used to understand mystical, supernatural, or esoteric knowledge.",
-      "description_cn": "用于理解神秘、超自然或深奥的知识。",
+      "name": {
+        "en": "Occult",
+        "cn": "神秘学"
+      },
+      "description": {
+        "en": "Used to understand mystical, supernatural, or esoteric knowledge.",
+        "cn": "用于理解神秘、超自然或深奥的知识。"
+      },
       "base_percent": 15
     },
     {
-      "name": "Operate Heavy Machinery",
-      "name_cn": "操作重型机械",
-      "description": "Used to control and operate large industrial machines and equipment.",
-      "description_cn": "用于控制和操作大型工业机械和设备。",
+      "name": {
+        "en": "Operate Heavy Machinery",
+        "cn": "操作重型机械"
+      },
+      "description": {
+        "en": "Used to control and operate large industrial machines and equipment.",
+        "cn": "用于控制和操作大型工业机械和设备。"
+      },
       "base_percent": 20
     },
     {
-      "name": "Persuade",
-      "name_cn": "说服",
-      "description": "Used to convince others through logical arguments and reasoning.",
-      "description_cn": "通过逻辑论证和推理来说服他人。",
+      "name": {
+        "en": "Persuade",
+        "cn": "说服"
+      },
+      "description": {
+        "en": "Used to convince others through logical arguments and reasoning.",
+        "cn": "通过逻辑论证和推理来说服他人。"
+      },
       "base_percent": 35
     },
     {
-      "name": "Pilot",
-      "name_cn": "驾驶",
-      "description": "Used to operate aircraft. Specializations can include specific types like Airplanes, Helicopters, etc.",
-      "description_cn": "用于操作飞行器。专业化可以包括特定类型，如飞机、直升机等。",
+      "name": {
+        "en": "Pilot",
+        "cn": "驾驶"
+      },
+      "description": {
+        "en": "Used to operate aircraft. Specializations can include specific types like Airplanes, Helicopters, etc.",
+        "cn": "用于操作飞行器。专业化可以包括特定类型，如飞机、直升机等。"
+      },
       "base_percent": 40
     },
     {
-      "name": "Psychoanalysis",
-      "name_cn": "精神分析",
-      "description": "Used to analyze and understand the psychological state of individuals.",
-      "description_cn": "用于分析和理解个人的心理状态。",
+      "name": {
+        "en": "Psychoanalysis",
+        "cn": "精神分析"
+      },
+      "description": {
+        "en": "Used to analyze and understand the psychological state of individuals.",
+        "cn": "用于分析和理解个人的心理状态。"
+      },
       "base_percent": 15
     },
     {
-      "name": "Psychology",
-      "name_cn": "心理学",
-      "description": "Used to understand human behavior, mental processes, and emotional states.",
-      "description_cn": "用于理解人类行为、心理过程和情感状态。",
+      "name": {
+        "en": "Psychology",
+        "cn": "心理学"
+      },
+      "description": {
+        "en": "Used to understand human behavior, mental processes, and emotional states.",
+        "cn": "用于理解人类行为、心理过程和情感状态。"
+      },
       "base_percent": 25
     },
     {
-      "name": "Read Lips",
-      "name_cn": "唇语",
-      "description": "Used to understand speech by visually interpreting lip movements.",
-      "description_cn": "通过视觉解释唇部动作来理解言语。",
+      "name": {
+        "en": "Read Lips",
+        "cn": "唇语"
+      },
+      "description": {
+        "en": "Used to understand speech by visually interpreting lip movements.",
+        "cn": "通过视觉解释唇部动作来理解言语。"
+      },
       "base_percent": 15
     },
     {
-      "name": "Ride",
-      "name_cn": "骑术",
-      "description": "Used to control and maneuver animals or vehicles while mounted.",
-      "description_cn": "用于在骑乘时控制和操纵动物或车辆。",
+      "name": {
+        "en": "Ride",
+        "cn": "骑术"
+      },
+      "description": {
+        "en": "Used to control and maneuver animals or vehicles while mounted.",
+        "cn": "用于在骑乘时控制和操纵动物或车辆。"
+      },
       "base_percent": 30
     },
     {
-      "name": "Science",
-      "name_cn": "科学",
-      "description": "Represents knowledge in various scientific disciplines. Specializations can include Biology, Chemistry, etc.",
-      "description_cn": "代表各种科学学科的知识。专业化可以包括生物学、化学等。",
+      "name": {
+        "en": "Science",
+        "cn": "科学"
+      },
+      "description": {
+        "en": "Represents knowledge in various scientific disciplines. Specializations can include Biology, Chemistry, etc.",
+        "cn": "代表各种科学学科的知识。专业化可以包括生物学、化学等。"
+      },
       "base_percent": 20
     },
     {
-      "name": "Sleight of Hand",
-      "name_cn": "手法",
-      "description": "Used to perform quick hand movements to manipulate objects discreetly.",
-      "description_cn": "用于执行快速的手部动作以隐蔽地操纵物体。",
+      "name": {
+        "en": "Sleight of Hand",
+        "cn": "手法"
+      },
+      "description": {
+        "en": "Used to perform quick hand movements to manipulate objects discreetly.",
+        "cn": "用于执行快速的手部动作以隐蔽地操纵物体。"
+      },
       "base_percent": 35
     },
     {
-      "name": "Spot Hidden",
-      "name_cn": "侦查",
-      "description": "Used to notice hidden objects, clues, or details in the environment.",
-      "description_cn": "用于注意环境中隐藏的物体、线索或细节。",
+      "name": {
+        "en": "Spot Hidden",
+        "cn": "侦查"
+      },
+      "description": {
+        "en": "Used to notice hidden objects, clues, or details in the environment.",
+        "cn": "用于注意环境中隐藏的物体、线索或细节。"
+      },
       "base_percent": 40
     },
     {
-      "name": "Stealth",
-      "name_cn": "潜行",
-      "description": "Used to move silently and avoid detection.",
-      "description_cn": "用于无声移动和避免被发现。",
+      "name": {
+        "en": "Stealth",
+        "cn": "潜行"
+      },
+      "description": {
+        "en": "Used to move silently and avoid detection.",
+        "cn": "用于无声移动和避免被发现。"
+      },
       "base_percent": 40
     },
     {
-      "name": "Survival",
-      "name_cn": "生存",
-      "description": "Used to sustain oneself in the wilderness, find food and shelter, and navigate natural environments.",
-      "description_cn": "用于在野外维持生存，寻找食物和庇护所，以及在自然环境中导航。",
+      "name": {
+        "en": "Survival",
+        "cn": "生存"
+      },
+      "description": {
+        "en": "Used to sustain oneself in the wilderness, find food and shelter, and navigate natural environments.",
+        "cn": "用于在野外维持生存，寻找食物和庇护所，以及在自然环境中导航。"
+      },
       "base_percent": 25
     },
     {
-      "name": "Swim",
-      "name_cn": "游泳",
-      "description": "Used to move through water efficiently and overcome aquatic challenges.",
-      "description_cn": "用于高效地在水中移动并克服水上挑战。",
+      "name": {
+        "en": "Swim",
+        "cn": "游泳"
+      },
+      "description": {
+        "en": "Used to move through water efficiently and overcome aquatic challenges.",
+        "cn": "用于高效地在水中移动并克服水上挑战。"
+      },
       "base_percent": 50
     },
     {
-      "name": "Throw",
-      "name_cn": "投掷",
-      "description": "Used to accurately throw objects as projectiles.",
-      "description_cn": "用于准确地投掷物体作为投射物。",
+      "name": {
+        "en": "Throw",
+        "cn": "投掷"
+      },
+      "description": {
+        "en": "Used to accurately throw objects as projectiles.",
+        "cn": "用于准确地投掷物体作为投射物。"
+      },
       "base_percent": 30
     },
     {
-      "name": "Track",
-      "name_cn": "追踪",
-      "description": "Used to follow trails, identify footprints, and locate targets based on signs left behind.",
-      "description_cn": "用于跟踪痕迹、识别脚印，并根据留下的迹象定位目标。",
+      "name": {
+        "en": "Track",
+        "cn": "追踪"
+      },
+      "description": {
+        "en": "Used to follow trails, identify footprints, and locate targets based on signs left behind.",
+        "cn": "用于跟踪痕迹、识别脚印，并根据留下的迹象定位目标。"
+      },
       "base_percent": 35
     }
   ]
-}  
+}

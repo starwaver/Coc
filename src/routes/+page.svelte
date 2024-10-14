@@ -2,9 +2,11 @@
   import Attribute from './Attribute.svelte';
   import DerivedAttributes from './DerivedAttributes.svelte';
   import Skill from './Skills.svelte';
-  import { characterStore, initializeCharacter } from '$lib/stores/characterStore';
+  import { characterStore, initializeCharacter, languageStore, localizedSkills } from '$lib/stores/characterStore';
   import { onMount } from 'svelte';
-  import type { AttributeType, SkillType } from '$lib/types';
+  import type { AttributeType, SkillType} from '$lib/types';
+  import { writable, derived } from 'svelte/store';
+  import { translations, type Language } from '$lib/i18n/translations';
 
   onMount(() => {
     initializeCharacter('./data/example_character.json');
@@ -20,15 +22,59 @@
   }
 
   function updateSkillValue(event: CustomEvent<SkillType>): void {
-    characterStore.update(character => {
-      if (character) {
-        console.log("Updating skill:", event.detail.name, event.detail);
-        // Update the skill with the new values
-        character.skills[event.detail.name] = event.detail;
+    editedSkills.update(skills => ({
+      ...skills,
+      [event.detail.name.en]: event.detail
+    }));
+  }
+
+  const isEditingSkills = writable(false);
+  const editedSkills = writable<Record<string, SkillType>>({});
+
+  $: skillPointTotals = derived([characterStore, editedSkills], ([$characterStore, $editedSkills]) => {
+    if (!$characterStore) return { occupationTotal: 0, interestTotal: 0 };
+    
+    return Object.values($characterStore.skills).reduce(
+      (acc, skill) => {
+        const editedSkill = $editedSkills[skill.name.en] || skill;
+        acc.occupationTotal += editedSkill.occupationPoint;
+        acc.interestTotal += editedSkill.interestPoint;
+        return acc;
+      },
+      { occupationTotal: 0, interestTotal: 0 }
+    );
+  });
+
+  function toggleSkillsEditMode(save: boolean = true) {
+    isEditingSkills.update(value => {
+      if (value && save) {
+        // Save edited skills to characterStore
+        characterStore.update(character => {
+          if (character) {
+            Object.values($editedSkills).forEach(skill => {
+              character.skills[skill.name.en] = skill;
+            });
+          }
+          return character;
+        });
       }
-      return character;
+      editedSkills.set({});
+      return !value;
     });
   }
+
+  function cancelSkillsEdit() {
+    toggleSkillsEditMode(false);
+  }
+
+  // Add this function to handle language change
+  function changeLanguage(lang: string) {
+    languageStore.set(lang as Language);
+  }
+
+  // Add this derived store to get the current language
+  $: currentLanguage = $languageStore as Language;
+  $: t = translations[currentLanguage];
 </script>
 
 <style>
@@ -59,36 +105,53 @@
     margin-top: 10px;
   }
 
-  .section {
-    margin-bottom: 20px;
-  }
-
-  .attributes-container {
+  .section-container {
     display: grid;
     grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: 15px;
-    margin-bottom: 20px;
-    padding: 20px;
-    background-color: #666;
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    gap: 5px;
+    margin-bottom: 5px;
+    padding: 0px;
   }
 
-  .skills-container {
-    display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: 15px;
+  .section-header {
+    display: flex;
+    align-items: center;
     margin-bottom: 20px;
-    padding: 20px;
-    background-color: #555;
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
-  }
-
-  h2 {
     border-bottom: 2px solid #444;
     padding-bottom: 10px;
-    margin-bottom: 20px;
+  }
+
+  .section-header h2 {
+    margin: 0;
+    margin-right: 15px;
+  }
+
+  .section-button {
+    background-color: #00cc66;
+    color: #fff;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 0.9em;
+  }
+
+  .section-button:hover {
+    background-color: #00b359;
+  }
+
+  .point-totals {
+    font-size: 0.9em;
+    margin-left: 15px;
+  }
+
+  .cancel-button {
+    background-color: #cc0000;
+    margin-left: 10px;
+  }
+
+  .cancel-button:hover {
+    background-color: #b30000;
   }
 </style>
 
@@ -102,8 +165,11 @@
 
     <!-- Attributes Section -->
     <section id="attributes" class="section">
-      <h2>Attributes</h2>
-      <div class="attributes-container">
+      <div class="section-header">
+        <h2>Attributes</h2>
+        <!-- Add a button here if needed -->
+      </div>
+      <div class="section-container">
         {#each Object.entries($characterStore.attributes) as [key, value]}
           <Attribute attribute={{ name: key.toUpperCase(), value }} on:updateValue={updateAttributeValue} />
         {/each}
@@ -115,15 +181,35 @@
 
     <!-- Skills Section -->
     <section id="skills" class="section">
-      <h2>Skills</h2>
-      <div class="skills-container">
-        {#each Object.entries($characterStore.skills) as [key, skillData]}
+      <div class="section-header">
+        <h2>{t.skills}</h2>
+        {#if $isEditingSkills}
+          <button class="section-button" on:click={() => toggleSkillsEditMode(true)}>
+            {t.save}
+          </button>
+          <button class="section-button cancel-button" on:click={cancelSkillsEdit}>
+            {t.cancel}
+          </button>
+          <div class="point-totals">
+            <div>{t.totalOccupationPoints}: {$skillPointTotals.occupationTotal}</div>
+            <div>{t.totalInterestPoints}: {$skillPointTotals.interestTotal}</div>
+          </div>
+        {:else}
+          <button class="section-button" on:click={() => toggleSkillsEditMode(true)}>
+            {t.editSkills}
+          </button>
+        {/if}
+      </div>
+      <div class="section-container">
+        {#each Object.entries($localizedSkills) as [key, skillData]}
           <Skill 
             skill={{
               ...skillData,
-              name: key
-            }} 
-            on:updateValue={updateSkillValue} 
+              displayName: skillData.name[currentLanguage] || skillData.name.en
+            }}
+            on:updateValue={updateSkillValue}
+            isEditing={$isEditingSkills}
+            {currentLanguage}
           />
         {/each}
       </div>
@@ -132,3 +218,10 @@
 {:else}
   <p>Loading character data...</p>
 {/if}
+
+<!-- Add language selector -->
+<select bind:value={$languageStore} on:change={() => changeLanguage($languageStore)}>
+  <option value="en">English</option>
+  <option value="cn">中文</option>
+  <!-- Add more language options as needed -->
+</select>

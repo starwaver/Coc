@@ -1,3 +1,5 @@
+import { translations } from './i18n/translations';
+
 export type AttributeType = {
   str: number;
   con: number;
@@ -35,11 +37,13 @@ export type CharacterType = {
   skills: Record<string, SkillType>; // Use Record to represent skills as a dictionary with keys of type string
 };
 
-export type SkillType = {
-  name: string;            // Skill name
-  hasSucceeded: boolean;   // Whether the skill has succeeded
-  basePoint: number;       // Base value for the skill
-  occupationPoint: number; // Occupation value assigned by the character
-  interestPoint: number;   // Interest points assigned by the character
-  growthPoint: number;    // Growth points assigned by the character
-};
+export interface SkillType {
+  name: {
+    [key: string]: string;
+  };
+  basePoint: number;
+  occupationPoint: number;
+  interestPoint: number;
+  growthPoint: number;
+  hasSucceeded: boolean;
+}

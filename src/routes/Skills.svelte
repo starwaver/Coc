@@ -1,35 +1,30 @@
 <script lang="ts">
-    import { createEventDispatcher } from 'svelte';
+    import { createEventDispatcher, onMount } from 'svelte';
     import type { SkillType } from '$lib/types';
+    import SkillInput from './SkillInput.svelte';
+    import { translations, type Language } from '$lib/i18n/translations';
 
-    export let skill: SkillType;
+    export let skill: SkillType & { displayName: string };
+    export let isEditing: boolean;
+    export let currentLanguage: Language;
 
     const dispatch = createEventDispatcher();
 
-    let isEditing = false;
-    let newSkill = { ...skill }; 
+    let newSkill: SkillType;
 
-    function toggleEdit() {
-      isEditing = !isEditing;
-
-      if (!isEditing) {
-        skill = { ...newSkill };
-        dispatch('updateValue', skill);
-      } else {
+    onMount(() => {
         newSkill = { ...skill };
-      }
-    }
+    });
 
-    function cancelEdit() {
-      isEditing = false;
-      newSkill = { ...skill };
+    $: if (isEditing && newSkill) {
+        dispatch('updateValue', newSkill);
     }
 
     $: total = calculateTotal(skill);
-    $: newTotal = calculateTotal(newSkill);
+    $: newTotal = newSkill ? calculateTotal(newSkill) : total;
 
     function calculateTotal(s: SkillType) {
-      return s.basePoint + s.occupationPoint + s.interestPoint + s.growthPoint;
+        return s.basePoint + s.occupationPoint + s.interestPoint + s.growthPoint;
     }
 </script>
 
@@ -43,7 +38,6 @@
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    margin-bottom: 10px;
   }
 
   .skill-name {
@@ -66,55 +60,22 @@
     color: #cccccc;
     margin-top: 5px;
   }
-
-  input[type="number"] {
-    font-size: 1em;
-    color: #00cc66;
-    background-color: #2a2a2a;
-    border: none;
-    border-bottom: 2px solid #00cc66;
-    margin-bottom: 5px;
-    padding: 5px;
-    max-width: 80px;
-  }
-
-  .edit-button {
-    background: none;
-    border: none;
-    color: #00cc66;
-    cursor: pointer;
-    font-size: 1em;
-  }
-
-  .cancel-button {
-    background: none;
-    border: none;
-    color: #cc0000;
-    cursor: pointer;
-    font-size: 1em;
-    margin-left: 10px;
-  }
 </style>
 
 <div class="skill-box">
-  <div class="skill-name">{skill.name}
-    <button class="edit-button" on:click={toggleEdit}>{isEditing ? 'Save' : '✏️'}</button>
-    {#if isEditing}
-      <button class="cancel-button" on:click={cancelEdit}>Cancel</button>
-    {/if}
-  </div>
+  <div class="skill-name">{skill.displayName}</div>
 
-  {#if isEditing}
+  {#if isEditing && newSkill}
     <div>
-      <div>Base: {newSkill.basePoint}</div>
-      <div>Occupation: <input id="occupationValue" type="number" bind:value={newSkill.occupationPoint} /></div>
-      <div>Interest: <input id="interestValue" type="number" bind:value={newSkill.interestPoint} /></div>
-      <div>Growth: <input id="growthValue" type="number" bind:value={newSkill.growthPoint} /></div>
+      <SkillInput label="base" bind:value={newSkill.basePoint} {currentLanguage} readonly />
+      <SkillInput label="occupation" bind:value={newSkill.occupationPoint} {currentLanguage} />
+      <SkillInput label="interest" bind:value={newSkill.interestPoint} {currentLanguage} />
+      <SkillInput label="growth" bind:value={newSkill.growthPoint} {currentLanguage} />
       <div class="skill-value">{newTotal}</div>
+      <div class="skill-additional">{Math.floor(newTotal / 2)} | {Math.floor(newTotal / 5)}</div>
     </div>
   {:else}
     <div class="skill-value">{total}</div>
+    <div class="skill-additional">{Math.floor(total / 2)} | {Math.floor(total / 5)}</div>
   {/if}
-
-  <div class="skill-additional">{Math.floor(total / 2)} | {Math.floor(total / 5)}</div>
 </div>
