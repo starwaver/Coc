@@ -10,6 +10,15 @@ export type AttributeType = {
   luck: number;
 };
 
+export type DerivedAttributeType = {
+  hp: number,
+  san: number,
+  mp: number,
+  db: string,
+  build: number,
+  move: number,
+};
+
 export type CharacterType = {
   id: string;
   name: string;
@@ -22,7 +31,15 @@ export type CharacterType = {
   residence: string;
   image: string;
   attributes: AttributeType;
-  derivedAttributes?: object;
-  skills?: object;
-  // other fields can be added based on your schema
+  derivedAttributes: DerivedAttributeType;
+  skills: Record<string, SkillType>; // Use Record to represent skills as a dictionary with keys of type string
+};
+
+export type SkillType = {
+  name: string;            // Skill name
+  hasSucceeded: boolean;   // Whether the skill has succeeded
+  basePoint: number;       // Base value for the skill
+  occupationPoint: number; // Occupation value assigned by the character
+  interestPoint: number;   // Interest points assigned by the character
+  growthPoint: number;    // Growth points assigned by the character
 };
