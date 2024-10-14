@@ -443,6 +443,14 @@
       "occupationPoint": 0,
       "interestPoint": 0,
       "growthPoint": 0
+    },
+    {
+      "name": "Custom Skill",
+      "hasSucceeded": false,
+      "basePoint": 35,
+      "occupationPoint": 0,
+      "interestPoint": 0,
+      "growthPoint": 0
     }
   ],
   "inventory": [
