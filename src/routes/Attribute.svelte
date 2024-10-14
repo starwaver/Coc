@@ -8,11 +8,13 @@
     let newValue = attribute.value;
   
     function toggleEdit() {
-    isEditing = !isEditing;
-    if (!isEditing) {
-      dispatch('updateValue', { name: attribute.name.toLowerCase(), value: newValue });
+      isEditing = !isEditing;
+      if (!isEditing) {
+        dispatch('updateValue', { name: attribute.name.toLowerCase(), value: newValue });
+      } else {
+        newValue = attribute.value;
+      }
     }
-  }
   </script>
   
   <div class="attribute">
