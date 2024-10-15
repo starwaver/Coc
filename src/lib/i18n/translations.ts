@@ -14,7 +14,11 @@ export const translations = {
     totalInterestPoints: "Total Interest Points",
     editAttributes: "Edit Attributes",
     attributes: "Attributes",
-    derivedAttributes: "Derived Attributes"
+    derivedAttributes: "Derived Attributes",
+    createNewCharacter: "Create New Character",
+    importCharacter: "Import Character",
+    exportCharacter: "Export Character",
+    loadingCharacterData: "Loading character data...",
   },
   cn: {
     base: "基础",
@@ -29,7 +33,11 @@ export const translations = {
     totalInterestPoints: "总兴趣点数",
     editAttributes: "编辑属性",
     attributes: "属性",
-    derivedAttributes: "衍生属性"
+    derivedAttributes: "衍生属性",
+    createNewCharacter: "创建新角色",
+    importCharacter: "导入角色",
+    exportCharacter: "导出角色",
+    loadingCharacterData: "正在加载角色数据...",
   }
 } as const;
 

@@ -103,14 +103,13 @@ function calculateMove(dex: number, str: number, siz: number): number {
 
 // Function to initialize the character data from JSON
 export const initializeCharacter = async (jsonFile?: string) => {
-  let characterData = defaultCharacterData;
-  characterData.derivedAttributes = calculateDerivedAttributes(characterData.attributes);
+  let characterData: CharacterType = { ...defaultCharacterData };
 
   if (jsonFile) {
     try {
       const response = await fetch(jsonFile);
       const jsonData = await response.json();
-      characterData = { ...defaultCharacterData, ...jsonData };
+      characterData = { ...characterData, ...jsonData };
       
       if (Array.isArray(jsonData.skills)) {
         characterData.skills = jsonData.skills.reduce((acc: Record<string, SkillType>, skill: any) => {
@@ -130,8 +129,16 @@ export const initializeCharacter = async (jsonFile?: string) => {
     } catch (error) { 
       console.error("Failed to load character data from JSON:", error);
     }
+  } else {
+    characterData = {
+      ...characterData,
+      id: generateRandomId(),
+      name: "New Character",
+      playerName: "New Player",
+    };
   }
 
+  characterData.derivedAttributes = calculateDerivedAttributes(characterData.attributes);
   characterStore.set(characterData);
 };
 
@@ -145,7 +152,9 @@ export const localizedSkills = derived(
       const skillInfo = skillList.skills.find(s => s.name.en === key);
       acc[key] = {
         ...skill,
-        name: skillInfo?.name || { en: key, cn: key },
+        name: typeof skill.name === 'string' 
+          ? { en: skill.name } 
+          : skill.name || { en: 'Unknown Skill' },
         description: skillInfo?.description || { en: '', cn: '' }
       };
       return acc;

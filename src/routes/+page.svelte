@@ -67,12 +67,10 @@
     toggleSkillsEditMode(false);
   }
 
-  // Add this function to handle language change
   function changeLanguage(lang: string) {
     languageStore.set(lang as Language);
   }
 
-  // Add this derived store to get the current language
   $: currentLanguage = $languageStore as Language;
   $: t = translations[currentLanguage];
 
@@ -169,36 +167,7 @@
   .cancel-button:hover {
     background-color: #b30000;
   }
-
-  .language-selector {
-    position: absolute;
-    top: 20px;
-    right: 20px;
-    z-index: 1000;
-  }
-
-  .language-select {
-    padding: 5px 10px;
-    border-radius: 5px;
-    background-color: #3a3a3a;
-    color: #f0f0f0;
-    border: 1px solid #f0f0f0;
-    cursor: pointer;
-  }
-
-  .language-select:hover {
-    background-color: #4a4a4a;
-  }
 </style>
-
-<!-- Add the language selector at the top of the template, outside the main-dashboard div -->
-<div class="language-selector">
-  <select bind:value={$languageStore} on:change={() => changeLanguage($languageStore)} class="language-select">
-    <option value="en">English</option>
-    <option value="cn">中文</option>
-    <!-- Add more language options as needed -->
-  </select>
-</div>
 
 {#if $characterStore}
   <div class="main-dashboard">
@@ -281,5 +250,5 @@
     </section>
   </div>
 {:else}
-  <p>Loading character data...</p>
+  <p>{t.loadingCharacterData}</p>
 {/if}
