@@ -1,7 +1,7 @@
 <script lang="ts">
-  import Attribute from './Attribute.svelte';
-  import DerivedAttributes from './DerivedAttributes.svelte';
-  import Skill from './Skills.svelte';
+  import Attribute from './components/Attribute.svelte';
+  import DerivedAttributes from './components/DerivedAttributes.svelte';
+  import Skill from './components/Skills.svelte';
   import { characterStore, initializeCharacter, languageStore, localizedSkills } from '$lib/stores/characterStore';
   import { onMount } from 'svelte';
   import type { AttributeType, SkillType} from '$lib/types';

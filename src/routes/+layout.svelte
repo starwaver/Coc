@@ -66,8 +66,9 @@
         </button>
     </div>
 </nav>
-
-<slot />
+<main>
+  <slot />
+</main>
 
 <style>
   .navbar {
