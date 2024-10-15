@@ -9,7 +9,7 @@
   import { translations, type Language } from '$lib/i18n/translations';
 
   onMount(() => {
-    initializeCharacter('./data/example_character.json');
+    initializeCharacter();
   });
 
   function updateAttributeValue(event: CustomEvent<{ name: keyof AttributeType; value: number }>): void {

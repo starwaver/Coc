@@ -1,5 +1,3 @@
-export type TranslationKey = 'base' | 'occupation' | 'interest' | 'growth';
-
 export const translations = {
   en: {
     base: "Base",

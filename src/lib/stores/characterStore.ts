@@ -47,7 +47,7 @@ const defaultCharacterData: CharacterType = {
   },
   skills: skillList.skills.reduce((acc, skill) => {
     acc[skill.name.en] = {
-      name: { en: skill.name.en },
+      name: { en: skill.name.en, cn: skill.name.cn },
       basePoint: skill.base_percent,
       occupationPoint: 0,
       interestPoint: 0,
@@ -102,32 +102,28 @@ function calculateMove(dex: number, str: number, siz: number): number {
 }
 
 // Function to initialize the character data from JSON
-export const initializeCharacter = async (jsonFile?: string) => {
+export const initializeCharacter = (jsonData?: CharacterType) => {
   let characterData: CharacterType = { ...defaultCharacterData };
 
-  if (jsonFile) {
-    try {
-      const response = await fetch(jsonFile);
-      const jsonData = await response.json();
-      characterData = { ...characterData, ...jsonData };
-      
-      if (Array.isArray(jsonData.skills)) {
-        characterData.skills = jsonData.skills.reduce((acc: Record<string, SkillType>, skill: any) => {
-          acc[skill.name] = {
-            name: { en: skill.name },
-            basePoint: skill.basePoint,
-            occupationPoint: skill.occupationPoint,
-            interestPoint: skill.interestPoint,
-            growthPoint: skill.growthPoint,
-            hasSucceeded: skill.hasSucceeded,
-          };
-          return acc;
-        }, {} as Record<string, SkillType>);
-      } else {
-        console.warn("Skills data in JSON is not in the expected format. Using default skills.");
-      }
-    } catch (error) { 
-      console.error("Failed to load character data from JSON:", error);
+  if (jsonData) {
+    // Merge the JSON data with the default character data
+    characterData = { ...characterData, ...jsonData };
+
+    // Transform skills array to a dictionary
+    if (Array.isArray(jsonData.skills)) {
+      characterData.skills = jsonData.skills.reduce((acc: Record<string, SkillType>, skill: any) => {
+        acc[skill.name] = {
+          name: { en: skill.name }, // Assuming the name is in English
+          basePoint: skill.basePoint,
+          occupationPoint: skill.occupationPoint,
+          interestPoint: skill.interestPoint,
+          growthPoint: skill.growthPoint,
+          hasSucceeded: skill.hasSucceeded,
+        };
+        return acc;
+      }, {} as Record<string, SkillType>);
+    } else {
+      console.warn("Skills data in JSON is not in the expected format. Using default skills.");
     }
   } else {
     characterData = {
@@ -139,6 +135,7 @@ export const initializeCharacter = async (jsonFile?: string) => {
   }
 
   characterData.derivedAttributes = calculateDerivedAttributes(characterData.attributes);
+  console.log(characterData.skills);
   characterStore.set(characterData);
 };
 
@@ -150,14 +147,19 @@ export const localizedSkills = derived(
     
     return Object.entries($characterStore.skills).reduce((acc, [key, skill]) => {
       const skillInfo = skillList.skills.find(s => s.name.en === key);
+      
+      // Use skill list translation if available, otherwise fallback to loaded JSON
+      const name = skillInfo?.name || skill.name || { en: 'Unknown Skill', cn: '未知技能' };
+      
       acc[key] = {
         ...skill,
-        name: typeof skill.name === 'string' 
-          ? { en: skill.name } 
-          : skill.name || { en: 'Unknown Skill' },
+        name: {
+          en: name.en,
+          cn: name.cn
+        },
         description: skillInfo?.description || { en: '', cn: '' }
       };
       return acc;
-    }, {} as Record<string, SkillType & { name: { [key: string]: string }, description: { [key: string]: string } }>);
+    }, {} as Record<string, SkillType & { name: { [key: string]: string }, description: { [key: string]: string } }> );
   }
 );

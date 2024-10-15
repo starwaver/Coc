@@ -19,7 +19,7 @@
     if (file) {
       const text = await file.text();
       const jsonData = JSON.parse(text);
-      characterStore.set(jsonData);
+      initializeCharacter(jsonData); // Pass the JSON data to initializeCharacter
     }
   }
 
