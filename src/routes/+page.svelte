@@ -2,15 +2,11 @@
   import Attribute from './components/Attribute.svelte';
   import DerivedAttributes from './components/DerivedAttributes.svelte';
   import Skill from './components/Skills.svelte';
-  import { characterStore, initializeCharacter, languageStore, localizedSkills, calculateDerivedAttributes } from '$lib/stores/characterStore';
+  import { characterStore, languageStore, localizedSkills, calculateDerivedAttributes } from '$lib/stores/characterStore';
   import { onMount } from 'svelte';
   import type { AttributeType, SkillType} from '$lib/types';
   import { writable, derived } from 'svelte/store';
   import { translations, type Language } from '$lib/i18n/translations';
-
-  onMount(() => {
-    initializeCharacter();
-  });
 
   function updateAttributeValue(event: CustomEvent<{ name: keyof AttributeType; value: number }>): void {
     characterStore.update(character => {
@@ -59,7 +55,6 @@
   function toggleSkillsEditMode(save: boolean = true) {
     isEditingSkills.update(value => {
       if (value && save) {
-        // Save edited skills to characterStore
         characterStore.update(character => {
           if (character) {
             Object.values($editedSkills).forEach(skill => {
@@ -84,12 +79,7 @@
   const isEditingAttributes = writable(false);
 
   function toggleAttributesEditMode(save: boolean = true) {
-    isEditingAttributes.update(value => {
-      if (value && save) {
-        // Save logic here if needed
-      }
-      return !value;
-    });
+    isEditingAttributes.update(value => !value);
   }
 
   function cancelAttributesEdit() {

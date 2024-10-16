@@ -1,25 +1,31 @@
 <script lang="ts">
-  import { languageStore, characterStore, initializeCharacter } from '$lib/stores/characterStore';
+  import { onMount } from 'svelte';
+  import { languageStore, characterStore, initializeCharacter, clearCharacterStorage } from '$lib/stores/characterStore';
   import { translations, type Language } from '$lib/i18n/translations';
-
-  function changeLanguage(lang: string) {
-    languageStore.set(lang as Language);
-  }
 
   $: currentLanguage = $languageStore as Language;
   $: t = translations[currentLanguage];
 
-  function createNewCharacter() {
+  onMount(() => {
     initializeCharacter();
+  });
+
+  function createNewCharacter() {
+    clearCharacterStorage();
+    initializeCharacter(undefined, true);
   }
 
   async function importCharacter(event: Event) {
     const input = event.target as HTMLInputElement;
     const file = input.files?.[0];
     if (file) {
-      const text = await file.text();
-      const jsonData = JSON.parse(text);
-      initializeCharacter(jsonData); // Pass the JSON data to initializeCharacter
+      try {
+        const text = await file.text();
+        const jsonData = JSON.parse(text);
+        initializeCharacter(jsonData);
+      } catch (error) {
+        console.error("Error parsing JSON file:", error);
+      }
     }
   }
 
@@ -31,9 +37,7 @@
       const a = document.createElement('a');
       a.href = url;
       a.download = `${$characterStore.name || 'character'}.json`;
-      document.body.appendChild(a);
       a.click();
-      document.body.removeChild(a);
       URL.revokeObjectURL(url);
     }
   }
@@ -41,10 +45,9 @@
 
 <nav class="navbar">
     <div class="language-container">
-        <select bind:value={$languageStore} on:change={() => changeLanguage($languageStore)} class="language-select">
+        <select bind:value={$languageStore} class="language-select">
             <option value="en">English</option>
             <option value="cn">中文</option>
-            <!-- Add more language options as needed -->
         </select>
     </div>
     <div class="character-actions">

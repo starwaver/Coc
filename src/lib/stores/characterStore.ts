@@ -3,6 +3,7 @@ import { writable, derived } from 'svelte/store';
 import type { CharacterType, AttributeType, DerivedAttributeType, SkillType, BackstoryType } from '$lib/types';
 import type { Language } from '$lib/i18n/translations';
 import skillList from '$lib/skill_list.json';
+import Cookies from 'js-cookie';
 
 // Create a writable store with the initial value as null
 export const characterStore = writable<CharacterType | null>(null);
@@ -111,20 +112,47 @@ function calculateMove(dex: number, str: number, siz: number): number {
   else return 8;
 }
 
-// Function to initialize the character data from JSON
-export const initializeCharacter = (jsonData?: CharacterType) => {
-  let characterData: CharacterType = { ...defaultCharacterData };
+// Function to save character data to localStorage
+export const saveCharacterToStorage = (character: CharacterType) => {
+  try {
+    localStorage.setItem('characterData', JSON.stringify(character));
+  } catch (error) {
+    console.error('Error saving character to localStorage:', error);
+  }
+};
+
+// Function to load character data from localStorage
+export const loadCharacterFromStorage = (): CharacterType | null => {
+  try {
+    const storageData = localStorage.getItem('characterData');
+    return storageData ? JSON.parse(storageData) : null;
+  } catch (error) {
+    console.error('Error loading character from localStorage:', error);
+    return null;
+  }
+};
+
+// Function to clear character data from localStorage
+export const clearCharacterStorage = () => {
+  try {
+    localStorage.removeItem('characterData');
+  } catch (error) {
+    console.error('Error clearing character from localStorage:', error);
+  }
+};
+
+// Modify initializeCharacter function
+export const initializeCharacter = (jsonData?: CharacterType, forceNew: boolean = false) => {
+  let characterData: CharacterType;
 
   if (jsonData) {
-    // Merge the JSON data with the default character data
-    characterData = { ...characterData, ...jsonData };
-
-    // Transform skills array to a dictionary
+    characterData = { ...defaultCharacterData, ...jsonData };
+    
+    // Transform skills array to a dictionary if necessary
     if (Array.isArray(jsonData.skills)) {
-
       characterData.skills = jsonData.skills.reduce((acc: Record<string, SkillType>, skill: any) => {
         acc[skill.name] = {
-          name: { en: skill.name }, // Assuming the name is in English
+          name: { en: skill.name },
           basePoint: skill.basePoint,
           occupationPoint: skill.occupationPoint,
           interestPoint: skill.interestPoint,
@@ -133,27 +161,39 @@ export const initializeCharacter = (jsonData?: CharacterType) => {
         };
         return acc;
       }, {} as Record<string, SkillType>);
+    }
+  } else if (!forceNew) {
+    const storageData = loadCharacterFromStorage();
+    
+    if (storageData) {
+      characterData = storageData;
     } else {
-      console.warn("Skills data in JSON is not in the expected format. Using default skills.");
+      characterData = createNewCharacterData();
     }
-  } else { // If no JSON data is provided, create a new character
-    characterData = {
-      ...characterData,
-      id: generateRandomId(),
-      name: "New Character",
-      playerName: "New Player",
-    };
-
-    // Set the "Dodge" skill to half of the character's DEX
-    if (characterData.skills["Dodge"]) {
-      characterData.skills["Dodge"].basePoint = Math.floor(characterData.attributes.dex / 2);
-    }
-
-    characterData.derivedAttributes = calculateDerivedAttributes(characterData.attributes);
+  } else {
+    characterData = createNewCharacterData();
   }
 
   characterStore.set(characterData);
+  saveCharacterToStorage(characterData);
 };
+
+function createNewCharacterData(): CharacterType {
+  const newCharacter = {
+    ...defaultCharacterData,
+    id: generateRandomId(),
+    name: "New Character",
+    playerName: "New Player",
+  };
+
+  if (newCharacter.skills["Dodge"]) {
+    newCharacter.skills["Dodge"].basePoint = Math.floor(newCharacter.attributes.dex / 2);
+  }
+
+  newCharacter.derivedAttributes = calculateDerivedAttributes(newCharacter.attributes);
+
+  return newCharacter;
+}
 
 // Add this new derived store
 export const localizedSkills = derived(
@@ -179,3 +219,9 @@ export const localizedSkills = derived(
     }, {} as Record<string, SkillType & { name: { [key: string]: string }, description: { [key: string]: string } }> );
   }
 );
+
+characterStore.subscribe((character) => {
+  if (character) {
+    saveCharacterToStorage(character);
+  }
+});
