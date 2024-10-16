@@ -174,7 +174,7 @@
         "en": "Used to evade physical attacks or hazards.",
         "cn": "用于躲避物理攻击或危险。"
       },
-      "base_percent": 40
+      "base_percent": -1
     },
     {
       "name": {

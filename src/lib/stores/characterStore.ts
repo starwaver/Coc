@@ -1,6 +1,6 @@
 // src/stores/characterStore.ts
 import { writable, derived } from 'svelte/store';
-import type { CharacterType, AttributeType, DerivedAttributeType, SkillType } from '$lib/types';
+import type { CharacterType, AttributeType, DerivedAttributeType, SkillType, BackstoryType } from '$lib/types';
 import type { Language } from '$lib/i18n/translations';
 import skillList from '$lib/skill_list.json';
 
@@ -38,12 +38,22 @@ const defaultCharacterData: CharacterType = {
     luck: 0
   },
   derivedAttributes: {
-    hp: 0,
-    san: 0,
-    mp: 0,
+    maxHp: 0,
+    initialSan: 0,
+    maxMp: 0,
     db: "0",
     build: 0,
     move: 0,
+  },
+  backstory: {
+    personalDescription: "",
+    traits: "",
+    ideologyAndBelief: "",
+    injuriesAndScars: "",
+    significantPeople: "",
+    phobiasAndManias: "",
+    meaningfulLocations: "",
+    treasuredPossessions: "",
   },
   skills: skillList.skills.reduce((acc, skill) => {
     acc[skill.name.en] = {
@@ -60,9 +70,9 @@ const defaultCharacterData: CharacterType = {
 
 export const calculateDerivedAttributes = (attributes: AttributeType): DerivedAttributeType => {
   return {
-    hp: Math.floor((attributes.con + attributes.siz) / 10),
-    san: attributes.pow,
-    mp: Math.floor(attributes.pow / 5),
+    maxHp: Math.floor((attributes.con + attributes.siz) / 10),
+    initialSan: attributes.pow,
+    maxMp: Math.floor(attributes.pow / 5),
     db: calculateDamageBonus(attributes.str, attributes.siz),
     build: calculateBuild(attributes.str, attributes.siz),
     move: calculateMove(attributes.dex, attributes.str, attributes.siz),
@@ -111,6 +121,7 @@ export const initializeCharacter = (jsonData?: CharacterType) => {
 
     // Transform skills array to a dictionary
     if (Array.isArray(jsonData.skills)) {
+
       characterData.skills = jsonData.skills.reduce((acc: Record<string, SkillType>, skill: any) => {
         acc[skill.name] = {
           name: { en: skill.name }, // Assuming the name is in English
@@ -125,17 +136,22 @@ export const initializeCharacter = (jsonData?: CharacterType) => {
     } else {
       console.warn("Skills data in JSON is not in the expected format. Using default skills.");
     }
-  } else {
+  } else { // If no JSON data is provided, create a new character
     characterData = {
       ...characterData,
       id: generateRandomId(),
       name: "New Character",
       playerName: "New Player",
     };
+
+    // Set the "Dodge" skill to half of the character's DEX
+    if (characterData.skills["Dodge"]) {
+      characterData.skills["Dodge"].basePoint = Math.floor(characterData.attributes.dex / 2);
+    }
+
+    characterData.derivedAttributes = calculateDerivedAttributes(characterData.attributes);
   }
 
-  characterData.derivedAttributes = calculateDerivedAttributes(characterData.attributes);
-  console.log(characterData.skills);
   characterStore.set(characterData);
 };
 

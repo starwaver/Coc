@@ -2,7 +2,7 @@
   import Attribute from './components/Attribute.svelte';
   import DerivedAttributes from './components/DerivedAttributes.svelte';
   import Skill from './components/Skills.svelte';
-  import { characterStore, initializeCharacter, languageStore, localizedSkills } from '$lib/stores/characterStore';
+  import { characterStore, initializeCharacter, languageStore, localizedSkills, calculateDerivedAttributes } from '$lib/stores/characterStore';
   import { onMount } from 'svelte';
   import type { AttributeType, SkillType} from '$lib/types';
   import { writable, derived } from 'svelte/store';
@@ -14,9 +14,20 @@
 
   function updateAttributeValue(event: CustomEvent<{ name: keyof AttributeType; value: number }>): void {
     characterStore.update(character => {
-      if (character && character.attributes) {
-        character.attributes[event.detail.name] = event.detail.value;
+      if (character) {
+        if (character.attributes) {
+          character.attributes[event.detail.name] = event.detail.value;
+        }
+
+        if (character.derivedAttributes) {
+          character.derivedAttributes = calculateDerivedAttributes(character.attributes);
+        }
+
+        if (character.skills) {
+          character.skills["Dodge"].basePoint = Math.floor(character.attributes.dex / 2);
+        }
       }
+
       return character;
     });
   }
@@ -65,10 +76,6 @@
 
   function cancelSkillsEdit() {
     toggleSkillsEditMode(false);
-  }
-
-  function changeLanguage(lang: string) {
-    languageStore.set(lang as Language);
   }
 
   $: currentLanguage = $languageStore as Language;

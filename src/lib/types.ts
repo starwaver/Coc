@@ -13,12 +13,23 @@ export type AttributeType = {
 };
 
 export type DerivedAttributeType = {
-  hp: number,
-  san: number,
-  mp: number,
+  maxHp: number,
+  initialSan: number,
+  maxMp: number,
   db: string,
   build: number,
   move: number,
+};
+
+export type BackstoryType = {
+  personalDescription: string;
+  traits: string;
+  ideologyAndBelief: string;
+  injuriesAndScars: string;
+  significantPeople: string;
+  phobiasAndManias: string;
+  meaningfulLocations: string;
+  treasuredPossessions: string;
 };
 
 export type CharacterType = {
@@ -35,6 +46,7 @@ export type CharacterType = {
   attributes: AttributeType;
   derivedAttributes: DerivedAttributeType;
   skills: Record<string, SkillType>; // Use Record to represent skills as a dictionary with keys of type string
+  backstory: BackstoryType;
 };
 
 export interface SkillType {
