@@ -236,7 +236,8 @@
           <Skill 
             skill={{
               ...skillData,
-              displayName: skillData.name[currentLanguage] || skillData.name.en
+              displayName: skillData.name[currentLanguage] || skillData.name.en,
+              hasSucceeded: $characterStore.skills[key].hasSucceeded
             }}
             on:updateValue={updateSkillValue}
             isEditing={$isEditingSkills}

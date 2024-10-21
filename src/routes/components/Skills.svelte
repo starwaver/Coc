@@ -3,6 +3,7 @@
     import type { SkillType } from '$lib/types';
     import SkillInput from './SkillInput.svelte';
     import { translations, type Language } from '$lib/i18n/translations';
+    import { characterStore } from '$lib/stores/characterStore';
 
     export let skill: SkillType & { displayName: string };
     export let isEditing: boolean;
@@ -25,6 +26,15 @@
 
     function calculateTotal(s: SkillType) {
         return s.basePoint + s.occupationPoint + s.interestPoint + s.growthPoint;
+    }
+
+    function toggleSucceeded() {
+        characterStore.update(character => {
+            if (character && character.skills[skill.name.en]) {
+                character.skills[skill.name.en].hasSucceeded = !character.skills[skill.name.en].hasSucceeded;
+            }
+            return character;
+        });
     }
 </script>
 
@@ -60,10 +70,27 @@
     color: #cccccc;
     margin-top: 5px;
   }
+
+  .skill-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 5px;
+  }
+  .success-checkbox {
+    margin-right: 10px;
+  }
 </style>
 
 <div class="skill-box">
-  <div class="skill-name">{skill.displayName}</div>
+    <div class="skill-header">
+        <input 
+            type="checkbox" 
+            class="success-checkbox" 
+            checked={skill.hasSucceeded} 
+            on:change={toggleSucceeded}
+        />
+        <div class="skill-name">{skill.displayName}</div>
+    </div>
 
   {#if isEditing && newSkill}
     <div>
