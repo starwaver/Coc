@@ -11,8 +11,10 @@
   });
 
   function createNewCharacter() {
-    clearCharacterStorage();
-    initializeCharacter(undefined, true);
+    if (confirm(t.confirmNewCharacter)) {
+      clearCharacterStorage();
+      initializeCharacter(undefined, true);
+    }
   }
 
   async function importCharacter(event: Event) {
