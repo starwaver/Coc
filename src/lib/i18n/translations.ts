@@ -32,6 +32,7 @@ export const translations = {
     build: "Build",
     move: "Move Rate",
     enterCharacterName: "Enter character name",
+    enterImageUrl: "Enter image URL",
   },
   cn: {
     base: "基础",
@@ -66,6 +67,7 @@ export const translations = {
     build: "体型",
     move: "移动",
     enterCharacterName: "输入角色名称",
+    enterImageUrl: "输入图片URL",
   }
 } as const;
 

@@ -135,6 +135,29 @@
   function cancelEditName() {
     isEditingName = false;
   }
+
+  let isEditingImage = false;
+  let editedImageUrl = '';
+
+  function startEditingImage() {
+    editedImageUrl = $characterStore?.image ?? '';
+    isEditingImage = true;
+  }
+
+  function saveImageUrl() {
+    characterStore.update(character => {
+      if (character) {
+        character.image = editedImageUrl;
+        updateCharacterData(character);
+      }
+      return character;
+    });
+    isEditingImage = false;
+  }
+
+  function cancelEditImage() {
+    isEditingImage = false;
+  }
 </script>
 
 <style>
@@ -225,16 +248,6 @@
     justify-content: center;
   }
 
-  .edit-icon {
-    background: none;
-    border: none;
-    cursor: pointer;
-    font-size: 1em;
-    padding: 0;
-    margin-left: 10px;
-    color: #00cc66; /* Green color */
-  }
-
   .name-input {
     font-size: 2em;
     background-color: transparent;
@@ -245,8 +258,55 @@
     width: 80%;
   }
 
-  .name-buttons {
+  .image-url-input {
+    width: 80%;
+    padding: 5px;
     margin-top: 10px;
+    background-color: rgba(255, 255, 255, 0.1);
+    border: 1px solid #f0f0f0;
+    border-radius: 5px;
+    color: #f0f0f0;
+  }
+
+  .image-edit-buttons {
+    margin-top: 10px;
+  }
+
+  .image-edit-button {
+    background-color: #00cc66;
+    color: #fff;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 0.9em;
+    margin: 0 5px;
+  }
+
+  .image-edit-button.cancel {
+    background-color: #cc0000;
+  }
+
+  .character-portrait-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    transition: opacity 0.3s;
+    border: none;
+    cursor: pointer;
+    border-radius: 50%;
+  }
+
+  .upload-icon {
+    font-size: 2em;
+    color: #fff;
   }
 </style>
 
@@ -254,7 +314,30 @@
   <div class="main-dashboard">
     <!-- Main Dashboard -->
     <div class="character-header">
-      <img src={$characterStore.image} alt="Character Portrait" class="character-portrait">
+      <div class="character-portrait-container">
+        <img src={$characterStore.image} alt="Character Portrait" class="character-portrait">
+        {#if !isEditingImage}
+          <button class="character-portrait-overlay" on:dblclick={startEditingImage}>
+            <span class="upload-icon">🔗</span>
+          </button>
+        {/if}
+      </div>
+      {#if isEditingImage}
+        <input
+          type="text"
+          bind:value={editedImageUrl}
+          class="image-url-input"
+          placeholder={t.enterImageUrl}
+        />
+        <div class="image-edit-buttons">
+          <button class="image-edit-button" on:click={saveImageUrl}>
+            {t.save}
+          </button>
+          <button class="image-edit-button cancel" on:click={cancelEditImage}>
+            {t.cancel}
+          </button>
+        </div>
+      {/if}
       <div class="name-edit-container">
         {#if isEditingName}
           <input
