@@ -112,6 +112,29 @@
       return skills;
     });
   }
+
+  let isEditingName = false;
+  let editedName = '';
+
+  function startEditingName() {
+    editedName = $characterStore?.name ?? '';
+    isEditingName = true;
+  }
+
+  function saveName() {
+    characterStore.update(character => {
+      if (character) {
+        character.name = editedName;
+        updateCharacterData(character);
+      }
+      return character;
+    });
+    isEditingName = false;
+  }
+
+  function cancelEditName() {
+    isEditingName = false;
+  }
 </script>
 
 <style>
@@ -141,6 +164,7 @@
   .character-name {
     font-size: 2em;
     margin-top: 10px;
+    cursor: pointer;
   }
 
   .section-container {
@@ -195,6 +219,35 @@
   :global(.add-custom-skill) {
     margin-top: 20px;
   }
+
+  .name-edit-container {
+    display: flex;
+    justify-content: center;
+  }
+
+  .edit-icon {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 1em;
+    padding: 0;
+    margin-left: 10px;
+    color: #00cc66; /* Green color */
+  }
+
+  .name-input {
+    font-size: 2em;
+    background-color: transparent;
+    border: none;
+    border-bottom: 2px solid #f0f0f0;
+    color: #f0f0f0;
+    text-align: center;
+    width: 80%;
+  }
+
+  .name-buttons {
+    margin-top: 10px;
+  }
 </style>
 
 {#if $characterStore}
@@ -202,7 +255,22 @@
     <!-- Main Dashboard -->
     <div class="character-header">
       <img src={$characterStore.image} alt="Character Portrait" class="character-portrait">
-      <h1 class="character-name">{$characterStore.name}</h1>
+      <div class="name-edit-container">
+        {#if isEditingName}
+          <input
+            type="text"
+            bind:value={editedName}
+            class="name-input"
+            on:blur={saveName}
+            on:keydown={(e) => e.key === 'Enter' && saveName()}
+            placeholder={t.enterCharacterName}
+          />
+        {:else}
+          <h1 class="character-name" on:dblclick={startEditingName}>
+            {$characterStore.name}
+          </h1>
+        {/if}
+      </div>
     </div>
 
     <!-- Attributes Section -->
@@ -285,4 +353,3 @@
 {:else}
   <p>{t.loadingCharacterData}</p>
 {/if}
-

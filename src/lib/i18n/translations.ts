@@ -31,6 +31,7 @@ export const translations = {
     db: "Damage Bonus",
     build: "Build",
     move: "Move Rate",
+    enterCharacterName: "Enter character name",
   },
   cn: {
     base: "基础",
@@ -64,6 +65,7 @@ export const translations = {
     db: "伤害加成",
     build: "体型",
     move: "移动",
+    enterCharacterName: "输入角色名称",
   }
 } as const;
 
