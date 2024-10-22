@@ -19,7 +19,18 @@ export const translations = {
     loadingCharacterData: "Loading character data...",
     confirmNewCharacter: "Are you sure you want to create a new character? This will delete the current character.",
     newSkillPlaceholder: "Enter new skill name",
-    addSkill: "Add Skill"
+    addSkill: "Add Skill",
+    currentHp: "Current HP",
+    currentMp: "Current MP",
+    currentSan: "Current Sanity",
+    temporaryInsanity: "Temporary Insane",
+    indefiniteInsanity: "Indefinite Insane",
+    majorWound: "Major Wound",
+    unconscious: "Unconscious",
+    dying: "Dying",
+    db: "Damage Bonus",
+    build: "Build",
+    move: "Move Rate",
   },
   cn: {
     base: "基础",
@@ -41,7 +52,18 @@ export const translations = {
     loadingCharacterData: "正在加载角色数据...",
     confirmNewCharacter: "您确定要创建新角色吗？这将删除当前角色。",
     newSkillPlaceholder: "输入新技能名称",
-    addSkill: "添加技能"
+    addSkill: "添加技能",
+    currentHp: "当前HP",
+    currentMp: "当前MP",
+    currentSan: "当前理智",
+    temporaryInsanity: "临时疯狂",
+    indefiniteInsanity: "永久疯狂",
+    majorWound: "重伤",
+    unconscious: "昏迷",
+    dying: "濒死",
+    db: "伤害加成",
+    build: "体型",
+    move: "移动",
   }
 } as const;
 

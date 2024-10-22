@@ -39,8 +39,16 @@ const defaultCharacterData: CharacterType = {
   },
   derivedAttributes: {
     maxHp: 0,
+    currentHp: 0,
+    majorWound: false,
+    unconscious: false,
+    dying: false,
     initialSan: 0,
+    currentSan: 0,
+    temporaryInsanity: false,
+    indefiniteInsanity: false,
     maxMp: 0,
+    currentMp: 0,
     db: "0",
     build: 0,
     move: 0,
@@ -69,10 +77,21 @@ const defaultCharacterData: CharacterType = {
 };
 
 export const calculateDerivedAttributes = (attributes: AttributeType): DerivedAttributeType => {
+  const maxHp = Math.floor((attributes.con + attributes.siz) / 10);
+  const initialSan = attributes.pow;
+  const maxMp = Math.floor(attributes.pow / 5);
   return {
-    maxHp: Math.floor((attributes.con + attributes.siz) / 10),
-    initialSan: attributes.pow,
-    maxMp: Math.floor(attributes.pow / 5),
+    maxHp,
+    currentHp: maxHp,
+    majorWound: false,
+    unconscious: false,
+    dying: false,
+    initialSan,
+    currentSan: initialSan,
+    temporaryInsanity: false,
+    indefiniteInsanity: false,
+    maxMp,
+    currentMp: maxMp,
     db: calculateDamageBonus(attributes.str, attributes.siz),
     build: calculateBuild(attributes.str, attributes.siz),
     move: calculateMove(attributes.dex, attributes.str, attributes.siz),
@@ -173,8 +192,8 @@ export const initializeCharacter = (jsonData?: CharacterType, forceNew: boolean 
     characterData = createNewCharacterData();
   }
 
+  // Use the set method of the derived store
   characterStore.set(characterData);
-  saveCharacterToStorage(characterData);
 };
 
 function createNewCharacterData(): CharacterType {
@@ -189,9 +208,24 @@ function createNewCharacterData(): CharacterType {
     newCharacter.skills["Dodge"].basePoint = Math.floor(newCharacter.attributes.dex / 2);
   }
 
+  if (newCharacter.skills["Language (Own)"]) {
+    newCharacter.skills["Language (Own)"].basePoint = Math.floor(newCharacter.attributes.edu);
+  }
+
   newCharacter.derivedAttributes = calculateDerivedAttributes(newCharacter.attributes);
 
   return newCharacter;
+}
+
+export const updateCharacterData = (character: CharacterType): void => {
+  if (character.derivedAttributes) {
+    character.derivedAttributes = calculateDerivedAttributes(character.attributes);
+  }
+
+  if (character.skills) {
+    character.skills["Dodge"].basePoint = Math.floor(character.attributes.dex / 2);
+    character.skills["Language (Own)"].basePoint = Math.floor(character.attributes.edu);
+  }
 }
 
 // Add this new derived store

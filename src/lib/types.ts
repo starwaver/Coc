@@ -14,11 +14,19 @@ export type AttributeType = {
 
 export type DerivedAttributeType = {
   maxHp: number,
+  currentHp: number,
   initialSan: number,
+  currentSan: number,
   maxMp: number,
+  currentMp: number,
   db: string,
   build: number,
   move: number,
+  temporaryInsanity: boolean,
+  indefiniteInsanity: boolean,
+  majorWound: boolean,
+  unconscious: boolean,
+  dying: boolean,
 };
 
 export type BackstoryType = {

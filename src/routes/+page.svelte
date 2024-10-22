@@ -2,7 +2,7 @@
   import Attribute from './components/Attribute.svelte';
   import DerivedAttributes from './components/DerivedAttributes.svelte';
   import Skill from './components/Skills.svelte';
-  import { characterStore, localizedSkills, calculateDerivedAttributes } from '$lib/stores/characterStore';
+  import { characterStore, localizedSkills, updateCharacterData } from '$lib/stores/characterStore';
   import { languageStore } from '$lib/stores/languageStore';
   
   import { onMount } from 'svelte';
@@ -19,13 +19,7 @@
           character.attributes[event.detail.name] = event.detail.value;
         }
 
-        if (character.derivedAttributes) {
-          character.derivedAttributes = calculateDerivedAttributes(character.attributes);
-        }
-
-        if (character.skills) {
-          character.skills["Dodge"].basePoint = Math.floor(character.attributes.dex / 2);
-        }
+        updateCharacterData(character);
       }
 
       return character;
