@@ -177,11 +177,36 @@
     margin-bottom: 20px;
   }
 
-  .character-portrait {
+  .character-portrait-container {
+    position: relative;
     width: 150px;
     height: 150px;
+    margin: 0 auto;
+  }
+
+  .character-portrait {
+    width: 100%;
+    height: 100%;
     border-radius: 50%;
     border: 4px solid #f0f0f0;
+    object-fit: cover;
+  }
+
+  .character-portrait-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    transition: opacity 0.3s;
+    border: none;
+    cursor: pointer;
+    border-radius: 50%;
   }
 
   .character-name {
@@ -246,6 +271,7 @@
   .name-edit-container {
     display: flex;
     justify-content: center;
+    padding-top: 10px;
   }
 
   .name-input {
@@ -285,23 +311,6 @@
 
   .image-edit-button.cancel {
     background-color: #cc0000;
-  }
-
-  .character-portrait-overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.5);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    opacity: 0;
-    transition: opacity 0.3s;
-    border: none;
-    cursor: pointer;
-    border-radius: 50%;
   }
 
   .upload-icon {
