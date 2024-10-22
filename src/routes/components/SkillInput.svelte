@@ -1,19 +1,16 @@
 <script lang="ts">
-  import { translations, type TranslationKey, type Language } from '$lib/i18n/translations';
+  import { translations, type Language } from '$lib/i18n/translations';
 
-  export let label: TranslationKey;
+  export let label: string;
   export let value: number;
   export let readonly: boolean = false;
   export let min: number = 0;
   export let max: number = 99;
-  export let currentLanguage: Language;
 
   function handleInput(event: Event) {
     const input = event.target as HTMLInputElement;
     value = Math.max(min, Math.min(max, parseInt(input.value) || 0));
   }
-
-  $: translatedLabel = translations[currentLanguage][label];
 </script>
 
 <style>
@@ -61,7 +58,7 @@
 </style>
 
 <div class="input-group">
-  <span class="input-label">{translatedLabel}:</span>
+  <span class="input-label">{label}:</span>
   {#if readonly}
     <span class="base-value">{value}</span>
   {:else}

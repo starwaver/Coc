@@ -1,6 +1,7 @@
 <script lang="ts">
   import { onMount } from 'svelte';
-  import { languageStore, characterStore, initializeCharacter, clearCharacterStorage } from '$lib/stores/characterStore';
+  import { characterStore, initializeCharacter, clearCharacterStorage } from '$lib/stores/characterStore';
+  import { languageStore } from '$lib/stores/languageStore';
   import { translations, type Language } from '$lib/i18n/translations';
 
   $: currentLanguage = $languageStore as Language;

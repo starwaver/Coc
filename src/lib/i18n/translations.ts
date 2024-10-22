@@ -18,6 +18,8 @@ export const translations = {
     exportCharacter: "Export Character",
     loadingCharacterData: "Loading character data...",
     confirmNewCharacter: "Are you sure you want to create a new character? This will delete the current character.",
+    newSkillPlaceholder: "Enter new skill name",
+    addSkill: "Add Skill"
   },
   cn: {
     base: "基础",
@@ -38,6 +40,8 @@ export const translations = {
     exportCharacter: "导出角色",
     loadingCharacterData: "正在加载角色数据...",
     confirmNewCharacter: "您确定要创建新角色吗？这将删除当前角色。",
+    newSkillPlaceholder: "输入新技能名称",
+    addSkill: "添加技能"
   }
 } as const;
 

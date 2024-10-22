@@ -1,15 +1,14 @@
 // src/stores/characterStore.ts
 import { writable, derived } from 'svelte/store';
+import { languageStore } from './languageStore';
 import type { CharacterType, AttributeType, DerivedAttributeType, SkillType, BackstoryType } from '$lib/types';
 import type { Language } from '$lib/i18n/translations';
 import skillList from '$lib/skill_list.json';
-import Cookies from 'js-cookie';
 
 // Create a writable store with the initial value as null
 export const characterStore = writable<CharacterType | null>(null);
 
 // Add this new store for language
-export const languageStore = writable<Language>('en');
 
 // Utility function to generate a random ID
 function generateRandomId() {

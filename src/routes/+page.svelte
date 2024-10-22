@@ -2,11 +2,15 @@
   import Attribute from './components/Attribute.svelte';
   import DerivedAttributes from './components/DerivedAttributes.svelte';
   import Skill from './components/Skills.svelte';
-  import { characterStore, languageStore, localizedSkills, calculateDerivedAttributes } from '$lib/stores/characterStore';
+  import { characterStore, localizedSkills, calculateDerivedAttributes } from '$lib/stores/characterStore';
+  import { languageStore } from '$lib/stores/languageStore';
+  
   import { onMount } from 'svelte';
   import type { AttributeType, SkillType} from '$lib/types';
   import { writable, derived } from 'svelte/store';
   import { translations, type Language } from '$lib/i18n/translations';
+  import AddCustomSkill from './components/AddCustomSkill.svelte';
+  import skillList from '$lib/skill_list.json';
 
   function updateAttributeValue(event: CustomEvent<{ name: keyof AttributeType; value: number }>): void {
     characterStore.update(character => {
@@ -54,17 +58,23 @@
 
   function toggleSkillsEditMode(save: boolean = true) {
     isEditingSkills.update(value => {
-      if (value && save) {
+      if (!value) {
+        // Entering edit mode, initialize editedSkills with current skills
         characterStore.update(character => {
           if (character) {
-            Object.values($editedSkills).forEach(skill => {
-              character.skills[skill.name.en] = skill;
-            });
+            editedSkills.set(character.skills);
+          }
+          return character;
+        });
+      } else if (save) {
+        characterStore.update(character => {
+          if (character) {
+            // Update character's skills with editedSkills
+            character.skills = { ...$editedSkills };
           }
           return character;
         });
       }
-      editedSkills.set({});
       return !value;
     });
   }
@@ -84,6 +94,29 @@
 
   function cancelAttributesEdit() {
     toggleAttributesEditMode(false);
+  }
+
+  function addCustomSkill(event: CustomEvent<SkillType>) {
+    const newSkill = event.detail;
+    characterStore.update(character => {
+      if (character) {
+        character.skills[newSkill.name.en] = newSkill;
+      }
+      return character;
+    });
+  }
+
+  function deleteCustomSkill(skillName: string) {
+    characterStore.update(character => {
+      if (character) {
+        delete character.skills[skillName];
+      }
+      return character;
+    });
+    editedSkills.update(skills => {
+      delete skills[skillName];
+      return skills;
+    });
   }
 </script>
 
@@ -164,6 +197,10 @@
   .cancel-button:hover {
     background-color: #b30000;
   }
+
+  :global(.add-custom-skill) {
+    margin-top: 20px;
+  }
 </style>
 
 {#if $characterStore}
@@ -240,13 +277,18 @@
               hasSucceeded: $characterStore.skills[key].hasSucceeded
             }}
             on:updateValue={updateSkillValue}
+            on:deleteSkill={(event) => deleteCustomSkill(key)}
             isEditing={$isEditingSkills}
-            {currentLanguage}
+            isCustom={!skillList.skills.some(s => s.name.en === key)}
           />
         {/each}
       </div>
+      {#if $isEditingSkills}
+        <AddCustomSkill on:addSkill={addCustomSkill} {currentLanguage} />
+      {/if}
     </section>
   </div>
 {:else}
   <p>{t.loadingCharacterData}</p>
 {/if}
+

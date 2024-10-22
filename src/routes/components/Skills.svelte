@@ -2,12 +2,12 @@
     import { createEventDispatcher, onMount } from 'svelte';
     import type { SkillType } from '$lib/types';
     import SkillInput from './SkillInput.svelte';
-    import { translations, type Language } from '$lib/i18n/translations';
+    import { translations } from '$lib/i18n/translations';
     import { characterStore } from '$lib/stores/characterStore';
-
+    import { languageStore } from '$lib/stores/languageStore';
     export let skill: SkillType & { displayName: string };
     export let isEditing: boolean;
-    export let currentLanguage: Language;
+    export let isCustom: boolean;
 
     const dispatch = createEventDispatcher();
 
@@ -36,6 +36,9 @@
             return character;
         });
     }
+
+    // Add this derived store
+    $: t = $languageStore ? translations[$languageStore] : translations.en;
 </script>
 
 <style>
@@ -79,6 +82,23 @@
   .success-checkbox {
     margin-right: 10px;
   }
+
+  .delete-button {
+    background-color: #cc0000;
+    color: #fff;
+    border: none;
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    font-size: 12px;
+    line-height: 1;
+    cursor: pointer;
+    margin-left: 5px;
+  }
+
+  .delete-button:hover {
+    background-color: #ff0000;
+  }
 </style>
 
 <div class="skill-box">
@@ -90,19 +110,22 @@
             on:change={toggleSucceeded}
         />
         <div class="skill-name">{skill.displayName}</div>
+        {#if isEditing && isCustom}
+            <button class="delete-button" on:click={() => dispatch('deleteSkill')}>X</button>
+        {/if}
     </div>
 
-  {#if isEditing && newSkill}
-    <div>
-      <SkillInput label="base" bind:value={newSkill.basePoint} {currentLanguage} readonly />
-      <SkillInput label="occupation" bind:value={newSkill.occupationPoint} {currentLanguage} />
-      <SkillInput label="interest" bind:value={newSkill.interestPoint} {currentLanguage} />
-      <SkillInput label="growth" bind:value={newSkill.growthPoint} {currentLanguage} />
-      <div class="skill-value">{newTotal}</div>
-      <div class="skill-additional">{Math.floor(newTotal / 2)} | {Math.floor(newTotal / 5)}</div>
-    </div>
-  {:else}
-    <div class="skill-value">{total}</div>
-    <div class="skill-additional">{Math.floor(total / 2)} | {Math.floor(total / 5)}</div>
-  {/if}
+    {#if isEditing && newSkill}
+        <div>
+            <SkillInput label={t.base} bind:value={newSkill.basePoint} readonly={!isCustom} />
+            <SkillInput label={t.occupation} bind:value={newSkill.occupationPoint} />
+            <SkillInput label={t.interest} bind:value={newSkill.interestPoint} />
+            <SkillInput label={t.growth} bind:value={newSkill.growthPoint} />
+            <div class="skill-value">{newTotal}</div>
+            <div class="skill-additional">{Math.floor(newTotal / 2)} | {Math.floor(newTotal / 5)}</div>
+        </div>
+    {:else}
+        <div class="skill-value">{total}</div>
+        <div class="skill-additional">{Math.floor(total / 2)} | {Math.floor(total / 5)}</div>
+    {/if}
 </div>
