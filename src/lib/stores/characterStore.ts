@@ -62,6 +62,8 @@ const defaultCharacterData: CharacterType = {
     phobiasAndManias: "",
     meaningfulLocations: "",
     treasuredPossessions: "",
+    arcaneTomesSpellsAndArtifacts: "",
+    encountersWithStrangeEntities: "",
   },
   skills: skillList.skills.reduce((acc, skill) => {
     acc[skill.name.en] = {
@@ -74,6 +76,13 @@ const defaultCharacterData: CharacterType = {
     };
     return acc;
   }, {} as Record<string, SkillType>),
+  inventory: {
+    gearsAndPossessions: [],
+    spendingLevel: 0,
+    cash: 0,
+    assets: [],
+    weapons: [],
+  },
 };
 
 export const calculateDerivedAttributes = (attributes: AttributeType): DerivedAttributeType => {

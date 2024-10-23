@@ -37,7 +37,28 @@ export type BackstoryType = {
   significantPeople: string;
   phobiasAndManias: string;
   meaningfulLocations: string;
+  arcaneTomesSpellsAndArtifacts: string;
   treasuredPossessions: string;
+  encountersWithStrangeEntities: string;
+};
+
+export type InventoryType = {
+  gearsAndPossessions: string[];
+  spendingLevel: number;
+  cash: number;
+  assets: string[];
+  weapons: WeaponType[];
+};
+
+export type WeaponType = {
+  name: string;
+  skill: string;
+  baseDamage: string;
+  range: string;
+  maxAttacks: number;
+  clipSize: number;
+  malfunction: number;
+  canPenetrate: boolean;
 };
 
 export type CharacterType = {
@@ -55,6 +76,7 @@ export type CharacterType = {
   derivedAttributes: DerivedAttributeType;
   skills: Record<string, SkillType>; // Use Record to represent skills as a dictionary with keys of type string
   backstory: BackstoryType;
+  inventory: InventoryType;
 };
 
 export interface SkillType {
