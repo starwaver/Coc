@@ -205,23 +205,52 @@ export const initializeCharacter = (jsonData?: CharacterType, forceNew: boolean 
   characterStore.set(characterData);
 };
 
+// New function to generate a single attribute value
+export function generateAttributeValue(attributeName: string): number {
+  const rollD6 = () => Math.floor(Math.random() * 6) + 1;
+  
+  if (['siz', 'int', 'edu'].includes(attributeName.toLowerCase())) {
+    return (rollD6() + rollD6() + 6) * 5; // (2D6 + 6) * 5
+  } else {
+    return (rollD6() + rollD6() + rollD6()) * 5; // 3D6 * 5
+  }
+}
+
+// New function to generate all attributes
+export function generateAllAttributes(): AttributeType {
+  return {
+    str: generateAttributeValue('str'),
+    con: generateAttributeValue('con'),
+    siz: generateAttributeValue('siz'),
+    dex: generateAttributeValue('dex'),
+    app: generateAttributeValue('app'),
+    int: generateAttributeValue('int'),
+    pow: generateAttributeValue('pow'),
+    edu: generateAttributeValue('edu'),
+    luck: generateAttributeValue('luck'),
+  };
+}
+
 function createNewCharacterData(): CharacterType {
   const newCharacter = {
     ...defaultCharacterData,
     id: generateRandomId(),
     name: "New Character",
     playerName: "New Player",
+    attributes: generateAllAttributes(),
   };
 
+  // Recalculate derived attributes based on the new random attributes
+  newCharacter.derivedAttributes = calculateDerivedAttributes(newCharacter.attributes);
+
+  // Update skills that depend on attributes
   if (newCharacter.skills["Dodge"]) {
     newCharacter.skills["Dodge"].basePoint = Math.floor(newCharacter.attributes.dex / 2);
   }
 
   if (newCharacter.skills["Language (Own)"]) {
-    newCharacter.skills["Language (Own)"].basePoint = Math.floor(newCharacter.attributes.edu);
+    newCharacter.skills["Language (Own)"].basePoint = newCharacter.attributes.edu;
   }
-
-  newCharacter.derivedAttributes = calculateDerivedAttributes(newCharacter.attributes);
 
   return newCharacter;
 }
