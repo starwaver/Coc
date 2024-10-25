@@ -16,7 +16,7 @@ function generateRandomId() {
 }
 
 const defaultCharacterData: CharacterType = {
-  id: generateRandomId(),
+  id: '',
   name: "Unnamed Character",
   playerName: "Unnamed Player",
   type: "PC",
@@ -27,61 +27,22 @@ const defaultCharacterData: CharacterType = {
   residence: "Unselected",
   image: "./data/character_placeholder.png",
   attributes: {
-    str: 0,
-    con: 0,
-    siz: 0,
-    dex: 0,
-    app: 0,
-    int: 0,
-    pow: 0,
-    edu: 0,
-    luck: 0
+    str: 0, con: 0, siz: 0, dex: 0, app: 0, int: 0, pow: 0, edu: 0, luck: 0
   },
   derivedAttributes: {
-    maxHp: 0,
-    currentHp: 0,
-    majorWound: false,
-    unconscious: false,
-    dying: false,
-    initialSan: 0,
-    currentSan: 0,
-    temporaryInsanity: false,
-    indefiniteInsanity: false,
-    maxMp: 0,
-    currentMp: 0,
-    db: "0",
-    build: 0,
-    move: 0,
+    maxHp: 0, currentHp: 0, majorWound: false, unconscious: false, dying: false,
+    initialSan: 0, currentSan: 0, temporaryInsanity: false, indefiniteInsanity: false,
+    maxMp: 0, currentMp: 0, db: "0", build: 0, move: 0,
   },
   backstory: {
-    personalDescription: "",
-    ideologyAndBelief: "",
-    significantPeople: "",
-    meaningfulLocations: "",
-    treasuredPossessions: "",
-    traits: "",
-    injuriesAndScars: "",
-    phobiasAndManias: "",
-    arcaneTomesSpellsAndArtifacts: "",
+    personalDescription: "", ideologyAndBelief: "", significantPeople: "",
+    meaningfulLocations: "", treasuredPossessions: "", traits: "",
+    injuriesAndScars: "", phobiasAndManias: "", arcaneTomesSpellsAndArtifacts: "",
     encountersWithStrangeEntities: "",
   },
-  skills: skillList.skills.reduce((acc, skill) => {
-    acc[skill.name.en] = {
-      name: { en: skill.name.en, cn: skill.name.cn },
-      basePoint: skill.base_percent,
-      occupationPoint: 0,
-      interestPoint: 0,
-      growthPoint: 0,
-      hasSucceeded: false,
-    };
-    return acc;
-  }, {} as Record<string, SkillType>),
+  skills: {},
   inventory: {
-    gearsAndPossessions: [],
-    spendingLevel: 0,
-    cash: 0,
-    assets: [],
-    weapons: [],
+    gearsAndPossessions: [], spendingLevel: 0, cash: 0, assets: [], weapons: [],
   },
 };
 
@@ -242,6 +203,19 @@ function createNewCharacterData(): CharacterType {
 
   // Recalculate derived attributes based on the new random attributes
   newCharacter.derivedAttributes = calculateDerivedAttributes(newCharacter.attributes);
+
+  // Initialize skills
+  newCharacter.skills = skillList.skills.reduce((acc, skill) => {
+    acc[skill.name.en] = {
+      name: { en: skill.name.en, cn: skill.name.cn },
+      basePoint: skill.base_percent,
+      occupationPoint: 0,
+      interestPoint: 0,
+      growthPoint: 0,
+      hasSucceeded: false,
+    };
+    return acc;
+  }, {} as Record<string, SkillType>);
 
   // Update skills that depend on attributes
   if (newCharacter.skills["Dodge"]) {
