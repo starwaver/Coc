@@ -47,7 +47,7 @@
     {
       "name": {
         "en": "Art and Craft",
-        "cn": "艺术与手工"
+        "cn": "技艺与手工"
       },
       "description": {
         "en": "Used to create artistic works or craft items. This skill can have various specializations such as Painting, Sculpture, etc.",
@@ -58,7 +58,7 @@
     {
       "name": {
         "en": "Charm",
-        "cn": "魅力"
+        "cn": "魅惑/取悦"
       },
       "description": {
         "en": "Used to influence or persuade others through charisma and likability.",
@@ -76,6 +76,17 @@
         "cn": "用于攀爬墙壁、树木和其他垂直障碍物。"
       },
       "base_percent": 20
+    },
+    {
+      "name": {
+        "en": "Computer Use",
+        "cn": "计算机使用"
+      },
+      "description": {
+        "en": "Used to operate and use computers.",
+        "cn": "用于操作和使用计算机。"
+      },
+      "base_percent": 5
     },
     {
       "name": {
@@ -102,7 +113,7 @@
     {
       "name": {
         "en": "Disguise",
-        "cn": "伪装"
+        "cn": "乔装"
       },
       "description": {
         "en": "Used to alter appearance or impersonate someone else.",
@@ -145,6 +156,17 @@
     },
     {
       "name": {
+        "en": "Electronics",
+        "cn": "电子学"
+      },
+      "description": {
+        "en": "Used to understand and repair electronic devices and systems.",
+        "cn": "用于理解和修理电子设备和系统。"
+      },
+      "base_percent": 1
+    },
+    {
+      "name": {
         "en": "Fast Talk",
         "cn": "话术"
       },
@@ -168,7 +190,7 @@
     {
       "name": {
         "en": "Firearms (Handgun)",
-        "cn": "火器（手枪）"
+        "cn": "射击（手枪）"
       },
       "description": {
         "en": "Used to operate and handle handguns.",
@@ -179,7 +201,7 @@
     {
       "name": {
         "en": "Firearms (Rifle/Shotgun)",
-        "cn": "火器（步枪/霰弹枪）"
+        "cn": "射击（步枪/霰弹枪）"
       },
       "description": {
         "en": "Used to operate and handle rifles and shotguns.",
@@ -300,7 +322,7 @@
     {
       "name": {
         "en": "Mechanical Repair",
-        "cn": "机械修理"
+        "cn": "机械维修"
       },
       "description": {
         "en": "Used to fix and maintain machinery and mechanical systems.",
@@ -322,7 +344,7 @@
     {
       "name": {
         "en": "Natural World",
-        "cn": "自然世界"
+        "cn": "博物学"
       },
       "description": {
         "en": "Used to understand flora, fauna, and natural phenomena.",
@@ -432,7 +454,7 @@
     {
       "name": {
         "en": "Sleight of Hand",
-        "cn": "手法"
+        "cn": "妙手"
       },
       "description": {
         "en": "Used to perform quick hand movements to manipulate objects discreetly.",
@@ -505,6 +527,72 @@
         "cn": "用于跟踪痕迹、识别脚印，并根据留下的迹象定位目标。"
       },
       "base_percent": 10
+    },
+    {
+      "name": {
+        "en": "Beast Training",
+        "cn": "驯兽"
+      },
+      "description": {
+        "en": "Used to train and control animals.",
+        "cn": "用于训练和控制动物。"
+      },
+      "base_percent": 1
+    },
+    {
+      "name": {
+        "en": "Diving",
+        "cn": "潜水"
+      },
+      "description": {
+        "en": "Used for underwater exploration, navigation, and performing tasks while submerged.",
+        "cn": "用于水下探索、导航和执行水下任务。"
+      },
+      "base_percent": 1
+    },
+    {
+      "name": {
+        "en": "Demolitions",
+        "cn": "爆破"
+      },
+      "description": {
+        "en": "Used for handling, placing, and detonating explosives safely and effectively.",
+        "cn": "用于安全有效地处理、放置和引爆炸药。"
+      },
+      "base_percent": 1
+    },
+    {
+      "name": {
+        "en": "Lip Reading",
+        "cn": "读唇"
+      },
+      "description": {
+        "en": "Used to understand speech by interpreting the movements of a speaker's lips.",
+        "cn": "通过解读说话者嘴唇的动作来理解言语。"
+      },
+      "base_percent": 1
+    },
+    {
+      "name": {
+        "en": "Hypnosis",
+        "cn": "催眠"
+      },
+      "description": {
+        "en": "Used to induce a state of altered consciousness in a subject, potentially influencing their behavior or memories.",
+        "cn": "用于诱导受试者进入改变的意识状态，可能影响其行为或记忆。"
+      },
+      "base_percent": 1
+    },
+    {
+      "name": {
+        "en": "Artillery",
+        "cn": "炮术"
+      },
+      "description": {
+        "en": "Used for operating and maintaining large-caliber guns and rocket systems.",
+        "cn": "用于操作和维护大口径枪炮和火箭系统。"
+      },
+      "base_percent": 1
     }
   ]
 }
