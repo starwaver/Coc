@@ -4,7 +4,7 @@
     import { languageStore } from '$lib/stores/languageStore';
     import { translations } from '$lib/i18n/translations';
 
-    let derivedAttributes: DerivedAttributeType | null = null;
+    let derivedAttributes: DerivedAttributeType;
 
     characterStore.subscribe(value => {
       if (value) {

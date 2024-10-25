@@ -2,6 +2,7 @@
   import Attribute from './components/Attribute.svelte';
   import DerivedAttributes from './components/DerivedAttributes.svelte';
   import Skill from './components/Skills.svelte';
+  import Backstory from './components/Backstory.svelte';
   import { characterStore, localizedSkills, updateCharacterData } from '$lib/stores/characterStore';
   import { languageStore } from '$lib/stores/languageStore';
   
@@ -11,6 +12,7 @@
   import { translations, type Language } from '$lib/i18n/translations';
   import AddCustomSkill from './components/AddCustomSkill.svelte';
   import skillList from '$lib/skill_list.json';
+
 
   function updateAttributeValue(event: CustomEvent<{ name: keyof AttributeType; value: number }>): void {
     characterStore.update(character => {
@@ -79,6 +81,10 @@
 
   $: currentLanguage = $languageStore as Language;
   $: t = translations[currentLanguage];
+
+  const getTranslation = (key: string) => {
+    return t[key as keyof typeof t] || key;
+  };
 
   const isEditingAttributes = writable(false);
 
@@ -158,6 +164,25 @@
   function cancelEditImage() {
     isEditingImage = false;
   }
+
+  const isEditingBackstory = writable(false);
+  let backstoryComponent: Backstory;
+
+  function startEditingBackstory() {
+    isEditingBackstory.set(true);
+  }
+
+  function saveBackstoryEdits() {
+    backstoryComponent.saveEdits();
+    isEditingBackstory.set(false);
+  }
+
+  function cancelBackstoryEdits() {
+    isEditingBackstory.set(false);
+  }
+
+  // Add this new line
+  let isBackstoryVisible = true;
 </script>
 
 <style>
@@ -317,6 +342,43 @@
     font-size: 2em;
     color: #fff;
   }
+
+  /* Add these new styles */
+  .dropdown-icon {
+    background: none;
+    border: none;
+    cursor: pointer;
+    margin-left: 10px;
+    font-size: 0.8em;
+    transition: transform 0.3s ease;
+    padding: 0;
+    color: inherit;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .dropdown-icon:hover,
+  .dropdown-icon:focus {
+    outline: none;
+    text-decoration: none;
+  }
+
+  .dropdown-icon.open {
+    transform: rotate(-90deg);
+  }
+
+  .backstory-content {
+    transition: max-height 0.3s ease-out, opacity 0.3s ease-out;
+    max-height: 1000px; /* Adjust this value based on your content */
+    opacity: 1;
+    overflow: hidden;
+  }
+
+  .backstory-content.hidden {
+    max-height: 0;
+    opacity: 0;
+  }
 </style>
 
 {#if $characterStore}
@@ -401,6 +463,35 @@
       <DerivedAttributes />
     </section>
 
+    <!-- Backstory Section -->
+    <section id="backstory" class="section">
+      <div class="section-header">
+        <h2>{t.backstory}</h2>
+        {#if $isEditingBackstory}
+          <button class="section-button" on:click={() => saveBackstoryEdits()}>
+            {t.save}
+          </button>
+          <button class="section-button cancel-button" on:click={() => cancelBackstoryEdits()}>
+            {t.cancel}
+          </button>
+        {:else}
+          <button class="section-button" on:click={() => startEditingBackstory()}>
+            {t.editBackstory}
+          </button>
+        {/if}
+        <!-- Update this span for the left/down facing icon -->
+        <button 
+          class="dropdown-icon {isBackstoryVisible ? 'open' : ''}"
+          on:click={() => isBackstoryVisible = !isBackstoryVisible}
+        >
+          ◀
+        </button>
+      </div>
+      <div class="backstory-content {isBackstoryVisible ? '' : 'hidden'}">
+        <Backstory bind:this={backstoryComponent} isEditing={$isEditingBackstory} />
+      </div>
+    </section>
+
     <!-- Skills Section -->
     <section id="skills" class="section">
       <div class="section-header">
@@ -445,3 +536,18 @@
 {:else}
   <p>{t.loadingCharacterData}</p>
 {/if}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

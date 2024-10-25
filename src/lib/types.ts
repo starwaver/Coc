@@ -31,14 +31,14 @@ export type DerivedAttributeType = {
 
 export type BackstoryType = {
   personalDescription: string;
-  traits: string;
   ideologyAndBelief: string;
-  injuriesAndScars: string;
   significantPeople: string;
-  phobiasAndManias: string;
   meaningfulLocations: string;
-  arcaneTomesSpellsAndArtifacts: string;
   treasuredPossessions: string;
+  traits: string;
+  injuriesAndScars: string;
+  phobiasAndManias: string;
+  arcaneTomesSpellsAndArtifacts: string;
   encountersWithStrangeEntities: string;
 };
 
