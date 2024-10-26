@@ -12,6 +12,20 @@ export type AttributeType = {
   luck: number;
 };
 
+export enum HealthStatus {
+  Normal = 'normal',
+  MajorWound = 'majorWound',
+  Unconscious = 'unconscious',
+  Dying = 'dying',
+  Dead = 'dead'
+}
+
+export enum InsanityStatus {
+  Normal = 'normal',
+  TemporaryInsanity = 'temporaryInsanity',
+  IndefiniteInsanity = 'indefiniteInsanity'
+}
+
 export type DerivedAttributeType = {
   maxHp: number,
   currentHp: number,
@@ -22,11 +36,8 @@ export type DerivedAttributeType = {
   db: string,
   build: number,
   move: number,
-  temporaryInsanity: boolean,
-  indefiniteInsanity: boolean,
-  majorWound: boolean,
-  unconscious: boolean,
-  dying: boolean,
+  healthStatus: HealthStatus,
+  insanityStatus: InsanityStatus,
 };
 
 export type BackstoryType = {

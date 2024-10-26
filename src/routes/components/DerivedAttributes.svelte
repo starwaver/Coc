@@ -1,6 +1,7 @@
 <script lang="ts">
     import { characterStore } from '$lib/stores/characterStore';
     import type { DerivedAttributeType } from '$lib/types';
+    import { HealthStatus, InsanityStatus } from '$lib/types';
     import { languageStore } from '$lib/stores/languageStore';
     import { translations } from '$lib/i18n/translations';
 
@@ -13,8 +14,8 @@
     });
 
     function handleValueUpdate(key: keyof DerivedAttributeType, event: Event) {
-      const target = event.target as HTMLInputElement;
-      const value = target.type === 'checkbox' ? target.checked : parseFloat(target.value);
+      const target = event.target as HTMLInputElement | HTMLSelectElement;
+      const value = target.type === 'number' ? parseFloat(target.value) : target.value;
       updateDerivedAttribute(key, value);
     }
 
@@ -28,6 +29,27 @@
     }
 
     $: t = $languageStore ? translations[$languageStore] : translations.en;
+
+    $: healthStatusTranslationKeys = {
+        [HealthStatus.Normal]: 'normal',
+        [HealthStatus.MajorWound]: 'majorwound',
+        [HealthStatus.Unconscious]: 'unconscious',
+        [HealthStatus.Dying]: 'dying',
+        [HealthStatus.Dead]: 'dead',
+    };
+
+    $: insanityStatusTranslationKeys = {
+        [InsanityStatus.Normal]: 'normal',
+        [InsanityStatus.TemporaryInsanity]: 'temporaryinsanity',
+        [InsanityStatus.IndefiniteInsanity]: 'indefiniteinsanity',
+    };
+
+    $: getTranslation = (status: HealthStatus | InsanityStatus): string => {
+        const key = status in healthStatusTranslationKeys 
+            ? healthStatusTranslationKeys[status as HealthStatus]
+            : insanityStatusTranslationKeys[status as InsanityStatus];
+        return t[key as keyof typeof t] || status;
+    };
 </script>
 
 <style>
@@ -51,6 +73,7 @@
       display: flex;
       flex-direction: column;
       align-items: flex-start;
+      margin-bottom: 10px;
     }
 
     .attribute-label {
@@ -64,27 +87,30 @@
     }
 
     .attribute-value {
-      width: 60px; /* Fixed width for input */
+      width: 60px;
       padding: 5px;
       border: 1px solid #ccc;
       border-radius: 3px;
       background-color: #2a2a2a;
       color: #fff;
-      margin-right: 5px; /* Space between input and limit */
+      margin-right: 5px;
     }
 
     .attribute-limit {
       color: #fff;
     }
 
-    .checkbox-container {
-      display: flex;
-      align-items: center;
+    .dropdown-container {
       margin-top: 5px;
     }
 
-    .checkbox-label {
-      margin-left: 5px;
+    select {
+      width: 60%;
+      padding: 5px;
+      border: 1px solid #ccc;
+      border-radius: 3px;
+      background-color: #2a2a2a;
+      color: #fff;
     }
 </style>
 
@@ -105,31 +131,15 @@
         </div>
       </div>
 
-      <div class="checkbox-container">
-        <input
-          type="checkbox"
-          bind:checked={derivedAttributes.majorWound}
-          on:change={(event) => handleValueUpdate('majorWound', event)}
-        />
-        <span class="checkbox-label">{t.majorWound}</span>
-      </div>
-
-      <div class="checkbox-container">
-        <input
-          type="checkbox"
-          bind:checked={derivedAttributes.unconscious}
-          on:change={(event) => handleValueUpdate('unconscious', event)}
-        />
-        <span class="checkbox-label">{t.unconscious}</span>
-      </div>
-
-      <div class="checkbox-container">
-        <input
-          type="checkbox"
-          bind:checked={derivedAttributes.dying}
-          on:change={(event) => handleValueUpdate('dying', event)}
-        />
-        <span class="checkbox-label">{t.dying}</span>
+      <div class="dropdown-container">
+        <select
+          bind:value={derivedAttributes.healthStatus}
+          on:change={(event) => handleValueUpdate('healthStatus', event)}
+        >
+          {#each Object.values(HealthStatus) as status}
+            <option value={status}>{getTranslation(status)}</option>
+          {/each}
+        </select>
       </div>
     </div>
 
@@ -148,22 +158,15 @@
         </div>
       </div>
 
-      <div class="checkbox-container">
-        <input
-          type="checkbox"
-          bind:checked={derivedAttributes.temporaryInsanity}
-          on:change={(event) => handleValueUpdate('temporaryInsanity', event)}
-        />
-        <span class="checkbox-label">{t.temporaryInsanity}</span>
-      </div>
-
-      <div class="checkbox-container">
-        <input
-          type="checkbox"
-          bind:checked={derivedAttributes.indefiniteInsanity}
-          on:change={(event) => handleValueUpdate('indefiniteInsanity', event)}
-        />
-        <span class="checkbox-label">{t.indefiniteInsanity}</span>
+      <div class="dropdown-container">
+        <select
+          bind:value={derivedAttributes.insanityStatus}
+          on:change={(event) => handleValueUpdate('insanityStatus', event)}
+        >
+          {#each Object.values(InsanityStatus) as status}
+            <option value={status}>{getTranslation(status)}</option>
+          {/each}
+        </select>
       </div>
     </div>
 

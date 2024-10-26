@@ -1,4 +1,5 @@
 <script lang="ts">
+  import CharacterHeader from './components/CharacterHeader.svelte';
   import Attribute from './components/Attribute.svelte';
   import DerivedAttributes from './components/DerivedAttributes.svelte';
   import Skill from './components/Skills.svelte';
@@ -82,10 +83,6 @@
   $: currentLanguage = $languageStore as Language;
   $: t = translations[currentLanguage];
 
-  const getTranslation = (key: string) => {
-    return t[key as keyof typeof t] || key;
-  };
-
   const isEditingAttributes = writable(false);
 
   function toggleAttributesEditMode(save: boolean = true) {
@@ -119,52 +116,6 @@
     });
   }
 
-  let isEditingName = false;
-  let editedName = '';
-
-  function startEditingName() {
-    editedName = $characterStore?.name ?? '';
-    isEditingName = true;
-  }
-
-  function saveName() {
-    characterStore.update(character => {
-      if (character) {
-        character.name = editedName;
-        updateCharacterData(character);
-      }
-      return character;
-    });
-    isEditingName = false;
-  }
-
-  function cancelEditName() {
-    isEditingName = false;
-  }
-
-  let isEditingImage = false;
-  let editedImageUrl = '';
-
-  function startEditingImage() {
-    editedImageUrl = $characterStore?.image ?? '';
-    isEditingImage = true;
-  }
-
-  function saveImageUrl() {
-    characterStore.update(character => {
-      if (character) {
-        character.image = editedImageUrl;
-        updateCharacterData(character);
-      }
-      return character;
-    });
-    isEditingImage = false;
-  }
-
-  function cancelEditImage() {
-    isEditingImage = false;
-  }
-
   const isEditingBackstory = writable(false);
   let backstoryComponent: Backstory;
 
@@ -195,49 +146,6 @@
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
     color: #f0f0f0;
-  }
-
-  .character-header {
-    text-align: center;
-    margin-bottom: 20px;
-  }
-
-  .character-portrait-container {
-    position: relative;
-    width: 150px;
-    height: 150px;
-    margin: 0 auto;
-  }
-
-  .character-portrait {
-    width: 100%;
-    height: 100%;
-    border-radius: 50%;
-    border: 4px solid #f0f0f0;
-    object-fit: cover;
-  }
-
-  .character-portrait-overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.5);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    opacity: 0;
-    transition: opacity 0.3s;
-    border: none;
-    cursor: pointer;
-    border-radius: 50%;
-  }
-
-  .character-name {
-    font-size: 2em;
-    margin-top: 10px;
-    cursor: pointer;
   }
 
   .section-container {
@@ -293,56 +201,6 @@
     margin-top: 20px;
   }
 
-  .name-edit-container {
-    display: flex;
-    justify-content: center;
-    padding-top: 10px;
-  }
-
-  .name-input {
-    font-size: 2em;
-    background-color: transparent;
-    border: none;
-    border-bottom: 2px solid #f0f0f0;
-    color: #f0f0f0;
-    text-align: center;
-    width: 80%;
-  }
-
-  .image-url-input {
-    width: 80%;
-    padding: 5px;
-    margin-top: 10px;
-    background-color: rgba(255, 255, 255, 0.1);
-    border: 1px solid #f0f0f0;
-    border-radius: 5px;
-    color: #f0f0f0;
-  }
-
-  .image-edit-buttons {
-    margin-top: 10px;
-  }
-
-  .image-edit-button {
-    background-color: #00cc66;
-    color: #fff;
-    border: none;
-    padding: 5px 10px;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 0.9em;
-    margin: 0 5px;
-  }
-
-  .image-edit-button.cancel {
-    background-color: #cc0000;
-  }
-
-  .upload-icon {
-    font-size: 2em;
-    color: #fff;
-  }
-
   /* Add these new styles */
   .dropdown-icon {
     background: none;
@@ -383,50 +241,8 @@
 
 {#if $characterStore}
   <div class="main-dashboard">
-    <!-- Main Dashboard -->
-    <div class="character-header">
-      <div class="character-portrait-container">
-        <img src={$characterStore.image} alt="Character Portrait" class="character-portrait">
-        {#if !isEditingImage}
-          <button class="character-portrait-overlay" on:dblclick={startEditingImage}>
-            <span class="upload-icon">🔗</span>
-          </button>
-        {/if}
-      </div>
-      {#if isEditingImage}
-        <input
-          type="text"
-          bind:value={editedImageUrl}
-          class="image-url-input"
-          placeholder={t.enterImageUrl}
-        />
-        <div class="image-edit-buttons">
-          <button class="image-edit-button" on:click={saveImageUrl}>
-            {t.save}
-          </button>
-          <button class="image-edit-button cancel" on:click={cancelEditImage}>
-            {t.cancel}
-          </button>
-        </div>
-      {/if}
-      <div class="name-edit-container">
-        {#if isEditingName}
-          <input
-            type="text"
-            bind:value={editedName}
-            class="name-input"
-            on:blur={saveName}
-            on:keydown={(e) => e.key === 'Enter' && saveName()}
-            placeholder={t.enterCharacterName}
-          />
-        {:else}
-          <h1 class="character-name" on:dblclick={startEditingName}>
-            {$characterStore.name}
-          </h1>
-        {/if}
-      </div>
-    </div>
-
+    <CharacterHeader currentLanguage={$languageStore} />
+    
     <!-- Attributes Section -->
     <section id="attributes" class="section">
       <div class="section-header">
@@ -536,18 +352,3 @@
 {:else}
   <p>{t.loadingCharacterData}</p>
 {/if}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

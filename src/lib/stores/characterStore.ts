@@ -1,7 +1,8 @@
 // src/stores/characterStore.ts
 import { writable, derived } from 'svelte/store';
 import { languageStore } from './languageStore';
-import type { CharacterType, AttributeType, DerivedAttributeType, SkillType } from '$lib/types';
+import type { CharacterType, AttributeType, DerivedAttributeType, SkillType} from '$lib/types';
+import { HealthStatus, InsanityStatus } from '$lib/types';
 import skillList from '$lib/skill_list.json';
 
 const generateRandomId = () => Math.random().toString(36).substring(2, 11);
@@ -21,9 +22,12 @@ const defaultCharacterData: CharacterType = {
     str: 0, con: 0, siz: 0, dex: 0, app: 0, int: 0, pow: 0, edu: 0, luck: 0
   },
   derivedAttributes: {
-    maxHp: 0, currentHp: 0, majorWound: false, unconscious: false, dying: false,
-    initialSan: 0, currentSan: 0, temporaryInsanity: false, indefiniteInsanity: false,
-    maxMp: 0, currentMp: 0, db: "0", build: 0, move: 0,
+    maxHp: 0, currentHp: 0,
+    initialSan: 0, currentSan: 0,
+    maxMp: 0, currentMp: 0,
+    db: "0", build: 0, move: 0,
+    healthStatus: HealthStatus.Normal,
+    insanityStatus: InsanityStatus.Normal,
   },
   backstory: {
     personalDescription: "", ideologyAndBelief: "", significantPeople: "",
@@ -62,18 +66,15 @@ const derivedAttributeUtils = {
   calculate: (attributes: AttributeType): DerivedAttributeType => ({
     maxHp: Math.floor((attributes.con + attributes.siz) / 10),
     currentHp: Math.floor((attributes.con + attributes.siz) / 10),
-    majorWound: false,
-    unconscious: false,
-    dying: false,
     initialSan: attributes.pow,
     currentSan: attributes.pow,
-    temporaryInsanity: false,
-    indefiniteInsanity: false,
     maxMp: Math.floor(attributes.pow / 5),
     currentMp: Math.floor(attributes.pow / 5),
     db: derivedAttributeUtils.calculateDamageBonus(attributes.str, attributes.siz),
     build: derivedAttributeUtils.calculateBuild(attributes.str, attributes.siz),
     move: derivedAttributeUtils.calculateMove(attributes.dex, attributes.str, attributes.siz),
+    healthStatus: HealthStatus.Normal,
+    insanityStatus: InsanityStatus.Normal,
   }),
 
   calculateDamageBonus: (str: number, siz: number): string => {
