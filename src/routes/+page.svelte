@@ -8,11 +8,12 @@
   import { languageStore } from '$lib/stores/languageStore';
   
   import { onMount } from 'svelte';
-  import type { AttributeType, SkillType} from '$lib/types';
+  import type { AttributeType, SkillType, InventoryType} from '$lib/types';
   import { writable, derived } from 'svelte/store';
   import { translations, type Language } from '$lib/i18n/translations';
   import AddCustomSkill from './components/AddCustomSkill.svelte';
   import skillList from '$lib/skill_list.json';
+  import Inventory from './components/Inventory.svelte';
 
 
   function updateAttributeValue(event: CustomEvent<{ name: keyof AttributeType; value: number }>): void {
@@ -134,6 +135,27 @@
 
   // Add this new line
   let isBackstoryVisible = true;
+
+  const isEditingInventory = writable(false);
+  let inventoryComponent: Inventory;
+  let editedInventory: InventoryType;
+
+  function toggleInventoryEditMode(save: boolean = true) {
+    isEditingInventory.update(value => {
+      if (!value) {
+        inventoryComponent.startEditing();
+      } else if (save) {
+        inventoryComponent.saveEdits();
+      } else {
+        inventoryComponent.cancelEdits();
+      }
+      return !value;
+    });
+  }
+
+  function cancelInventoryEdit() {
+    toggleInventoryEditMode(false);
+  }
 </script>
 
 <style>
@@ -348,7 +370,28 @@
         <AddCustomSkill on:addSkill={addCustomSkill} {currentLanguage} />
       {/if}
     </section>
+
+    <!-- Inventory Section -->
+    <section id="inventory" class="section">
+      <div class="section-header">
+        <h2>{t.inventory}</h2>
+        {#if $isEditingInventory}
+          <button class="section-button" on:click={() => toggleInventoryEditMode(true)}>
+            {t.save}
+          </button>
+          <button class="section-button cancel-button" on:click={cancelInventoryEdit}>
+            {t.cancel}
+          </button>
+        {:else}
+          <button class="section-button" on:click={() => toggleInventoryEditMode(true)}>
+            {t.editInventory}
+          </button>
+        {/if}
+      </div>
+      <Inventory bind:this={inventoryComponent} isEditing={$isEditingInventory} />
+    </section>
   </div>
 {:else}
   <p>{t.loadingCharacterData}</p>
 {/if}
+
