@@ -179,13 +179,13 @@
     {
       "name": {
         "en": "Fighting (Brawl)",
-        "cn": "格斗（拳击）"
+        "cn": "格斗（斗殴）"
       },
       "description": {
         "en": "Used in hand-to-hand combat situations. This skill can have various specializations such as Boxing, Wrestling, etc.",
         "cn": "用于近身战斗情况。这项技能可以有各种专业化，如拳击、摔跤等。"
       },
-      "base_percent": 40
+      "base_percent": 25
     },
     {
       "name": {
