@@ -117,10 +117,10 @@
 
     {#if isEditing && newSkill}
         <div>
-            <SkillInput label={t.base} bind:value={newSkill.basePoint} readonly={!isCustom} />
-            <SkillInput label={t.occupation} bind:value={newSkill.occupationPoint} />
-            <SkillInput label={t.interest} bind:value={newSkill.interestPoint} />
-            <SkillInput label={t.growth} bind:value={newSkill.growthPoint} />
+            <SkillInput label={t.basePoints} bind:value={newSkill.basePoint} readonly={!isCustom} />
+            <SkillInput label={t.occupationPoints} bind:value={newSkill.occupationPoint} />
+            <SkillInput label={t.interestPoints} bind:value={newSkill.interestPoint} />
+            <SkillInput label={t.growthPoints} bind:value={newSkill.growthPoint} />
             <div class="skill-value">{newTotal}</div>
             <div class="skill-additional">{Math.floor(newTotal / 2)} | {Math.floor(newTotal / 5)}</div>
         </div>

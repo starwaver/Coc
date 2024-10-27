@@ -29,6 +29,10 @@ export const translations = {
     addSkill: "Add Skill",
     totalOccupationPoints: "Total Occupation Points",
     totalInterestPoints: "Total Interest Points",
+    basePoints: "Base Points",
+    occupationPoints: "Occupation Points",
+    interestPoints: "Interest Points",
+    growthPoints: "Growth Points",
 
     // Health and Sanity
     currentHp: "Current HP",
@@ -128,6 +132,10 @@ export const translations = {
     addSkill: "添加技能",
     totalOccupationPoints: "总职业点数",
     totalInterestPoints: "总兴趣点数",
+    basePoints: "基础点数",
+    occupationPoints: "职业点数",
+    interestPoints: "兴趣点数",
+    growthPoints: "成长点数",
 
     // Health and Sanity
     currentHp: "当前HP",
