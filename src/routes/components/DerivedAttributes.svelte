@@ -31,24 +31,24 @@
     $: t = $languageStore ? translations[$languageStore] : translations.en;
 
     $: healthStatusTranslationKeys = {
-        [HealthStatus.Normal]: 'normal',
-        [HealthStatus.MajorWound]: 'majorwound',
-        [HealthStatus.Unconscious]: 'unconscious',
-        [HealthStatus.Dying]: 'dying',
-        [HealthStatus.Dead]: 'dead',
+        [HealthStatus.Normal]: t.normal,
+        [HealthStatus.MajorWound]: t.majorWound,
+        [HealthStatus.Unconscious]: t.unconscious,
+        [HealthStatus.Dying]: t.dying,
+        [HealthStatus.Dead]: t.dead,
     };
 
     $: insanityStatusTranslationKeys = {
-        [InsanityStatus.Normal]: 'normal',
-        [InsanityStatus.TemporaryInsanity]: 'temporaryinsanity',
-        [InsanityStatus.IndefiniteInsanity]: 'indefiniteinsanity',
+        [InsanityStatus.Normal]: t.normal,
+        [InsanityStatus.TemporaryInsanity]: t.temporaryInsanity,
+        [InsanityStatus.IndefiniteInsanity]: t.indefiniteInsanity,
     };
 
     $: getTranslation = (status: HealthStatus | InsanityStatus): string => {
         const key = status in healthStatusTranslationKeys 
             ? healthStatusTranslationKeys[status as HealthStatus]
             : insanityStatusTranslationKeys[status as InsanityStatus];
-        return t[key as keyof typeof t] || status;
+        return key;
     };
 </script>
 
@@ -87,7 +87,8 @@
     }
 
     .attribute-value {
-      width: 60px;
+      width: 100%;
+      max-width: 60px;
       padding: 5px;
       border: 1px solid #ccc;
       border-radius: 3px;

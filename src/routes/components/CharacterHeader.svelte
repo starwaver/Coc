@@ -279,7 +279,7 @@
   }
 
   .name-container {
-    width: 300px; /* Fixed width */
+    width: 100%; /* Fixed width */
     height: 50px;
     margin: 0 auto; /* Center the container */
   }
