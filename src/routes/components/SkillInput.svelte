@@ -66,7 +66,7 @@
       <div class="number-input">
         <input type="number" {min} {max} bind:value on:input={handleInput} />
       </div>
-      <input type="range" {min} {max} bind:value />
+      <!--input type="range" {min} {max} bind:value /!-->
     </div>
   {/if}
 </div>
