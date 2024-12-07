@@ -1,9 +1,10 @@
 // src/stores/characterStore.ts
-import { writable, derived } from 'svelte/store';
+import { writable, derived, get } from 'svelte/store';
 import { languageStore } from './languageStore';
 import type { CharacterType, AttributeType, DerivedAttributeType, SkillType} from '$lib/types';
 import { HealthStatus, InsanityStatus } from '$lib/types';
 import skillList from '$lib/skill_list.json';
+import { charactersStore, currentCharacterIndex, saveCharacters } from './multiCharacterStore';
 
 const generateRandomId = () => Math.random().toString(36).substring(2, 11);
 
@@ -239,12 +240,25 @@ export const initializeCharacter = (jsonData?: CharacterType, forceNew: boolean 
     characterData = characterUtils.createNew();
   }
 
+  charactersStore.update(characters => {
+    const newCharacters = [...characters, characterData];
+    saveCharacters(newCharacters);
+    return newCharacters;
+  });
+  currentCharacterIndex.set(get(charactersStore).length - 1);
   characterStore.set(characterData);
 };
 
 characterStore.subscribe((character) => {
   if (character) {
-    storageUtils.save(character);
+    charactersStore.update(characters => {
+      const index = get(currentCharacterIndex);
+      if (index >= 0 && index < characters.length) {
+        characters[index] = character;
+        saveCharacters(characters);
+      }
+      return characters;
+    });
   }
 });
 

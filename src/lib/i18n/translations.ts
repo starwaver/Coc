@@ -4,7 +4,7 @@ export const translations = {
     createNewCharacter: "Create New Character",
     importCharacter: "Import Character",
     exportCharacter: "Export Character",
-    confirmNewCharacter: "Are you sure you want to create a new character? This will delete the current character.",
+    confirmNewCharacter: "Are you sure you want to create a new character?",
     loadingCharacterData: "Loading character data...",
     enterCharacterName: "Enter character name",
     enterImageUrl: "Enter image URL",
@@ -98,18 +98,24 @@ export const translations = {
     no: "No",
     enterInformation: "Enter Information",
     noInformationAvailable: "No Information Available",
+    deleteCharacter: "Delete Character",
+    confirmDeleteCharacter: "Are you sure you want to delete this character? This action cannot be undone.",
+    maxCharactersReached: "Maximum number of characters reached",
+    storageLimitReached: "Storage limit reached",
 
     // Gender Options
     male: "Male",
     female: "Female",
     other: "Other",
+
+    
   },
   cn: {
     // Character Creation and Management
     createNewCharacter: "创建新角色",
     importCharacter: "导入角色",
     exportCharacter: "导出角色",
-    confirmNewCharacter: "您确定要创建新角色吗？这将删除当前角色。",
+    confirmNewCharacter: "您确定要创建新角色吗？",
     loadingCharacterData: "正在加载角色数据...",
     enterCharacterName: "输入角色名称",
     enterImageUrl: "输入图片URL",
@@ -204,11 +210,17 @@ export const translations = {
     no: "否",
     enterInformation: "输入信息",
     noInformationAvailable: "无内容",
+    deleteCharacter: "删除角色",
+    confirmDeleteCharacter: "确定要删除这个角色吗？此操作无法撤消。",
+    maxCharactersReached: "已达到最大角色数量",
+    storageLimitReached: "已达到存储限制",
 
     // Gender Options
     male: "男性",
     female: "女性",
     other: "其他",
+
+    
   }
 } as const;
 
