@@ -379,7 +379,11 @@
         {/if}
       </div>
       <div class="section-container">
-        {#each Object.entries($characterStore.attributes) as [key, value]}
+        {#each Object.keys($characterStore.attributes)
+          .sort((a, b) => {
+            const order = ['str', 'dex', 'int', 'con', 'app', 'pow', 'siz', 'edu', 'luck'];
+            return order.indexOf(a) - order.indexOf(b);
+          }) as key, value}
           <Attribute 
             attribute={{ name: key.toUpperCase(), value }} 
             on:updateValue={updateAttributeValue}
