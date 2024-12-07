@@ -41,10 +41,6 @@
     margin-right: 10px;
   }
 
-  input[type="range"] {
-    width: 100%;
-  }
-
   input[type="number"]::-webkit-inner-spin-button,
   input[type="number"]::-webkit-outer-spin-button {
     -webkit-appearance: none;
