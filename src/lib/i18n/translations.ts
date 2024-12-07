@@ -33,7 +33,9 @@ export const translations = {
     occupationPoints: "Occupation Points",
     interestPoints: "Interest Points",
     growthPoints: "Growth Points",
-
+    filterOccupationSkills: "Show Occupation Skills Only",
+    filterInterestSkills: "Show Interest Skills Only",
+    searchSkills: "Search Skills",
     // Health and Sanity
     currentHp: "Current HP",
     currentMp: "Current MP",
@@ -136,6 +138,9 @@ export const translations = {
     occupationPoints: "职业点数",
     interestPoints: "兴趣点数",
     growthPoints: "成长点数",
+    filterOccupationSkills: "仅显示职业技能",
+    filterInterestSkills: "仅显示兴趣技能",
+    searchSkills: "搜索技能",
 
     // Health and Sanity
     currentHp: "当前HP",

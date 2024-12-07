@@ -117,6 +117,39 @@
     });
   }
 
+  const showOccupationSkills = writable(false);
+  const showInterestSkills = writable(false);
+
+  const searchQuery = writable('');
+
+  $: filteredSkills = derived(
+    [localizedSkills, showOccupationSkills, showInterestSkills, searchQuery],
+    ([$localizedSkills, $showOccupationSkills, $showInterestSkills, $searchQuery]) => {
+      if (!$localizedSkills) return {};
+      
+      return Object.fromEntries(
+        Object.entries($localizedSkills).filter(([_, skill]) => {
+          // If there's a search query, only use that filter
+          if ($searchQuery) {
+            const searchLower = $searchQuery.toLowerCase();
+            return Object.values(skill.name).some(name => 
+              name.toLowerCase().includes(searchLower)
+            );
+          }
+          
+          // Otherwise, use occupation/interest filters
+          if ($showOccupationSkills || $showInterestSkills) {
+            if ($showOccupationSkills && skill.occupationPoint > 0) return true;
+            if ($showInterestSkills && skill.interestPoint > 0) return true;
+            return false;
+          }
+          
+          return true;
+        })
+      );
+    }
+  );
+
   const isEditingBackstory = writable(false);
   let backstoryComponent: Backstory;
 
@@ -181,6 +214,7 @@
   .section-header {
     display: flex;
     align-items: center;
+    overflow: wrap;
     margin-bottom: 20px;
     border-bottom: 2px solid #444;
     padding-bottom: 10px;
@@ -258,6 +292,68 @@
   .backstory-content.hidden {
     max-height: 0;
     opacity: 0;
+  }
+
+  /* Add/update these styles */
+  .filter-controls {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    align-items: center;
+    margin-left: auto;
+  }
+
+  .filter-controls label {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    white-space: nowrap;
+    font-size: 0.9em;
+  }
+
+  .search-input {
+    padding: 4px 8px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+    font-size: 0.9em;
+    min-width: 150px;
+  }
+
+  @media (max-width: 768px) {
+    .section-header {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 10px;
+    }
+
+    .filter-controls {
+      width: 100%;
+      margin-left: 0;
+    }
+
+    .point-totals {
+      margin-left: 0;
+      width: 100%;
+    }
+
+    .section-container {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    .search-input {
+      width: 100%;
+      min-width: unset;
+    }
+  }
+
+  @media (max-width: 360px) {
+    .section-container {
+      grid-template-columns: 1fr;
+    }
+
+    .filter-controls label {
+      font-size: 0.8em;
+    }
   }
 </style>
 
@@ -350,9 +446,25 @@
             {t.editSkills}
           </button>
         {/if}
+        <div class="filter-controls">
+          <input
+            type="text"
+            class="search-input"
+            placeholder={t.searchSkills}
+            bind:value={$searchQuery}
+          />
+          <label>
+            <input type="checkbox" bind:checked={$showOccupationSkills}>
+            {t.filterOccupationSkills}
+          </label>
+          <label>
+            <input type="checkbox" bind:checked={$showInterestSkills}>
+            {t.filterInterestSkills}
+          </label>
+        </div>
       </div>
       <div class="section-container">
-        {#each Object.entries($localizedSkills) as [key, skillData]}
+        {#each Object.entries($filteredSkills) as [key, skillData]}
           <Skill 
             skill={{
               ...skillData,
@@ -394,4 +506,7 @@
 {:else}
   <p>{t.loadingCharacterData}</p>
 {/if}
+
+
+
 
