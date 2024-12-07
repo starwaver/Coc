@@ -1,5 +1,7 @@
 <script lang="ts">
     import { createEventDispatcher } from 'svelte';
+    import { faDice } from '@fortawesome/free-solid-svg-icons';
+    import { FontAwesomeIcon } from '@fortawesome/svelte-fontawesome';
     export let attribute: { name: string; value: number };
     export let isEditing: boolean;
   
@@ -35,17 +37,40 @@
           return 'Custom calculation';
       }
     }
+
+    function getRandomAttributeValue(): number {
+      switch (attribute.name.toLowerCase()) {
+        case 'str':
+        case 'con':
+        case 'dex':
+        case 'app':
+        case 'pow':
+        case 'luck':
+          return Math.round((Math.floor(Math.random() * (90 - 15 + 1)) + 15) / 5) * 5;
+        case 'siz':
+        case 'int':
+        case 'edu':
+        return Math.round((Math.floor(Math.random() * (90 - 40 + 1)) + 40) / 5) * 5;
+        default:
+          return 0;
+      }
+    }
 </script>
   
 <div class="attribute">
   <span class="attribute-name">{attribute.name}</span>
   {#if isEditing}
-    <input 
-      type="number" 
-      bind:value={newValue} 
-      on:change={updateValue}
-      class="attribute-input" 
-    />
+    <div class="input-group">
+      <input 
+        type="number" 
+        bind:value={newValue} 
+        on:change={updateValue}
+        class="attribute-input" 
+      />
+      <button class="attribute-button" on:click={() => newValue = getRandomAttributeValue()}>
+        <FontAwesomeIcon icon={faDice} />
+      </button>
+    </div>
     <span class="attribute-calculation">{getCalculationMethod(attribute.name)}</span>
   {:else}
     <span class="attribute-value">{attribute.value}</span>
@@ -83,9 +108,23 @@
     background-color: #2a2a2a;
     border: none;
     border-bottom: 2px solid #00cc66;
-    margin-bottom: 5px;
+    margin-bottom: 0;
     padding: 5px;
     max-width: 100px;
+  }
+
+  .attribute-button {
+    background-color: #00cc66;
+    color: #fff;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 0px;
+    cursor: pointer;
+    font-size: 1em;
+  }
+
+  .attribute-button:hover {
+    background-color: #00b359;
   }
   
   .attribute-reference {
@@ -99,5 +138,12 @@
     color: #999;
     margin-top: 2px;
     font-style: italic;
+  }
+
+  .input-group {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+    margin-bottom: 5px;
   }
 </style>
