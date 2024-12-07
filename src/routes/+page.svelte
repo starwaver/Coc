@@ -16,6 +16,22 @@
   import Inventory from './components/Inventory.svelte';
 
 
+  // Define the attribute order
+  const attributeOrder: Array<keyof AttributeType> = ['str', 'dex', 'int', 'con', 'app', 'pow', 'siz', 'edu', 'luck'];
+
+  // Reactive variable for sorted attribute keys
+  let sortedAttributeKeys: Array<keyof AttributeType> = [];
+
+  // Update sortedAttributeKeys whenever characterStore changes
+  $: if ($characterStore && $characterStore.attributes) {
+    sortedAttributeKeys = Object.keys($characterStore.attributes)
+      .sort((a, b) => {
+        const aKey = a as keyof AttributeType;
+        const bKey = b as keyof AttributeType;
+        return attributeOrder.indexOf(aKey) - attributeOrder.indexOf(bKey);
+      }) as Array<keyof AttributeType>;
+  }
+
   function updateAttributeValue(event: CustomEvent<{ name: keyof AttributeType; value: number }>): void {
     characterStore.update(character => {
       if (character) {
@@ -379,13 +395,9 @@
         {/if}
       </div>
       <div class="section-container">
-        {#each Object.keys($characterStore.attributes)
-          .sort((a, b) => {
-            const order = ['str', 'dex', 'int', 'con', 'app', 'pow', 'siz', 'edu', 'luck'];
-            return order.indexOf(a) - order.indexOf(b);
-          }) as key, value}
+        {#each sortedAttributeKeys as key}
           <Attribute 
-            attribute={{ name: key.toUpperCase(), value }} 
+            attribute={{ name: key.toUpperCase(), value: $characterStore.attributes[key] }} 
             on:updateValue={updateAttributeValue}
             isEditing={$isEditingAttributes}
           />
