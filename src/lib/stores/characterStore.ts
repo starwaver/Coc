@@ -20,7 +20,7 @@ const defaultCharacterData: CharacterType = {
   residence: "Unselected",
   image: "./data/character_placeholder.png",
   attributes: {
-    str: 0, con: 0, siz: 0, dex: 0, app: 0, int: 0, pow: 0, edu: 0, luck: 0
+    str: 0, dex: 0, int: 0, con: 0, app: 0, pow: 0, siz: 0, edu: 0, luck: 0
   },
   derivedAttributes: {
     maxHp: 0, currentHp: 0,
@@ -52,12 +52,12 @@ const attributeUtils = {
 
   generateAll: (): AttributeType => ({
     str: attributeUtils.generateValue('str'),
-    con: attributeUtils.generateValue('con'),
-    siz: attributeUtils.generateValue('siz'),
     dex: attributeUtils.generateValue('dex'),
-    app: attributeUtils.generateValue('app'),
     int: attributeUtils.generateValue('int'),
+    con: attributeUtils.generateValue('con'),
+    app: attributeUtils.generateValue('app'),
     pow: attributeUtils.generateValue('pow'),
+    siz: attributeUtils.generateValue('siz'),
     edu: attributeUtils.generateValue('edu'),
     luck: attributeUtils.generateValue('luck'),
   }),
