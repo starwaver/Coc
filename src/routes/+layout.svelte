@@ -5,13 +5,17 @@
   import { languageStore } from '$lib/stores/languageStore';
   import { translations, type Language } from '$lib/i18n/translations';
   import { FontAwesomeIcon } from '@fortawesome/svelte-fontawesome';
-  import { faTrash } from '@fortawesome/free-solid-svg-icons';
+  import { faTrash, faArrowUp } from '@fortawesome/free-solid-svg-icons';
+  import { browser } from '$app/environment';
+  import { fade } from 'svelte/transition';
 
   $: currentLanguage = $languageStore as Language;
   $: t = translations[currentLanguage];
 
   let errorMessage = '';
   let showError = false;
+  let showScrollButton = false;
+  let scrollTimeout: ReturnType<typeof setTimeout>;
 
   onMount(() => {
     loadCharacters();
@@ -19,6 +23,21 @@
       initializeCharacter();
     } else {
       characterStore.set($charactersStore[$currentCharacterIndex]);
+    }
+
+    if (browser) {
+      window.addEventListener('scroll', () => {
+        // Clear any existing timeout
+        clearTimeout(scrollTimeout);
+        
+        // Show the button
+        showScrollButton = window.scrollY > 200;
+        
+        // Set timeout to hide the button after 1 second
+        scrollTimeout = setTimeout(() => {
+          showScrollButton = false;
+        }, 1000);
+      });
     }
   });
 
@@ -99,6 +118,10 @@
       URL.revokeObjectURL(url);
     }
   }
+
+  function scrollToTop() {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
 </script>
 
 <svelte:head>
@@ -106,49 +129,51 @@
 </svelte:head>
 
 <nav class="navbar">
-    <div class="language-container">
-        <select bind:value={$languageStore} class="language-select">
-            <option value="en">English</option>
-            <option value="cn">中文</option>
-        </select>
-    </div>
-    <div class="character-selector">
-        <select 
-          value={$currentCharacterIndex} 
-          on:change={switchCharacter}
-          class="character-select"
-        >
-          {#each $charactersStore as character, i}
-            <option value={i}>{character.name}</option>
-          {/each}
-        </select>
-        {#if $charactersStore.length > 0}
-          <button 
-            class="delete-button" 
-            on:click={() => deleteCharacter($currentCharacterIndex)}
-            title={t.deleteCharacter}
-          >
-            <FontAwesomeIcon icon={faTrash} />
-          </button>
-        {/if}
-    </div>
-    <div class="character-actions">
-        <button class="action-button" on:click={createNewCharacter}>
-            {t.createNewCharacter}
-        </button>
-        <label class="action-button" for="import-file">
-            {t.importCharacter}
-        </label>
-        <input
-            id="import-file"
-            class="file-input"
-            type="file"
-            accept=".json"
-            on:change={importCharacter}
-        />
-        <button class="action-button" on:click={exportCharacter}>
-            {t.exportCharacter}
-        </button>
+    <div class="navbar-content">
+        <div class="language-container">
+            <select bind:value={$languageStore} class="language-select">
+                <option value="en">English</option>
+                <option value="cn">中文</option>
+            </select>
+        </div>
+        <div class="character-selector">
+            <select 
+              value={$currentCharacterIndex} 
+              on:change={switchCharacter}
+              class="character-select"
+            >
+              {#each $charactersStore as character, i}
+                <option value={i}>{character.name}</option>
+              {/each}
+            </select>
+            {#if $charactersStore.length > 0}
+              <button 
+                class="delete-button" 
+                on:click={() => deleteCharacter($currentCharacterIndex)}
+                title={t.deleteCharacter}
+              >
+                <FontAwesomeIcon icon={faTrash} />
+              </button>
+            {/if}
+        </div>
+        <div class="character-actions">
+            <button class="action-button" on:click={createNewCharacter}>
+                {t.createNewCharacter}
+            </button>
+            <label class="action-button" for="import-file">
+                {t.importCharacter}
+            </label>
+            <input
+                id="import-file"
+                class="file-input"
+                type="file"
+                accept=".json"
+                on:change={importCharacter}
+            />
+            <button class="action-button" on:click={exportCharacter}>
+                {t.exportCharacter}
+            </button>
+        </div>
     </div>
 </nav>
 
@@ -158,6 +183,17 @@
   </div>
 {/if}
 
+{#if showScrollButton}
+  <button 
+    class="scroll-to-top" 
+    on:click={scrollToTop}
+    aria-label="Scroll to top"
+    transition:fade={{ duration: 300 }}
+  >
+    <FontAwesomeIcon icon={faArrowUp} />
+  </button>
+{/if}
+
 <main>
   <slot />
 </main>
@@ -165,14 +201,23 @@
 <style>
   .navbar {
     background-color: #3a3a3a;
-    padding: 10px 20px;
+    padding: 10px;
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  .navbar-content {
     display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
     justify-content: space-between;
     align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
   }
 
   .language-container {
-    margin-right: auto; /* Aligns language select to the left */
+    flex: 0 1 auto;
   }
 
   .language-select {
@@ -182,52 +227,103 @@
     color: #f0f0f0;
     border: 1px solid #f0f0f0;
     cursor: pointer;
-  }
-
-  .language-select:hover {
-    background-color: #5a5a5a;
+    width: 100px;
   }
 
   .character-selector {
-    margin: 0 20px;
+    flex: 1 1 auto;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    min-width: 200px;
   }
 
   .character-select {
+    flex: 1;
     padding: 5px 10px;
     border-radius: 5px;
     background-color: #4a4a4a;
     color: #f0f0f0;
     border: 1px solid #f0f0f0;
     cursor: pointer;
-    min-width: 200px;
-  }
-
-  .character-select:hover {
-    background-color: #5a5a5a;
   }
 
   .character-actions {
+    flex: 1 1 auto;
     display: flex;
-    gap: 10px; /* Add gap between buttons */
+    gap: 10px;
+    flex-wrap: wrap;
+    justify-content: flex-end;
   }
 
   .action-button {
     background-color: #4a4a4a;
     color: #f0f0f0;
     border: none;
-    padding: 10px 15px;
+    padding: 8px 12px;
     border-radius: 5px;
     cursor: pointer;
-    font-size: 1em;
-    transition: background-color 0.3s ease; /* Smooth transition for hover effect */
+    font-size: 0.9em;
+    white-space: nowrap;
   }
 
-  .action-button:hover {
-    background-color: #5a5a5a;
+  .delete-button {
+    background-color: #cc0000;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 5px 10px;
+    cursor: pointer;
   }
 
   .file-input {
     display: none;
+  }
+
+  @media (max-width: 768px) {
+    .navbar-content {
+      flex-direction: column;
+      align-items: stretch;
+    }
+
+    .language-container {
+      order: 1;
+    }
+
+    .character-selector {
+      order: 2;
+      width: 100%;
+    }
+
+    .character-actions {
+      order: 3;
+      justify-content: center;
+      width: 100%;
+    }
+
+    .language-select {
+      width: 100%;
+    }
+
+    .action-button {
+      flex: 1 1 auto;
+      text-align: center;
+      min-width: 120px;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .character-actions {
+      flex-direction: column;
+    }
+
+    .action-button {
+      width: 100%;
+    }
+
+    .navbar {
+      padding: 5px;
+    }
   }
 
   .error-message {
@@ -242,17 +338,33 @@
     box-shadow: 0 2px 4px rgba(0,0,0,0.2);
   }
 
-  .delete-button {
-    background-color: #cc0000;
-    color: white;
+  .scroll-to-top {
+    position: fixed;
+    bottom: 50px;
+    right: 50px;
+    background-color: #4a4a4a;
+    color: #f0f0f0;
     border: none;
-    border-radius: 5px;
-    padding: 5px 10px;
-    margin-left: 10px;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
     cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    z-index: 1000;
+    font-size: 16px;
   }
 
-  .delete-button:hover {
-    background-color: #ff0000;
+  .scroll-to-top:hover {
+    background-color: #666666;
+  }
+
+  @media (max-width: 768px) {
+    .scroll-to-top {
+      bottom: 50px;
+      right: 50px;
+    }
   }
 </style>
