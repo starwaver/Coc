@@ -56,9 +56,11 @@
   }
 
   function updateSkillValue(event: CustomEvent<SkillType>): void {
+    const skillName = event.detail.name.en;
+    console.log(`Updating skill: ${skillName}`, event.detail);
     editedSkills.update(skills => ({
       ...skills,
-      [event.detail.name.en]: event.detail
+      [skillName]: event.detail
     }));
   }
 
@@ -85,7 +87,9 @@
         // Entering edit mode, initialize editedSkills with current skills
         characterStore.update(character => {
           if (character) {
-            editedSkills.set(character.skills);
+            // Create a deep copy to prevent unintended mutations
+            const skillsCopy = JSON.parse(JSON.stringify(character.skills));
+            editedSkills.set(skillsCopy);
           }
           return character;
         });
@@ -94,6 +98,7 @@
           if (character) {
             // Update character's skills with editedSkills
             character.skills = { ...$editedSkills };
+            updateCharacterData(character);
           }
           return character;
         });
@@ -148,32 +153,41 @@
   const searchQuery = writable('');
 
   $: filteredSkills = derived(
-    [localizedSkills, showOccupationSkills, showInterestSkills, searchQuery],
-    ([$localizedSkills, $showOccupationSkills, $showInterestSkills, $searchQuery]) => {
-      if (!$localizedSkills) return {};
-      
-      return Object.fromEntries(
-        Object.entries($localizedSkills).filter(([_, skill]) => {
-          // If there's a search query, only use that filter
-          if ($searchQuery) {
-            const searchLower = $searchQuery.toLowerCase();
-            return Object.values(skill.name).some(name => 
-              name.toLowerCase().includes(searchLower)
-            );
-          }
-          
-          // Otherwise, use occupation/interest filters
-          if ($showOccupationSkills || $showInterestSkills) {
-            if ($showOccupationSkills && skill.occupationPoint > 0) return true;
-            if ($showInterestSkills && skill.interestPoint > 0) return true;
-            return false;
-          }
-          
-          return true;
-        })
-      );
-    }
-  );
+  [localizedSkills, editedSkills, showOccupationSkills, showInterestSkills, searchQuery],
+  ([
+    $localizedSkills, 
+    $editedSkills, 
+    $showOccupationSkills, 
+    $showInterestSkills, 
+    $searchQuery
+  ]) => {
+    if (!$localizedSkills) return {};
+    
+    // Merge editedSkills into localizedSkills
+    const mergedSkills = { ...$localizedSkills, ...$editedSkills };
+    
+    return Object.fromEntries(
+      Object.entries(mergedSkills).filter(([key, skill]) => {
+        // If there's a search query, only use that filter
+        if ($searchQuery) {
+          const searchLower = $searchQuery.toLowerCase();
+          return Object.values(skill.name).some(name => 
+            name.toLowerCase().includes(searchLower)
+          );
+        }
+        
+        // Otherwise, use occupation/interest filters
+        if ($showOccupationSkills || $showInterestSkills) {
+          if ($showOccupationSkills && skill.occupationPoint > 0) return true;
+          if ($showInterestSkills && skill.interestPoint > 0) return true;
+          return false;
+        }
+        
+        return true;
+      })
+    );
+  }
+);
 
   const isEditingBackstory = writable(false);
   let backstoryComponent: Backstory;
@@ -498,15 +512,16 @@
         </div>
       </div>
       <div class="section-container">
-        {#each Object.entries($filteredSkills) as [key, skillData]}
+        {#each Object.entries($filteredSkills) as [key, skillData] (key)}
           <Skill 
             skill={{
               ...skillData,
+              ...($editedSkills[key] || {}),
               displayName: skillData.name[currentLanguage] || skillData.name.en,
-              hasSucceeded: $characterStore.skills[key].hasSucceeded
+              hasSucceeded: $characterStore.skills[key]?.hasSucceeded || false
             }}
             on:updateValue={updateSkillValue}
-            on:deleteSkill={(event) => deleteCustomSkill(key)}
+            on:deleteSkill={() => deleteCustomSkill(key)}
             isEditing={$isEditingSkills}
             isCustom={!skillList.skills.some(s => s.name.en === key)}
           />
