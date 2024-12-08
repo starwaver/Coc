@@ -1,7 +1,7 @@
 <script lang="ts">
   import { onMount } from 'svelte';
   import { characterStore, initializeCharacter, clearCharacterStorage } from '$lib/stores/characterStore';
-  import { charactersStore, currentCharacterIndex, loadCharacters, removeCharacter, StorageError } from '$lib/stores/multiCharacterStore';
+  import { charactersStore, currentCharacterIndex, loadCharacters, removeCharacter, StorageError, MAX_CHARACTERS } from '$lib/stores/multiCharacterStore';
   import { languageStore } from '$lib/stores/languageStore';
   import { translations, type Language } from '$lib/i18n/translations';
   import { FontAwesomeIcon } from '@fortawesome/svelte-fontawesome';
@@ -31,12 +31,15 @@
 
   function createNewCharacter() {
     try {
-      if ($charactersStore.length >= 10) {
+      if ($charactersStore.length >= MAX_CHARACTERS) {
         throw new StorageError('Maximum character limit reached. Please delete some characters first.');
       }
       
       if (confirm(t.confirmNewCharacter)) {
         initializeCharacter(undefined, true);
+        const newIndex = $charactersStore.length - 1;
+        currentCharacterIndex.set(newIndex);
+        characterStore.set($charactersStore[newIndex]);
       }
     } catch (error) {
       if (error instanceof StorageError) {
@@ -52,6 +55,16 @@
     if (confirm(t.confirmDeleteCharacter)) {
       try {
         removeCharacter(index);
+        if ($charactersStore.length > 0) {
+          const newIndex = Math.min(index, $charactersStore.length - 1);
+          currentCharacterIndex.set(newIndex);
+          characterStore.set($charactersStore[newIndex]);
+        } else {
+          // If no characters remain, create a new one
+          initializeCharacter(undefined, true);
+          currentCharacterIndex.set(0);
+          characterStore.set($charactersStore[0]);
+        }
       } catch (error) {
         errorMessage = error instanceof StorageError ? error.message : 'Failed to delete character';
         showError = true;

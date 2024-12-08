@@ -2,7 +2,7 @@ import { writable, get } from 'svelte/store';
 import type { CharacterType } from '$lib/types';
 
 // Constants
-const MAX_CHARACTERS = 100;
+export const MAX_CHARACTERS = 100;
 const STORAGE_KEY = 'charactersData';
 const MAX_STORAGE_SIZE = 5 * 1024 * 1024; // 5MB (localStorage typical limit)
 
