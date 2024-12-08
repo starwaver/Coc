@@ -32,6 +32,15 @@
       }) as Array<keyof AttributeType>;
   }
 
+  $: totalAttributePoints = derived(characterStore, ($characterStore) => {
+    if (!$characterStore?.attributes) return 0;
+    
+    return Object.entries($characterStore.attributes)
+      .reduce((total, [key, value]) => {
+        return key !== 'luck' ? total + value : total;
+      }, 0);
+  });
+
   function updateAttributeValue(event: CustomEvent<{ name: keyof AttributeType; value: number }>): void {
     characterStore.update(character => {
       if (character) {
@@ -381,18 +390,23 @@
     <section id="attributes" class="section">
       <div class="section-header">
         <h2>{t.attributes}</h2>
-        {#if $isEditingAttributes}
+        <div>
+          {#if $isEditingAttributes}
           <button class="section-button" on:click={() => toggleAttributesEditMode(true)}>
             {t.save}
           </button>
           <button class="section-button cancel-button" on:click={cancelAttributesEdit}>
             {t.cancel}
           </button>
-        {:else}
-          <button class="section-button" on:click={() => toggleAttributesEditMode(true)}>
-            {t.editAttributes}
-          </button>
-        {/if}
+          {:else}
+            <button class="section-button" on:click={() => toggleAttributesEditMode(true)}>
+              {t.editAttributes}
+            </button>
+          {/if}
+        </div>
+        <div class="point-totals">
+          {t.totalAttributePoints}: {$totalAttributePoints}
+        </div>
       </div>
       <div class="section-container">
         {#each sortedAttributeKeys as key}
@@ -417,18 +431,20 @@
     <section id="backstory" class="section">
       <div class="section-header">
         <h2>{t.backstory}</h2>
-        {#if $isEditingBackstory}
-          <button class="section-button" on:click={() => saveBackstoryEdits()}>
-            {t.save}
-          </button>
-          <button class="section-button cancel-button" on:click={() => cancelBackstoryEdits()}>
-            {t.cancel}
-          </button>
-        {:else}
-          <button class="section-button" on:click={() => startEditingBackstory()}>
+        <div>
+          {#if $isEditingBackstory}
+            <button class="section-button" on:click={() => saveBackstoryEdits()}>
+              {t.save}
+            </button>
+            <button class="section-button cancel-button" on:click={() => cancelBackstoryEdits()}>
+              {t.cancel}
+            </button>
+          {:else}
+            <button class="section-button" on:click={() => startEditingBackstory()}>
             {t.editBackstory}
-          </button>
-        {/if}
+            </button>
+          {/if}
+        </div>
         <!-- Update this span for the left/down facing icon -->
         <button 
           class="dropdown-icon {isBackstoryVisible ? 'open' : ''}"
@@ -446,9 +462,10 @@
     <section id="skills" class="section">
       <div class="section-header">
         <h2>{t.skills}</h2>
-        {#if $isEditingSkills}
-          <button class="section-button" on:click={() => toggleSkillsEditMode(true)}>
-            {t.save}
+        <div>
+          {#if $isEditingSkills}
+            <button class="section-button" on:click={() => toggleSkillsEditMode(true)}>
+              {t.save}
           </button>
           <button class="section-button cancel-button" on:click={cancelSkillsEdit}>
             {t.cancel}
@@ -457,11 +474,12 @@
             <div>{t.totalOccupationPoints}: {$skillPointTotals.occupationTotal}</div>
             <div>{t.totalInterestPoints}: {$skillPointTotals.interestTotal}</div>
           </div>
-        {:else}
-          <button class="section-button" on:click={() => toggleSkillsEditMode(true)}>
-            {t.editSkills}
+          {:else}
+            <button class="section-button" on:click={() => toggleSkillsEditMode(true)}>
+              {t.editSkills}
           </button>
-        {/if}
+        {/if} 
+        </div>
         <div class="filter-controls">
           <input
             type="text"
@@ -503,18 +521,20 @@
     <section id="inventory" class="section">
       <div class="section-header">
         <h2>{t.inventory}</h2>
-        {#if $isEditingInventory}
-          <button class="section-button" on:click={() => toggleInventoryEditMode(true)}>
-            {t.save}
-          </button>
-          <button class="section-button cancel-button" on:click={cancelInventoryEdit}>
-            {t.cancel}
-          </button>
-        {:else}
-          <button class="section-button" on:click={() => toggleInventoryEditMode(true)}>
-            {t.editInventory}
-          </button>
-        {/if}
+        <div>
+          {#if $isEditingInventory}
+            <button class="section-button" on:click={() => toggleInventoryEditMode(true)}>
+              {t.save}
+            </button>
+            <button class="section-button cancel-button" on:click={cancelInventoryEdit}>
+              {t.cancel}
+            </button>
+          {:else}
+            <button class="section-button" on:click={() => toggleInventoryEditMode(true)}>
+              {t.editInventory}
+            </button>
+          {/if}
+        </div>
       </div>
       <Inventory bind:this={inventoryComponent} isEditing={$isEditingInventory} />
     </section>

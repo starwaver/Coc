@@ -36,6 +36,8 @@ export const translations = {
     filterOccupationSkills: "Show Occupation Skills Only",
     filterInterestSkills: "Show Interest Skills Only",
     searchSkills: "Search Skills",
+    totalAttributePoints: "Total Attribute Points (excluding Luck)",
+
     // Health and Sanity
     currentHp: "Current HP",
     currentMp: "Current MP",
@@ -147,7 +149,8 @@ export const translations = {
     filterOccupationSkills: "仅显示职业技能",
     filterInterestSkills: "仅显示兴趣技能",
     searchSkills: "搜索技能",
-
+    totalAttributePoints: "总属性点数（不包括幸运）",
+    
     // Health and Sanity
     currentHp: "当前HP",
     currentMp: "当前MP",
