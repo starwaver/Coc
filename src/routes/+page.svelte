@@ -323,7 +323,6 @@
 
   .backstory-content {
     transition: max-height 0.3s ease-out, opacity 0.3s ease-out;
-    max-height: 1000px; /* Adjust this value based on your content */
     opacity: 1;
     overflow: hidden;
   }
