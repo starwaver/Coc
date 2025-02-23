@@ -1,5 +1,16 @@
 export const translations = {
   en: {
+    // Character Attributes
+    str: "STR",
+    con: "CON",
+    siz: "SIZ",
+    dex: "DEX", 
+    app: "APP",
+    int: "INT",
+    pow: "POW",
+    edu: "EDU",
+    luck: "LUCK",
+
     // Character Creation and Management
     createNewCharacter: "Create New Character",
     importCharacter: "Import Character",
@@ -113,6 +124,17 @@ export const translations = {
     
   },
   cn: {
+    // Character Attributes
+    str: "力量",
+    con: "体质",
+    siz: "体型",
+    dex: "敏捷", 
+    app: "外貌",
+    int: "智力",
+    pow: "意志",
+    edu: "教育",
+    luck: "运气",
+    
     // Character Creation and Management
     createNewCharacter: "创建新角色",
     importCharacter: "导入角色",
