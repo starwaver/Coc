@@ -2,6 +2,7 @@
     import { createEventDispatcher } from 'svelte';
     import { faDice } from '@fortawesome/free-solid-svg-icons';
     import { FontAwesomeIcon } from '@fortawesome/svelte-fontawesome';
+    import { gaussianRandom, clamp } from '$lib/utils';
     export let attribute: { name: string; value: number };
     export let isEditing: boolean;
   
@@ -38,23 +39,23 @@
       }
     }
 
-    function getRandomAttributeValue(): number {
-      switch (attribute.name.toLowerCase()) {
-        case 'str':
-        case 'con':
-        case 'dex':
-        case 'app':
-        case 'pow':
-        case 'luck':
-          return Math.round((Math.floor(Math.random() * (90 - 15 + 1)) + 15) / 5) * 5;
-        case 'siz':
-        case 'int':
-        case 'edu':
-        return Math.round((Math.floor(Math.random() * (90 - 40 + 1)) + 40) / 5) * 5;
-        default:
-          return 0;
-      }
+  function getRandomAttributeValue(): number {
+    switch (attribute.name.toLowerCase()) {
+      case 'str':
+      case 'con':
+      case 'dex':
+      case 'app':
+      case 'pow':
+      case 'luck':
+        return clamp(Math.round(gaussianRandom((90+15)/2, 25) / 5) * 5, 15, 90);
+      case 'siz':
+      case 'int':
+      case 'edu':
+        return clamp(Math.round(gaussianRandom((90+40)/2, 20) / 5) * 5, 40, 90);
+      default:
+        return 0;
     }
+  }
 </script>
   
 <div class="attribute">
@@ -67,7 +68,13 @@
         on:change={updateValue}
         class="attribute-input" 
       />
-      <button class="attribute-button" on:click={() => newValue = getRandomAttributeValue()}>
+      <button 
+        class="attribute-button"
+        on:click={() => {
+          newValue = getRandomAttributeValue();
+          updateValue();
+      }}
+      >
         <FontAwesomeIcon icon={faDice} />
       </button>
     </div>
