@@ -56,6 +56,11 @@
         return 0;
     }
   }
+
+  export function rollRandomAndUpdate() {
+    newValue = getRandomAttributeValue();
+    updateValue();
+  }
 </script>
   
 <div class="attribute">
@@ -71,8 +76,7 @@
       <button 
         class="attribute-button"
         on:click={() => {
-          newValue = getRandomAttributeValue();
-          updateValue();
+          rollRandomAndUpdate()
       }}
       >
         <FontAwesomeIcon icon={faDice} />
