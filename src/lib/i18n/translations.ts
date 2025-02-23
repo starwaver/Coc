@@ -9,7 +9,7 @@ export const translations = {
     int: "INT",
     pow: "POW",
     edu: "EDU",
-    luck: "LUCK",
+    luck: "LUCK",   
 
     // Character Creation and Management
     createNewCharacter: "Create New Character",
@@ -133,7 +133,7 @@ export const translations = {
     int: "智力",
     pow: "意志",
     edu: "教育",
-    luck: "运气",
+    luck: "运气",   
     
     // Character Creation and Management
     createNewCharacter: "创建新角色",
@@ -250,3 +250,5 @@ export const translations = {
 } as const;
 
 export type Language = keyof typeof translations;
+
+export type TranslationKeys = keyof typeof translations['en'];

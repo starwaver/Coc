@@ -3,6 +3,8 @@
     import { faDice } from '@fortawesome/free-solid-svg-icons';
     import { FontAwesomeIcon } from '@fortawesome/svelte-fontawesome';
     import { gaussianRandom, clamp } from '$lib/utils';
+    import { languageStore } from '$lib/stores/languageStore';
+    import { translations, type Language, type TranslationKeys } from '$lib/i18n/translations';
     export let attribute: { name: string; value: number };
     export let isEditing: boolean;
   
@@ -13,16 +15,22 @@
     $: if (!isEditing) {
       newValue = attribute.value;
     }
+
+    $: currentLanguage = $languageStore as Language;
+    $: t = translations[currentLanguage];
   
     function updateValue() {
       if (isEditing) {
         dispatch('updateValue', { name: attribute.name.toLowerCase(), value: newValue });
       }
     }
+
+    // Reactive variable with type assertion
+    $: attributeKey = attribute.name.toLowerCase() as TranslationKeys;
   
     // Add a function to get the calculation method for each attribute
-    function getCalculationMethod(attributeName: string): string {
-      switch (attributeName.toLowerCase()) {
+    function getCalculationMethod(): string {
+      switch (attributeKey) {
         case 'str':
         case 'con':
         case 'dex':
@@ -40,7 +48,7 @@
     }
 
   function getRandomAttributeValue(): number {
-    switch (attribute.name.toLowerCase()) {
+    switch (attributeKey) {
       case 'str':
       case 'con':
       case 'dex':
@@ -64,7 +72,9 @@
 </script>
   
 <div class="attribute">
-  <span class="attribute-name">{attribute.name}</span>
+  <span class="attribute-name">
+    {t[attributeKey]}
+  </span>
   {#if isEditing}
     <div class="input-group">
       <input 
@@ -75,14 +85,12 @@
       />
       <button 
         class="attribute-button"
-        on:click={() => {
-          rollRandomAndUpdate()
-      }}
+        on:click={rollRandomAndUpdate}
       >
         <FontAwesomeIcon icon={faDice} />
       </button>
     </div>
-    <span class="attribute-calculation">{getCalculationMethod(attribute.name)}</span>
+    <span class="attribute-calculation">{getCalculationMethod()}</span>
   {:else}
     <span class="attribute-value">{attribute.value}</span>
   {/if}

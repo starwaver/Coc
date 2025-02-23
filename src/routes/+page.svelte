@@ -424,7 +424,7 @@
       <div class="section-container">
         {#each sortedAttributeKeys as key}
           <Attribute 
-            attribute={{ name: t[key], value: $characterStore.attributes[key] }} 
+            attribute={{ name: key.toLowerCase(), value: $characterStore.attributes[key] }} 
             on:updateValue={updateAttributeValue}
             isEditing={$isEditingAttributes}
           />
