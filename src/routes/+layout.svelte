@@ -8,6 +8,7 @@
   import { faTrash, faArrowUp } from '@fortawesome/free-solid-svg-icons';
   import { browser } from '$app/environment';
   import { fade } from 'svelte/transition';
+  import "../app.css";
 
   $: currentLanguage = $languageStore as Language;
   $: t = translations[currentLanguage];
