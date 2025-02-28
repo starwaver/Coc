@@ -14,10 +14,10 @@ const defaultCharacterData: CharacterType = {
   playerName: "Unnamed Player",
   type: "PC",
   age: 0,
-  gender: "Unselected",
+  gender: "Unknown",
   occupation: "Unselected",
-  birthplace: "Unselected",
-  residence: "Unselected",
+  birthplace: "Not set",
+  residence: "Not set",
   image: "./data/character_placeholder.png",
   attributes: {
     str: 0, dex: 0, int: 0, con: 0, app: 0, pow: 0, siz: 0, edu: 0, luck: 0

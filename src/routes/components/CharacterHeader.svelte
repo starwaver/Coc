@@ -1,11 +1,10 @@
 <script lang="ts">
   import { characterStore, updateCharacterData } from '$lib/stores/characterStore';
-  import { translations, type Language } from '$lib/i18n/translations';
+  import { translations} from '$lib/i18n/translations';
   import { languageStore } from '$lib/stores/languageStore';
-  import { FontAwesomeIcon } from '@fortawesome/svelte-fontawesome';
-  import { faMars, faVenus, faTransgender } from '@fortawesome/free-solid-svg-icons';
+  import OccupationSelectionModal from './Modals/OccupationSelectionModal.svelte';
     
-  export let currentLanguage: Language;
+  $: currentLanguage = $languageStore;
 
   $: t = translations[currentLanguage];
 
@@ -16,6 +15,7 @@
 
   let isEditingDetails = false;
   let editedDetails = {
+    name: '',
     age: '',
     gender: '',
     playerName: '',
@@ -23,26 +23,6 @@
     birthplace: '',
     residence: ''
   };
-
-  function startEditingName() {
-    editedName = $characterStore?.name ?? '';
-    isEditingName = true;
-  }
-
-  function saveName() {
-    characterStore.update(character => {
-      if (character) {
-        character.name = editedName;
-        updateCharacterData(character);
-      }
-      return character;
-    });
-    isEditingName = false;
-  }
-
-  function cancelEditName() {
-    isEditingName = false;
-  }
 
   function startEditingImage() {
     editedImageUrl = $characterStore?.image ?? '';
@@ -66,6 +46,7 @@
 
   function startEditingDetails() {
     editedDetails = {
+      name: $characterStore?.name ?? '',
       age: $characterStore?.age?.toString() ?? '',
       gender: $characterStore?.gender ?? '',
       playerName: $characterStore?.playerName ?? '',
@@ -79,6 +60,7 @@
   function saveDetails() {
     characterStore.update(character => {
       if (character) {
+        character.name = editedDetails.name || t.placeholderCharacterName;
         character.age = parseInt(editedDetails.age) || 0;
         character.gender = editedDetails.gender;
         character.playerName = editedDetails.playerName;
@@ -96,249 +78,188 @@
     isEditingDetails = false;
   }
 
-  function getGenderIcon(gender: string) {
-    switch (gender.toLowerCase()) {
-      case 'male':
-        return faMars;
-      case 'female':
-        return faVenus;
-      default:
-        return faTransgender;
-    }
+  let occupationModal: HTMLDialogElement | null = null;
+
+  function openOccupationModal() {
+    occupationModal?.showModal();
+  }
+
+  function handleOccupationUpdate(event: CustomEvent<{ occupation: string }>) {
+    editedDetails.occupation = event.detail.occupation;
+  }
+
+  function closeOccupationModal() {
+    occupationModal?.close();
   }
 </script>
 
-<div class="character-header">
-  <div class="character-info-container">
-    <div class="character-portrait-name">
-      <div class="character-portrait-container">
-        <img src={$characterStore?.image ?? ''} alt="Character Portrait" class="character-portrait">
-        {#if !isEditingImage}
-          <button class="character-portrait-overlay" on:dblclick={startEditingImage}>
-            <span class="upload-icon">🔗</span>
-          </button>
-        {/if}
-      </div>
-      {#if isEditingImage}
-        <input
-          type="text"
-          bind:value={editedImageUrl}
-          class="image-url-input"
-          placeholder={t.enterImageUrl}
-        />
-        <div class="image-edit-buttons">
-          <button class="image-edit-button" on:click={saveImageUrl}>
-            {t.save}
-          </button>
-          <button class="image-edit-button cancel" on:click={cancelEditImage}>
-            {t.cancel}
-          </button>
-        </div>
-      {/if}
-      <div class="name-container">
-        {#if isEditingName}
+<div class="flex justify-center items-center w-full m-6">
+  <div class="flex flex-row justify-center items-center w-full max-w-4xl gap-4 align-middle">
+    <div class="w-64 h-full">
+        {#if isEditingImage}
           <input
             type="text"
-            bind:value={editedName}
-            class="name-input"
-            on:blur={saveName}
-            on:keydown={(e) => e.key === 'Enter' && saveName()}
-            placeholder={t.enterCharacterName}
+            bind:value={editedImageUrl}
+            class="input"
+            placeholder={t.enterImageUrl}
           />
+          <div class="flex justify-between w-full mt-6">
+            <button class="btn btn-primary btn-sm" on:click={saveImageUrl}>
+              {t.save}
+            </button>
+            <button class="btn btn-secondary btn-sm" on:click={cancelEditImage}>
+              {t.cancel}
+            </button>
+          </div>
         {:else}
-          <h1 class="character-name" on:dblclick={startEditingName}>
-            {$characterStore?.name ?? ''}
-          </h1>
+        <button class="inline-block" on:dblclick={startEditingImage}>
+          <div class="avatar">
+            <div class="ring-primary ring-offset-base-100 w-64 rounded-full ring ring-offset-2">
+              <img src={$characterStore?.image ?? ''} alt="Character Portrait"/>
+            </div>
+          </div>
+        </button>
         {/if}
-      </div>
     </div>
-    <div class="character-details">
-      <div class="details-header">
-        <h3>{t.characterDetails}</h3>
-        {#if isEditingDetails}
-          <button class="edit-button" on:click={saveDetails}>{t.save}</button>
-          <button class="edit-button cancel" on:click={cancelEditDetails}>{t.cancel}</button>
-        {:else}
-          <button class="edit-button" on:click={startEditingDetails}>{t.edit}</button>
-        {/if}
-      </div>
-      {#if isEditingDetails}
-        <div class="edit-details">
-          <label>
-            {t.age}: <input type="number" bind:value={editedDetails.age} min="0" max="120">
-          </label>
-          <label>
-            {t.gender}: 
-            <select bind:value={editedDetails.gender}>
-              <option value="male">{t.male}</option>
-              <option value="female">{t.female}</option>
-              <option value="other">{t.other}</option>
-            </select>
-          </label>
-          <label>
-            {t.playerName}: <input type="text" bind:value={editedDetails.playerName}>
-          </label>
-          <label>
-            {t.occupation}: <input type="text" bind:value={editedDetails.occupation}>
-          </label>
-          <label>
-            {t.birthplace}: <input type="text" bind:value={editedDetails.birthplace}>
-          </label>
-          <label>
-            {t.residence}: <input type="text" bind:value={editedDetails.residence}>
-          </label>
-        </div>
-      {:else}
-        <p>{t.age}: {$characterStore?.age ?? ''}</p>
-        <p>{t.gender}: <FontAwesomeIcon icon={getGenderIcon($characterStore?.gender ?? '')} /></p>
-        <p>{t.playerName}: {$characterStore?.playerName ?? ''}</p>
-        <p>{t.occupation}: {$characterStore?.occupation ?? ''}</p>
-        <p>{t.birthplace}: {$characterStore?.birthplace ?? ''}</p>
-        <p>{t.residence}: {$characterStore?.residence ?? ''}</p>
-      {/if}
+    <div class="join-vertical">
+      <table class="table-fixed">
+        <tbody>
+          <tr class="align-top">
+            <td class="w-40">{t.characterDetails}</td>
+            <td class="w-40 h-12"> 
+              {#if !isEditingDetails}
+                <button class="btn btn-primary btn-sm" on:click={startEditingDetails}>{t.edit}</button>
+              {:else}
+                <div class="w-full h-full flex flex-row justify-between">
+                  <button class="btn btn-primary btn-sm" on:click={saveDetails}>{t.save}</button>
+                  <button class="btn btn-secondary btn-sm" on:click={cancelEditDetails}>{t.cancel}</button>
+                </div>
+              {/if}
+            </td>
+          </tr>
+
+          <tr class="h-8">
+            <td>{t.name}:</td>
+            <td>
+              {#if isEditingDetails}
+                <input class="input h-11/12 w-full" type="text" bind:value={editedDetails.name}>
+              {:else}
+                {$characterStore?.name ?? ''}
+              {/if}
+            </td>
+          </tr>
+          
+          <tr class="h-8">
+            <td>{t.age}:</td>
+            <td>
+              {#if isEditingDetails}
+                <input class="input h-11/12 w-full" type="number" bind:value={editedDetails.age} min=0>
+              {:else}
+                {$characterStore?.age ?? ''}
+              {/if}
+            </td>
+          </tr>
+          
+          <tr class="h-8">
+            <td>{t.gender}:</td>
+            <td>
+              {#if isEditingDetails}
+                <select class="select w-full h-11/12" bind:value={editedDetails.gender}>
+                  <option value={t.male}>{t.male}</option>
+                  <option value={t.female}>{t.female}</option>
+                  <option value={t.other}>{t.other}</option>
+                </select>
+              {:else}
+                {$characterStore?.gender ?? ''}
+              {/if}
+            </td>
+          </tr>
+
+          <tr class="h-8">
+            <td>{t.playerName}:</td>
+            <td>
+              {#if isEditingDetails}
+                <input class="input w-full h-11/12" type="text" bind:value={editedDetails.playerName}>
+              {:else}
+                {$characterStore?.playerName ?? ''}
+              {/if}
+            </td>
+          </tr>
+
+          <tr class="h-8">
+            <td>{t.occupation}:</td>
+            <td>
+              {#if isEditingDetails}
+                
+                <!-- <div class="join items-center justify-between w-full h-11/12">
+                  {editedDetails.occupation}
+                  <button class="btn btn-primary h-full" on:click={openOccupationModal}>{t.select}</button>
+                  <dialog id="my_modal_1" class="modal" bind:this={occupationModal}>
+                    <div class="modal-box">
+                      <h3 class="text-lg font-bold">Select a job</h3>
+                      <div class="join join-vertical w-full">
+                        <div class="collapse collapse-arrow join-item border-base-300 border">
+                          <input type="radio" name="my-accordion-4" on:change={() => editedDetails.occupation = "Lawyer"} />
+                          <div class="collapse-title font-semibold">Lawyer</div>
+                          <div class="collapse-content text-sm">This is the job of a lawyer.</div>
+                        </div>
+                        <div class="collapse collapse-arrow join-item border-base-300 border">
+                          <input type="radio" name="my-accordion-4" on:change={() => editedDetails.occupation = "Educator"} />
+                          <div class="collapse-title font-semibold">Educator</div>
+                          <div class="collapse-content text-sm">This is the job of an educator.</div>
+                        </div>
+                        <div class="collapse collapse-arrow join-item border-base-300 border">
+                          <input type="radio" name="my-accordion-4" on:change={() => editedDetails.occupation = "Accountant"} />
+                          <div class="collapse-title font-semibold">Accountant</div>
+                          <div class="collapse-content text-sm">This is the job of an accountant</div>
+                        </div>
+                        <div class="collapse collapse-arrow join-item border-base-300 border">
+                          <input type="radio" name="my-accordion-4" on:change={() => editedDetails.occupation = "Enter an occupation"} />
+                          <div class="collapse-title font-semibold">Accountant</div>
+                          <input class="input w-full h-11/12" type="text" bind:value={editedDetails.occupation}>
+                        </div>
+                      </div>
+                      <div class="modal-action">
+                        <form method="dialog">
+                          <button class="btn btn-primary">Confirm</button>
+                        </form>
+                      </div>
+                    </div>
+                  </dialog>
+                </div> -->
+                <OccupationSelectionModal bind:selectedOccupation={editedDetails.occupation}></OccupationSelectionModal>
+              {:else}
+                {$characterStore?.occupation ?? ''}
+              {/if}
+            </td>
+          </tr>
+
+          <tr class="h-8">
+            <td>{t.birthplace}:</td>
+            <td>
+              {#if isEditingDetails}
+                <input class="input w-full h-11/12" type="text" bind:value={editedDetails.birthplace}>
+              {:else}
+                {$characterStore?.birthplace ?? ''}
+              {/if}
+            </td>
+          </tr>
+
+          <tr class="h-8">
+            <td>{t.residence}:</td>
+            <td>
+              {#if isEditingDetails}
+                <input class="input w-full h-11/12" type="text" bind:value={editedDetails.residence}>
+              {:else}
+                {$characterStore?.residence ?? ''}
+              {/if}
+            </td>
+          </tr>
+        </tbody>
+      </table>
     </div>
   </div>
 </div>
 
 <style>
-  .character-header {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-bottom: 20px;
-    padding: 20px;
-  }
-
-  .character-info-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    max-width: 800px;
-    width: 100%;
-  }
-
-  .character-portrait-name {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin-right: 60px; /* Increased spacing */
-  }
-
-  .character-portrait-container {
-    position: relative;
-    width: 150px;
-    height: 150px;
-    margin-bottom: 20px;
-  }
-
-  .character-portrait {
-    width: 100%;
-    height: 100%;
-    border-radius: 50%;
-    border: 4px solid #f0f0f0;
-    object-fit: cover;
-  }
-
-  .character-portrait-overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.5);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    opacity: 0;
-    transition: opacity 0.3s;
-    border: none;
-    cursor: pointer;
-    border-radius: 50%;
-  }
-
-  .character-name {
-    font-size: 2.5em;
-    margin: 15px 0 0 0; /* Adjusted margin */
-    cursor: pointer;
-    text-align: center;
-    width: 100%; /* Ensure it takes full width of container */
-    overflow-wrap: break-word; /* Allow long names to wrap */
-  }
-
-  .character-details {
-    font-weight: bold;
-    text-align: left; /* Align text to the left */
-  }
-
-  .character-details h3 {
-    margin-right: 15px;
-  }
-
-  .character-details p {
-    margin: 8px 0; /* Increased vertical spacing between details */
-  }
-
-  .name-container {
-    width: 100%; /* Fixed width */
-    height: 50px;
-    margin: 0 auto; /* Center the container */
-  }
-
-  .name-input {
-    font-size: 2.5em;
-    width: 100%;
-    text-align: center;
-    padding: 5px;
-    margin: 15px 0 0 0; /* Adjusted margin to match h1 */
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    font-family: inherit;
-    box-sizing: border-box; /* Include padding and border in element's total width */
-  }
-
-  .details-header {
-    display: flex;
-    align-items: center;
-  }
-
-  .edit-button {
-    background-color: #00cc66;
-    color: #fff;
-    border: none;
-    padding: 5px 10px;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 0.9em;
-  }
-
-  .edit-button:hover {
-    background-color: #00b359;
-  }
-
-  .edit-button.cancel {
-    background-color: #cc0000;
-    margin-left: 5px;
-  }
-
-  .edit-details {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-  }
-
-  .edit-details label {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-
-  .edit-details input,
-  .edit-details select {
-    width: 60%;
-    padding: 5px;
-    border-radius: 3px;
-    border: 1px solid #ccc;
-    background-color: #2a2a2a;
-    color: #fff;
-  }
 </style>
