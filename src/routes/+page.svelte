@@ -7,7 +7,6 @@
   import { characterStore, localizedSkills, updateCharacterData } from '$lib/stores/characterStore';
   import { languageStore } from '$lib/stores/languageStore';
   
-  import { onMount } from 'svelte';
   import type { AttributeType, SkillType, InventoryType} from '$lib/types';
   import { writable, derived } from 'svelte/store';
   import { translations, type Language } from '$lib/i18n/translations';
@@ -397,7 +396,7 @@
 
 {#if $characterStore}
   <div class="main-dashboard">
-    <CharacterHeader currentLanguage={$languageStore} />
+    <CharacterHeader />
     
     <!-- Attributes Section -->
     <section id="attributes" class="section">
