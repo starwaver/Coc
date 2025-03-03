@@ -2,7 +2,7 @@
     import { createEventDispatcher } from 'svelte';
     import { faDice } from '@fortawesome/free-solid-svg-icons';
     import { FontAwesomeIcon } from '@fortawesome/svelte-fontawesome';
-    import { gaussianRandom, clamp } from '$lib/utils';
+    import { rollDice } from '$lib/utils';
     import { languageStore } from '$lib/stores/languageStore';
     import { translations, type Language, type TranslationKeys } from '$lib/i18n/translations';
     export let attribute: { name: string; value: number };
@@ -55,11 +55,11 @@
       case 'app':
       case 'pow':
       case 'luck':
-        return clamp(Math.round(gaussianRandom((90+15)/2, 25) / 5) * 5, 15, 90);
+        return rollDice('3d6').total * 5;
       case 'siz':
       case 'int':
       case 'edu':
-        return clamp(Math.round(gaussianRandom((90+40)/2, 20) / 5) * 5, 40, 90);
+        return (rollDice("2d6").total + 6) * 5;
       default:
         return 0;
     }
