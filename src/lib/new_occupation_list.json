@@ -1,0 +1,1838 @@
+{
+    "social skills": ["Charm", "Fast Talk", "Intimidate", "Persuade"],
+    "occupations": [
+        {
+            "name": { "en": "Accountant", "cn": "会计师" },
+            "minimum_credit_rating": 30,
+            "maximum_credit_rating": 70,
+            "description": {
+                "en": "A professional who manages financial records, ensuring compliance and advising on fiscal matters.",
+                "cn": "会计师管理财务记录，确保税务合规，并提供财务建议。"
+            },
+            "attributes": ["edu"],
+            "skills": [
+                "Accounting",
+                "Law",
+                "Library Use",
+                "Listen",
+                "Persuade",
+                "Spot Hidden",
+                "Any Skill",
+                "Any Skill"
+            ]
+        },
+        {
+            "name": { "en": "Acrobat", "cn": "杂技演员" },
+            "minimum_credit_rating": 9,
+            "maximum_credit_rating": 20,
+            "description": {
+                "en": "A performer skilled in balance, agility, and coordination for stage or circus acts.",
+                "cn": "杂技演员擅长平衡、敏捷和协调，通常在马戏团或舞台表演中。"
+            },
+            "attributes": ["dex"],
+            "skills": [
+                "Climb",
+                "Dodge",
+                "Jump",
+                "Throw",
+                "Spot Hidden",
+                "Swim",
+                "Any Skill",
+                "Any Skill"
+            ]
+        },
+        {
+            "name": { "en": "Theater Actor", "cn": "演员-戏剧演员" },
+            "minimum_credit_rating": 9,
+            "maximum_credit_rating": 40,
+            "description": {
+                "en": "A live performer who brings dramatic characters to life on stage.",
+                "cn": "戏剧演员在舞台上表演，通过戏剧艺术赋予角色生命。"
+            },
+            "attributes": ["app"],
+            "skills": [
+                "Art and Craft",
+                "Disguise",
+                "Fighting (Brawl)",
+                "History",
+                "Social Skill",
+                "Social Skill",
+                "Psychology",
+                "Any Skill"
+            ]
+        },
+        {
+            "name": { "en": "Film Actor", "cn": "演员-电影演员" },
+            "minimum_credit_rating": 20,
+            "maximum_credit_rating": 90,
+            "description": {
+                "en": "An actor who portrays characters in movies through performance and screen presence.",
+                "cn": "电影演员在电影中表演，诠释剧本并在银幕上塑造角色。"
+            },
+            "attributes": ["app"],
+            "skills": [
+                "Art and Craft",
+                "Disguise",
+                "Drive Auto",
+                "Social Skill",
+                "Social Skill",
+                "Psychology",
+                "Any Skill",
+                "Any Skill"
+            ]
+        },
+        {
+            "name": { "en": "Private Investigator", "cn": "事务所侦探" },
+            "minimum_credit_rating": 20,
+            "maximum_credit_rating": 45,
+            "description": {
+                "en": "A professional detective who investigates cases and gathers evidence.",
+                "cn": "事务所侦探为客户进行调查，收集情报和证据。"
+            },
+            "attributes": ["str", "dex"],
+            "skills": [
+                "Social Skill",
+                "Fighting (Brawl)",
+                "Firearms (Handgun)",
+                "Law",
+                "Library Use",
+                "Psychology",
+                "Stealth",
+                "Track"
+            ]
+        },
+        {
+            "name": { "en": "Classic Psychiatrist", "cn": "精神病医生（古典）" },
+            "minimum_credit_rating": 10,
+            "maximum_credit_rating": 60,
+            "description": {
+                "en": "A medical expert who diagnoses and treats mental disorders using therapy and medication.",
+                "cn": "精神病医生诊断和治疗精神疾病，通常通过治疗和药物。"
+            },
+            "attributes": ["edu"],
+            "skills": [
+                "Law",
+                "Listen",
+                "Medicine",
+                "Language (Other)",
+                "Psychoanalysis",
+                "Psychology",
+                "Science (Biology, Chemistry)"
+            ]
+        },
+        {
+            "name": { "en": "Animal Trainer", "cn": "动物训练师" },
+            "minimum_credit_rating": 10,
+            "maximum_credit_rating": 40,
+            "description": {
+                "en": "A specialist who trains animals and manages their behavior.",
+                "cn": "动物训练师负责训练动物并管理它们的行为。"
+            },
+            "attributes": ["app", "pow"],
+            "skills": [
+                "Jump",
+                "Listen",
+                "Natural World",
+                "Psychology",
+                "Science (Zoology)",
+                "Stealth",
+                "Track",
+                "Any Skill"
+            ]
+        },
+        {
+            "name": { "en": "Artifact Specialist", "cn": "文物学家（原作）" },
+            "minimum_credit_rating": 30,
+            "maximum_credit_rating": 70,
+            "description": {
+                "en": "An expert in valuing, researching, and preserving cultural relics and artifacts.",
+                "cn": "文物学家专长于鉴定、研究和保护文化文物。"
+            },
+            "attributes": ["edu"],
+            "skills": [
+                "Appraisal",
+                "Craft (Any)",
+                "History",
+                "Library Use",
+                "Language (Other)",
+                "Social Skill",
+                "Spot Hidden",
+                "Any Skill"
+            ]
+        },
+        {
+            "name": { "en": "Antique Dealer", "cn": "古董商" },
+            "minimum_credit_rating": 30,
+            "maximum_credit_rating": 50,
+            "description": {
+                "en": "A merchant who buys, sells, and appraises antiques and collectibles.",
+                "cn": "古董商从事古董的收购、销售和鉴定。"
+            },
+            "attributes": ["edu"],
+            "skills": [
+                "Accounting",
+                "Appraisal",
+                "Drive Auto",
+                "Social Skill",
+                "Social Skill",
+                "History",
+                "Library Use",
+                "Navigation"
+            ]
+        },
+        {
+            "name": { "en": "Archaeologist", "cn": "考古学家（原作）" },
+            "minimum_credit_rating": 10,
+            "maximum_credit_rating": 40,
+            "description": {
+                "en": "A researcher who studies past human cultures through excavation and analysis of artifacts.",
+                "cn": "考古学家通过挖掘和分析文物研究古代文化。"
+            },
+            "attributes": ["edu"],
+            "skills": [
+                "Appraisal",
+                "Archaeology",
+                "History",
+                "Language (Other)",
+                "Library Use",
+                "Spot Hidden",
+                "Mechanical Repair",
+                ["Navigation", "Science (Chemistry)", "Science (Physics)", "Science (Geography)"]
+            ]
+        },
+        {
+            "name": { "en": "Architect", "cn": "建筑师" },
+            "minimum_credit_rating": 30,
+            "maximum_credit_rating": 70,
+            "description": {
+                "en": "A professional who designs buildings and oversees construction projects.",
+                "cn": "建筑师负责建筑设计并监督施工项目。"
+            },
+            "attributes": ["edu"],
+            "skills": [
+                "Accounting",
+                "Craft (Technical Drawing)",
+                "Law",
+                "Language (Own)",
+                ["Computer Use", "Library Use"],
+                "Persuade",
+                "Psychology",
+                "Science (Mathematics)"
+            ]
+        },
+        {
+            "name": { "en": "Artist", "cn": "艺术家" },
+            "minimum_credit_rating": 9,
+            "maximum_credit_rating": 50,
+            "description": {
+                "en": "A creative individual skilled in various artistic mediums and expression.",
+                "cn": "艺术家擅长各种艺术媒介和表达方式。"
+            },
+            "attributes": ["dex", "pow"],
+            "skills": [
+                "Craft (Any)",
+                ["History", "Natural World"],
+                "Social Skill",
+                "Language (Other)",
+                "Psychology",
+                "Spot Hidden",
+                "Any Skill",
+                "Any Skill"
+            ]
+        },
+        {
+            "name": { "en": "Psychiatric Hospital Attendant", "cn": "精神病院护工" },
+            "minimum_credit_rating": 8,
+            "maximum_credit_rating": 20,
+            "description": {
+                "en": "An attendant who supports and cares for patients in a psychiatric hospital.",
+                "cn": "精神病院护工负责照顾精神病患者。"
+            },
+            "attributes": ["str", "dex"],
+            "skills": [
+                "Dodge",
+                "Fighting (Brawl)",
+                "First Aid",
+                "Social Skill",
+                "Social Skill",
+                "Listen",
+                "Psychology",
+                "Stealth"
+            ]
+        },
+        {
+            "name": { "en": "Athlete", "cn": "运动员" },
+            "minimum_credit_rating": 9,
+            "maximum_credit_rating": 70,
+            "description": {
+                "en": "A sports competitor who excels in physical strength and agility.",
+                "cn": "运动员在体育竞赛中展现出力量与敏捷。"
+            },
+            "attributes": ["str", "dex"],
+            "skills": [
+                "Climb",
+                "Jump",
+                "Fighting (Brawl)",
+                "Riding",
+                "Social Skill",
+                "Swim",
+                "Throw",
+                "Any Skill"
+            ]
+        },
+        {
+            "name": { "en": "Writer", "cn": "作家（原作）" },
+            "minimum_credit_rating": 9,
+            "maximum_credit_rating": 30,
+            "description": {
+                "en": "A creative professional who writes literature and crafts narratives.",
+                "cn": "作家擅长文学创作和叙事。"
+            },
+            "attributes": ["edu"],
+            "skills": [
+                "Craft (Literature)",
+                "History",
+                "Library Use",
+                ["Natural World", "Occult"],
+                "Language (Other)",
+                "Language (Own)",
+                "Psychology",
+                "Any Skill"
+            ]
+        },
+        {
+            "name": { "en": "Bartender", "cn": "酒保" },
+            "minimum_credit_rating": 8,
+            "maximum_credit_rating": 25,
+            "description": {
+                "en": "A service professional who mixes drinks and engages with patrons.",
+                "cn": "酒保调制饮品并与顾客互动。"
+            },
+            "attributes": ["app"],
+            "skills": [
+                "Accounting",
+                "Social Skill",
+                "Social Skill",
+                "Fighting (Brawl)",
+                "Listen",
+                "Psychology",
+                "Spot Hidden",
+                "Any Skill"
+            ]
+        },
+        {
+            "name": { "en": "Hunter", "cn": "猎人" },
+            "minimum_credit_rating": 20,
+            "maximum_credit_rating": 50,
+            "description": {
+                "en": "A tracker and marksman skilled in wilderness survival and pursuit.",
+                "cn": "猎人精通野外生存、追踪和射击。"
+            },
+            "attributes": ["str", "dex"],
+            "skills": [
+                "Firearms (Handgun)",
+                ["Listen", "Spot Hidden"],
+                "Natural World",
+                "Navigation",
+                ["Language (Other)", "Survival"],
+                ["Science (Biology)", "Science (Botany)"],
+                "Stealth",
+                "Track"
+            ]
+        },
+        {
+            "name": { "en": "Bookseller", "cn": "书商" },
+            "minimum_credit_rating": 20,
+            "maximum_credit_rating": 40,
+            "description": {
+                "en": "A dealer in books who manages inventories and exchanges knowledge.",
+                "cn": "书商经营书籍，管理库存并交流知识。"
+            },
+            "attributes": ["edu"],
+            "skills": [
+                "Accounting",
+                "Appraisal",
+                "Drive Auto",
+                "History",
+                "Library Use",
+                "Language (Own)",
+                "Language (Other)",
+                "Social Skill"
+            ]
+        },
+        {
+            "name": { "en": "Bounty Hunter", "cn": "赏金猎人" },
+            "minimum_credit_rating": 9,
+            "maximum_credit_rating": 30,
+            "description": {
+                "en": "A tracker for hire who pursues fugitives for a reward.",
+                "cn": "赏金猎人受雇追捕逃犯以获取赏金。"
+            },
+            "attributes": ["str", "dex"],
+            "skills": [
+                "Drive Auto",
+                ["Electronics", "Electrical Repair"],
+                ["Fighting (Brawl)", "Firearms (Handgun)"],
+                "Social Skill",
+                "Law",
+                "Psychology",
+                "Track",
+                "Stealth"
+            ]
+        },
+        {
+            "name": { "en": "Boxer/Wrestler", "cn": "拳击手､摔跤手" },
+            "minimum_credit_rating": 9,
+            "maximum_credit_rating": 60,
+            "description": {
+                "en": "A combat athlete specializing in boxing or wrestling techniques.",
+                "cn": "拳击手或摔跤手以近身搏斗见长。"
+            },
+            "attributes": ["str"],
+            "skills": [
+                "Dodge",
+                "Fighting (Brawl)",
+                "Intimidate",
+                "Jump",
+                "Psychology",
+                "Spot Hidden",
+                "Any Skill",
+                "Any Skill"
+            ]
+        },
+        {
+            "name": { "en": "Butler/Household Servant", "cn": "管家､男仆､女仆" },
+            "minimum_credit_rating": 9,
+            "maximum_credit_rating": 40,
+            "description": {
+                "en": "A domestic worker who manages household affairs and assists with daily tasks.",
+                "cn": "管家或仆人负责管理家务并协助日常事务。"
+            },
+            "attributes": ["edu"],
+            "skills": [
+                ["Accounting", "Appraisal"],
+                "Craft (Any, e.g., Cooking, Tailoring, Hairdressing)",
+                "First Aid",
+                "Listen",
+                "Language (Other)",
+                "Psychology",
+                "Spot Hidden",
+                "Any Skill"
+            ]
+        },
+        {
+            "name": { "en": "Clergy", "cn": "神职人员" },
+            "minimum_credit_rating": 9,
+            "maximum_credit_rating": 60,
+            "description": {
+                "en": "A religious figure responsible for spiritual guidance and services.",
+                "cn": "神职人员提供精神指导并主持宗教仪式。"
+            },
+            "attributes": ["edu"],
+            "skills": [
+                "Accounting",
+                "History",
+                "Library Use",
+                "Listen",
+                "Language (Other)",
+                "Social Skill",
+                "Psychology",
+                "Any Skill"
+            ]
+        },
+        {
+            "name": { "en": "Programmer/Electronic Engineer", "cn": "程序员､电子工程师" },
+            "minimum_credit_rating": 10,
+            "maximum_credit_rating": 70,
+            "description": {
+                "en": "A technical expert skilled in computer programming and electronics repair.",
+                "cn": "程序员及电子工程师精通计算机编程和电子维修。"
+            },
+            "attributes": ["edu"],
+            "skills": [
+                "Computer Use or Library Use",
+                "Electrical Repair",
+                "Electronics",
+                "Library Use",
+                "Science (Mathematics)",
+                "Spot Hidden",
+                "Any Skill",
+                "Any Skill"
+            ]
+        },
+        {
+            "name": { "en": "Hacker", "cn": "黑客/骇客" },
+            "minimum_credit_rating": 10,
+            "maximum_credit_rating": 70,
+            "description": {
+                "en": "A computer expert skilled in breaking into systems and digital security.",
+                "cn": "黑客精通计算机系统，擅长攻破数字安全防护。"
+            },
+            "attributes": ["edu"],
+            "skills": [
+                "Computer Use or Library Use",
+                "Electrical Repair",
+                "Electronics",
+                "Library Use",
+                "Spot Hidden",
+                "Social Skill",
+                "Any Skill",
+                "Any Skill"
+            ]
+        },
+        {
+            "name": { "en": "Cowboy", "cn": "牛仔" },
+            "minimum_credit_rating": 9,
+            "maximum_credit_rating": 20,
+            "description": {
+                "en": "A rugged individual skilled in riding, roping, and outdoor survival.",
+                "cn": "牛仔精于骑乘、套索和野外生存。"
+            },
+            "attributes": ["str", "dex"],
+            "skills": [
+                "Dodge",
+                ["Fighting (Brawl)", "Firearms (Handgun)"],
+                ["First Aid", "Natural World"],
+                "Jump",
+                "Riding",
+                "Survival (any)",
+                "Throw",
+                "Track"
+            ]
+        },
+        {
+            "name": { "en": "Craftsman", "cn": "工匠" },
+            "minimum_credit_rating": 10,
+            "maximum_credit_rating": 40,
+            "description": {
+                "en": "A skilled tradesperson who creates or repairs items with precision.",
+                "cn": "工匠以精湛技艺制造或修理物品。"
+            },
+            "attributes": ["dex"],
+            "skills": [
+                "Accounting",
+                "Craft (Any two)",
+                "Mechanical Repair",
+                "Natural World",
+                "Spot Hidden",
+                "Any Skill",
+                "Any Skill"
+            ]
+        },
+        {
+            "name": { "en": "Criminal - Assassin", "cn": "罪犯-刺客" },
+            "minimum_credit_rating": 30,
+            "maximum_credit_rating": 60,
+            "description": {
+                "en": "A lethal operative who eliminates targets with stealth and precision.",
+                "cn": "刺客以隐秘和精确的手法消灭目标。"
+            },
+            "attributes": ["str", "dex"],
+            "skills": [
+                "Disguise",
+                "Electrical Repair",
+                "Fighting (Brawl)",
+                "Firearms (Handgun)",
+                "Locksmith",
+                "Mechanical Repair",
+                "Stealth",
+                "Psychology"
+            ]
+        },
+        {
+            "name": { "en": "Criminal - Bank Robber", "cn": "罪犯-银行劫匪" },
+            "minimum_credit_rating": 5,
+            "maximum_credit_rating": 75,
+            "description": {
+                "en": "A criminal who executes high-risk bank heists using force and technical skills.",
+                "cn": "银行劫匪通过暴力和技术手段实施高风险抢劫。"
+            },
+            "attributes": ["str", "dex"],
+            "skills": [
+                "Drive Auto",
+                "Electrical Repair or Mechanical Repair",
+                "Fighting (Brawl)",
+                "Firearms (Handgun)",
+                "Intimidate",
+                "Locksmith",
+                "Operating Heavy Machinery",
+                "Any Skill"
+            ]
+        },
+        {
+            "name": { "en": "Criminal - Thug/Enforcer", "cn": "罪犯-打手､暴徒" },
+            "minimum_credit_rating": 5,
+            "maximum_credit_rating": 30,
+            "description": {
+                "en": "A muscle-bound criminal employed for intimidation and physical enforcement.",
+                "cn": "打手以暴力和恐吓手段为犯罪集团提供支持。"
+            },
+            "attributes": ["str"],
+            "skills": [
+                "Drive Auto",
+                "Fighting (Brawl)",
+                "Firearms (Handgun)",
+                "Social Skill",
+                "Social Skill",
+                "Psychology",
+                "Stealth",
+                "Spot Hidden"
+            ]
+        },
+        {
+            "name": { "en": "Criminal - Thief", "cn": "罪犯-窃贼" },
+            "minimum_credit_rating": 5,
+            "maximum_credit_rating": 40,
+            "description": {
+                "en": "A stealthy criminal skilled in burglary, lockpicking, and sleight of hand.",
+                "cn": "窃贼以潜行和灵巧的手法实施盗窃。"
+            },
+            "attributes": ["dex"],
+            "skills": [
+                "Appraisal",
+                "Climb",
+                "Electrical Repair or Mechanical Repair",
+                "Listen",
+                "Locksmith",
+                "Sleight of Hand",
+                "Stealth",
+                "Spot Hidden"
+            ]
+        },
+        {
+            "name": { "en": "Criminal - Con Artist", "cn": "罪犯-欺诈师" },
+            "minimum_credit_rating": 10,
+            "maximum_credit_rating": 65,
+            "description": {
+                "en": "A deceptive operator who uses charm and trickery to defraud victims.",
+                "cn": "欺诈师利用魅力和伎俩欺骗受害者。"
+            },
+            "attributes": ["app"],
+            "skills": [
+                "Appraisal",
+                "Craft (Performing)",
+                "Law or Language (Other)",
+                "Listen",
+                "Social Skill",
+                "Social Skill",
+                "Psychology",
+                "Sleight of Hand"
+            ]
+        },
+        {
+            "name": { "en": "Criminal - Lone Wolf", "cn": "罪犯-独行罪犯" },
+            "minimum_credit_rating": 5,
+            "maximum_credit_rating": 65,
+            "description": {
+                "en": "An independent criminal who operates without support, using a mix of skills.",
+                "cn": "独行罪犯独自行动，凭借多种技能实施犯罪。"
+            },
+            "attributes": ["dex", "app"],
+            "skills": [
+                ["Craft (Performing)", "Disguise"],
+                "Appraisal",
+                "Social Skill",
+                ["Fighting (Brawl)", "Firearms (Handgun)"],
+                ["Locksmith", "Mechanical Repair"],
+                "Stealth",
+                "Psychology",
+                "Spot Hidden"
+            ]
+        },
+        {
+            "name": { "en": "Criminal - Female Cat Burglar (Classic)", "cn": "罪犯-女飞贼（古典）" },
+            "minimum_credit_rating": 10,
+            "maximum_credit_rating": 80,
+            "description": {
+                "en": "A nimble and stealthy thief known for burglary and high-society heists.",
+                "cn": "女飞贼以轻巧身手进行入室盗窃，擅长高端盗窃。"
+            },
+            "attributes": ["app"],
+            "skills": [
+                "Craft (Any)",
+                "Social Skill",
+                "Social Skill",
+                ["Fighting (Brawl)", "Firearms (Handgun)"],
+                "Drive Auto",
+                "Listen",
+                "Stealth",
+                "Any Skill"
+            ]
+        },
+        {
+            "name": { "en": "Criminal - Fence", "cn": "罪犯-赃物贩子" },
+            "minimum_credit_rating": 20,
+            "maximum_credit_rating": 40,
+            "description": {
+                "en": "A middleman who deals in stolen goods and forged documents.",
+                "cn": "赃物贩子专门买卖赃物及伪造品。"
+            },
+            "attributes": ["app"],
+            "skills": [
+                "Accounting",
+                "Appraisal",
+                "Craft (Forgery)",
+                "History",
+                "Social Skill",
+                "Library Use",
+                "Spot Hidden",
+                "Any Skill"
+            ]
+        },
+        {
+            "name": { "en": "Criminal - Forger", "cn": "罪犯-赝造者" },
+            "minimum_credit_rating": 20,
+            "maximum_credit_rating": 60,
+            "description": {
+                "en": "A specialist in creating false documents and imitations of artwork.",
+                "cn": "赝造者专长于伪造文件和艺术品。"
+            },
+            "attributes": ["edu"],
+            "skills": [
+                "Accounting",
+                "Appraisal",
+                "Craft (Forgery)",
+                "History",
+                "Library Use",
+                "Spot Hidden",
+                "Sleight of Hand",
+                "Any Skill"
+            ]
+        },
+        {
+            "name": { "en": "Criminal - Smuggler", "cn": "罪犯-走私者" },
+            "minimum_credit_rating": 20,
+            "maximum_credit_rating": 60,
+            "description": {
+                "en": "A criminal who transports contraband across borders using stealth and speed.",
+                "cn": "走私者利用潜行与速度将违禁品跨境运输。"
+            },
+            "attributes": ["dex", "app"],
+            "skills": [
+                "Firearms (Handgun)",
+                "Listen",
+                "Navigation",
+                "Social Skill",
+                ["Drive Auto", "Drive (Aircraft)", "Drive (Ship)"],
+                "Psychology",
+                "Sleight of Hand",
+                "Spot Hidden"
+            ]
+        },
+        {
+            "name": { "en": "Criminal - Gangster", "cn": "罪犯-混混" },
+            "minimum_credit_rating": 3,
+            "maximum_credit_rating": 10,
+            "description": {
+                "en": "A low-level criminal involved in street-level violence and petty crimes.",
+                "cn": "混混从事街头暴力及小型犯罪。"
+            },
+            "attributes": ["str", "dex"],
+            "skills": [
+                "Climb",
+                "Social Skill",
+                "Fighting (Brawl)",
+                "Firearms (Handgun)",
+                "Jump",
+                "Sleight of Hand",
+                "Stealth",
+                "Throw"
+            ]
+        },
+        {
+            "name": { "en": "Cult Leader", "cn": "教团首领" },
+            "minimum_credit_rating": 30,
+            "maximum_credit_rating": 60,
+            "description": {
+                "en": "A charismatic leader who directs a cult or secret society.",
+                "cn": "教团首领以魅力领导秘密团体。"
+            },
+            "attributes": ["edu"],
+            "skills": [
+                "Accounting",
+                "Social Skill",
+                "Social Skill",
+                "Occult",
+                "Psychology",
+                "Spot Hidden",
+                "Any Skill",
+                "Any Skill"
+            ]
+        },
+        {
+            "name": { "en": "Modern Exorcist", "cn": "除魅师（现代）" },
+            "minimum_credit_rating": 20,
+            "maximum_credit_rating": 50,
+            "description": {
+                "en": "A specialist who deals with the removal of malevolent influences, sometimes using hypnosis.",
+                "cn": "除魅师处理负面影响，经KP允许可用催眠替换一项技能。"
+            },
+            "attributes": ["edu"],
+            "skills": [
+                "Social Skill",
+                "Social Skill",
+                "Drive Auto",
+                "Fighting (Brawl) or Firearms (Handgun)",
+                "History",
+                "Occult",
+                "Psychology",
+                "Stealth"
+            ]
+        },
+        {
+            "name": { "en": "Designer", "cn": "设计师" },
+            "minimum_credit_rating": 20,
+            "maximum_credit_rating": 60,
+            "description": {
+                "en": "A creative professional skilled in visual aesthetics and technical design.",
+                "cn": "设计师擅长视觉美学与技术设计。"
+            },
+            "attributes": ["edu"],
+            "skills": [
+                "Accounting",
+                "Craft (Photography)",
+                "Craft (Any)",
+                "Computer Use or Library Use",
+                "Mechanical Repair",
+                "Psychology",
+                "Spot Hidden",
+                "Any Skill"
+            ]
+        },
+        {
+            "name": { "en": "Amateur Art Enthusiast", "cn": "业余艺术爱好者（原作）" },
+            "minimum_credit_rating": 50,
+            "maximum_credit_rating": 99,
+            "description": {
+                "en": "An individual with a passion for art who dabbles in various creative pursuits.",
+                "cn": "业余艺术爱好者热爱艺术，涉猎多种创作活动。"
+            },
+            "attributes": ["app"],
+            "skills": [
+                "Craft (Any)",
+                "Firearms (Handgun)",
+                "Language (Other)",
+                "Riding",
+                "Social Skill",
+                "Any Skill",
+                "Any Skill",
+                "Any Skill"
+            ]
+        },
+        {
+            "name": { "en": "Diver", "cn": "潜水员" },
+            "minimum_credit_rating": 9,
+            "maximum_credit_rating": 30,
+            "description": {
+                "en": "A specialist in underwater exploration, repair, and survival.",
+                "cn": "潜水员擅长水下探索、维修与生存。"
+            },
+            "attributes": ["dex"],
+            "skills": [
+                "Diving",
+                "First Aid",
+                "Mechanical Repair",
+                "_Boat Driving",
+                "Science (Biology)",
+                "Spot Hidden",
+                "Swim",
+                "Any Skill"
+            ]
+        },
+        {
+            "name": { "en": "Doctor", "cn": "医生（原作）" },
+            "minimum_credit_rating": 30,
+            "maximum_credit_rating": 80,
+            "description": {
+                "en": "A medical professional responsible for diagnosing and treating illnesses.",
+                "cn": "医生负责诊断和治疗疾病。"
+            },
+            "attributes": ["edu"],
+            "skills": [
+                "First Aid",
+                "Medicine",
+                ["Language (Other)", "Language (Latin)"],
+                "Psychology",
+                "Science (Biology, Pharmacology)",
+                "Any Skill",
+                "Any Skill"
+            ]
+        },
+        {
+            "name": { "en": "Drifter", "cn": "流浪者" },
+            "minimum_credit_rating": 0,
+            "maximum_credit_rating": 5,
+            "description": {
+                "en": "A wanderer with little means who survives through a mix of skills.",
+                "cn": "流浪者凭借各种技能在社会边缘生存。"
+            },
+            "attributes": ["app", "dex", "str"],
+            "skills": [
+                "Climb",
+                "Jump",
+                "Listen",
+                "Navigation",
+                "Social Skill",
+                "Stealth",
+                "Any Skill",
+                "Any Skill"
+            ]
+        },
+        {
+            "name": { "en": "Driver - Private Driver", "cn": "司机-私人司机" },
+            "minimum_credit_rating": 10,
+            "maximum_credit_rating": 40,
+            "description": {
+                "en": "A professional driver employed to transport private clients safely.",
+                "cn": "私人司机负责安全接送客户。"
+            },
+            "attributes": ["dex"],
+            "skills": [
+                "Drive Auto",
+                "Social Skill",
+                "Social Skill",
+                "Listen",
+                "Mechanical Repair",
+                "Navigation",
+                "Spot Hidden",
+                "Any Skill"
+            ]
+        },
+        {
+            "name": { "en": "Driver", "cn": "司机-司机" },
+            "minimum_credit_rating": 9,
+            "maximum_credit_rating": 20,
+            "description": {
+                "en": "A driver skilled in vehicle operation for various transportation needs.",
+                "cn": "司机熟练驾驶各类车辆满足运输需求。"
+            },
+            "attributes": ["str", "dex"],
+            "skills": [
+                "Accounting",
+                "Drive Auto",
+                "Listen",
+                "Social Skill",
+                "Mechanical Repair",
+                "Navigation",
+                "Psychology",
+                "Any Skill"
+            ]
+        },
+        {
+            "name": { "en": "Driver - Taxi Driver", "cn": "司机-出租车司机" },
+            "minimum_credit_rating": 9,
+            "maximum_credit_rating": 30,
+            "description": {
+                "en": "A professional who drives a taxi and interacts with a variety of customers.",
+                "cn": "出租车司机驾驶出租车并与各类乘客交流。"
+            },
+            "attributes": ["dex"],
+            "skills": [
+                "Accounting",
+                "Drive Auto",
+                "Electrical Repair",
+                "Fast Talk",
+                "Mechanical Repair",
+                "Navigation",
+                "Spot Hidden",
+                "Any Skill"
+            ]
+        },
+        {
+            "name": { "en": "Editor", "cn": "编辑" },
+            "minimum_credit_rating": 10,
+            "maximum_credit_rating": 30,
+            "description": {
+                "en": "A professional who refines written content and ensures clarity and coherence.",
+                "cn": "编辑负责润色文字内容，确保表达清晰。"
+            },
+            "attributes": ["edu"],
+            "skills": [
+                "Accounting",
+                "History",
+                "Language (Own)",
+                "Social Skill",
+                "Social Skill",
+                "Psychology",
+                "Spot Hidden",
+                "Any Skill"
+            ]
+        },
+        {
+            "name": { "en": "Government Official", "cn": "政府官员" },
+            "minimum_credit_rating": 50,
+            "maximum_credit_rating": 90,
+            "description": {
+                "en": "An administrator responsible for governance, policy, and public service.",
+                "cn": "政府官员负责行政管理、政策制定及公共服务。"
+            },
+            "attributes": ["app"],
+            "skills": [
+                "Charm",
+                "History",
+                "Intimidate",
+                "Fast Talk",
+                "Listen",
+                "Language (Own)",
+                "Persuade",
+                "Psychology"
+            ]
+        },
+        {
+            "name": { "en": "Engineer", "cn": "工程师" },
+            "minimum_credit_rating": 30,
+            "maximum_credit_rating": 60,
+            "description": {
+                "en": "A technical expert involved in designing and building complex structures or systems.",
+                "cn": "工程师参与复杂结构或系统的设计与建设。"
+            },
+            "attributes": ["edu"],
+            "skills": [
+                "Craft (Technical Drawing)",
+                "Electrical Repair",
+                "Library Use",
+                "Mechanical Repair",
+                "Operating Heavy Machinery",
+                "Science (Engineering, Physics)",
+                "Any Skill"
+            ]
+        },
+        {
+            "name": { "en": "Entertainer", "cn": "艺人" },
+            "minimum_credit_rating": 9,
+            "maximum_credit_rating": 70,
+            "description": {
+                "en": "A performer skilled in various art forms such as acting, singing, or comedy.",
+                "cn": "艺人擅长表演、演唱或喜剧等多种艺术形式。"
+            },
+            "attributes": ["app"],
+            "skills": [
+                "Craft (Performance, e.g., Acting, Singing, Comedy)",
+                "Disguise",
+                "Social Skill",
+                "Social Skill",
+                "Listen",
+                "Psychology",
+                "Spot Hidden",
+                "Any Skill",
+                "Any Skill"
+            ]
+        },
+        {
+            "name": { "en": "Adventurer (Classic)", "cn": "探险家（古典）" },
+            "minimum_credit_rating": 55,
+            "maximum_credit_rating": 80,
+            "description": {
+                "en": "An intrepid explorer who seeks out uncharted lands and hidden treasures.",
+                "cn": "探险家勇于探索未知之地和隐藏的宝藏。"
+            },
+            "attributes": ["app", "dex", "str"],
+            "skills": [
+                "Climb or Swim",
+                "Firearms (Handgun)",
+                "History",
+                "Jump",
+                "Natural World",
+                "Navigation",
+                "Language (Other)",
+                "Survival"
+            ]
+        },
+        {
+            "name": { "en": "Farmer", "cn": "农民" },
+            "minimum_credit_rating": 9,
+            "maximum_credit_rating": 30,
+            "description": {
+                "en": "A cultivator who works the land and manages agricultural production.",
+                "cn": "农民耕作土地，管理农业生产。"
+            },
+            "attributes": ["str", "dex"],
+            "skills": [
+                "Craft (Farming)",
+                "Drive Auto (or Drive Auto a Freight Carriage)",
+                "Social Skill",
+                "Mechanical Repair",
+                "Natural World",
+                "Operating Heavy Machinery",
+                "Track",
+                "Any Skill"
+            ]
+        },
+        {
+            "name": { "en": "Judicial Officer", "cn": "司法人员" },
+            "minimum_credit_rating": 20,
+            "maximum_credit_rating": 40,
+            "description": {
+                "en": "An official involved in the administration of justice and legal proceedings.",
+                "cn": "司法人员参与法律程序和公正执行。"
+            },
+            "attributes": ["edu"],
+            "skills": [
+                "Drive Auto",
+                "Fighting (Brawl)",
+                "Firearms (Handgun)",
+                "Law",
+                "Persuade",
+                "Stealth",
+                "Spot Hidden",
+                "Any Skill"
+            ]
+        },
+        {
+            "name": { "en": "Firefighter", "cn": "消防员" },
+            "minimum_credit_rating": 9,
+            "maximum_credit_rating": 30,
+            "description": {
+                "en": "A first responder trained to combat fires and rescue people in emergencies.",
+                "cn": "消防员训练有素，负责灭火和紧急救援。"
+            },
+            "attributes": ["str", "dex"],
+            "skills": [
+                "Climb",
+                "Dodge",
+                "Drive Auto",
+                "First Aid",
+                "Jump",
+                "Mechanical Repair",
+                "Operating Heavy Machinery",
+                "Throw"
+            ]
+        },
+        {
+            "name": { "en": "Foreign Correspondent", "cn": "驻外记者" },
+            "minimum_credit_rating": 10,
+            "maximum_credit_rating": 40,
+            "description": {
+                "en": "A journalist who reports on international events and foreign affairs.",
+                "cn": "驻外记者报道国际事件和外交事务。"
+            },
+            "attributes": ["edu"],
+            "skills": [
+                "History",
+                "Language (Other)",
+                "Language (Own)",
+                "Listen",
+                "Social Skill",
+                "Social Skill",
+                "Psychology",
+                "Any Skill"
+            ]
+        },
+        {
+            "name": { "en": "Forensic Scientist", "cn": "法医" },
+            "minimum_credit_rating": 40,
+            "maximum_credit_rating": 60,
+            "description": {
+                "en": "A specialist who applies scientific methods to investigate crimes.",
+                "cn": "法医利用科学方法调查犯罪现场。"
+            },
+            "attributes": ["edu"],
+            "skills": [
+                "Language (Other) (Latin)",
+                "Library Use",
+                "Medicine",
+                "Persuade",
+                "Science (Biology, Forensics, Pharmacology)",
+                "Spot Hidden"
+            ]
+        },
+        {
+            "name": { "en": "Gambler", "cn": "赌徒" },
+            "minimum_credit_rating": 8,
+            "maximum_credit_rating": 50,
+            "description": {
+                "en": "An individual who takes risks in games of chance and wagers.",
+                "cn": "赌徒在赌博中冒险下注。"
+            },
+            "attributes": ["dex", "app"],
+            "skills": [
+                "Accounting",
+                "Craft (Performing)",
+                "Social Skill",
+                "Social Skill",
+                "Listen",
+                "Psychology",
+                "Sleight of Hand",
+                "Spot Hidden"
+            ]
+        },
+        {
+            "name": { "en": "Gangster - Crime Boss", "cn": "黑帮-黑帮老大" },
+            "minimum_credit_rating": 60,
+            "maximum_credit_rating": 95,
+            "description": {
+                "en": "The head of a criminal organization who directs operations and commands loyalty.",
+                "cn": "黑帮老大指挥犯罪活动并统御手下。"
+            },
+            "attributes": ["app"],
+            "skills": [
+                "Fighting (Brawl)",
+                "Firearms (Handgun)",
+                "Law",
+                "Listen",
+                "Social Skill",
+                "Social Skill",
+                "Psychology",
+                "Spot Hidden"
+            ]
+        },
+        {
+            "name": { "en": "Gangster - Henchman", "cn": "黑帮-马仔" },
+            "minimum_credit_rating": 9,
+            "maximum_credit_rating": 20,
+            "description": {
+                "en": "A subordinate gangster who enforces the will of the crime boss.",
+                "cn": "马仔负责执行黑帮老大的命令。"
+            },
+            "attributes": ["str", "dex"],
+            "skills": [
+                "Drive Auto",
+                "Fighting (Brawl)",
+                "Firearms (Handgun)",
+                "Social Skill",
+                "Social Skill",
+                "Psychology",
+                "Any Skill",
+                "Any Skill"
+            ]
+        },
+        {
+            "name": { "en": "Gentleman/Lady", "cn": "绅士､淑女" },
+            "minimum_credit_rating": 40,
+            "maximum_credit_rating": 90,
+            "description": {
+                "en": "An individual known for refined manners, style, and cultured pursuits.",
+                "cn": "绅士与淑女以优雅举止和文化修养著称。"
+            },
+            "attributes": ["app"],
+            "skills": [
+                "Craft (Any)",
+                "Social Skill",
+                "Social Skill",
+                "Firearms (Rifle/Shotgun)",
+                "History",
+                "Language (Other)",
+                "Navigation",
+                "Riding"
+            ]
+        },
+        {
+            "name": { "en": "Tramp", "cn": "游民" },
+            "minimum_credit_rating": 0,
+            "maximum_credit_rating": 5,
+            "description": {
+                "en": "A vagrant surviving on minimal resources while relying on street skills.",
+                "cn": "游民依靠街头技能在边缘生存。"
+            },
+            "attributes": ["dex", "app"],
+            "skills": [
+                "Craft (Any)",
+                "Climb",
+                "Jump",
+                "Listen",
+                ["Locksmith", "Sleight of Hand"],
+                "Navigation",
+                "Stealth",
+                "Any Skill"
+            ]
+        },
+        {
+            "name": { "en": "Odd Job Attendant", "cn": "勤杂护工" },
+            "minimum_credit_rating": 6,
+            "maximum_credit_rating": 15,
+            "description": {
+                "en": "A worker who handles a variety of miscellaneous tasks and repairs.",
+                "cn": "勤杂护工负责多项杂务和修理工作。"
+            },
+            "attributes": ["str"],
+            "skills": [
+                "Electrical Repair",
+                "Social Skill",
+                "Fighting (Brawl)",
+                "First Aid",
+                "Listen",
+                "Mechanical Repair",
+                "Psychology",
+                "Stealth"
+            ]
+        },
+        {
+            "name": { "en": "Journalist - Investigative Reporter", "cn": "记者（原作）-调查记者" },
+            "minimum_credit_rating": 9,
+            "maximum_credit_rating": 30,
+            "description": {
+                "en": "A reporter who delves deeply into stories to uncover hidden truths.",
+                "cn": "调查记者深入挖掘新闻事实，揭露真相。"
+            },
+            "attributes": ["edu"],
+            "skills": [
+                "Craft (Art or Photography)",
+                "Social Skill",
+                "History",
+                "Library Use",
+                "Language (Own)",
+                "Psychology",
+                "Any Skill",
+                "Any Skill"
+            ]
+        },
+        {
+            "name": { "en": "Journalist - Correspondent", "cn": "记者（原作）-通讯记者" },
+            "minimum_credit_rating": 9,
+            "maximum_credit_rating": 30,
+            "description": {
+                "en": "A news reporter who covers events on location and reports live.",
+                "cn": "通讯记者在现场报道新闻事件。"
+            },
+            "attributes": ["edu"],
+            "skills": [
+                "Craft (Performing)",
+                "History",
+                "Listen",
+                "Language (Own)",
+                "Social Skill",
+                "Psychology",
+                "Stealth",
+                "Spot Hidden"
+            ]
+        },
+        {
+            "name": { "en": "Judge", "cn": "法官" },
+            "minimum_credit_rating": 50,
+            "maximum_credit_rating": 80,
+            "description": {
+                "en": "A legal authority who presides over court proceedings and administers justice.",
+                "cn": "法官主持庭审，确保司法公正。"
+            },
+            "attributes": ["edu"],
+            "skills": [
+                "History",
+                "Intimidate",
+                "Law",
+                "Library Use",
+                "Listen",
+                "Language (Own)",
+                "Persuade",
+                "Psychology"
+            ]
+        },
+        {
+            "name": { "en": "Lab Assistant", "cn": "实验室助理" },
+            "minimum_credit_rating": 10,
+            "maximum_credit_rating": 30,
+            "description": {
+                "en": "An assistant who supports laboratory research and scientific experiments.",
+                "cn": "实验室助理协助科学实验与研究工作。"
+            },
+            "attributes": ["edu"],
+            "skills": [
+                "Computer Use or Library Use",
+                "Electrical Repair",
+                "Language (Other)",
+                "Science (Chemistry and any two others)",
+                "Spot Hidden",
+                "Any Skill"
+            ]
+        },
+        {
+            "name": { "en": "Worker - Unskilled Worker", "cn": "工人-非熟练工人" },
+            "minimum_credit_rating": 9,
+            "maximum_credit_rating": 30,
+            "description": {
+                "en": "A laborer performing routine tasks without specialized skills.",
+                "cn": "非熟练工人从事常规劳动，无需专门技能。"
+            },
+            "attributes": ["str", "dex"],
+            "skills": [
+                "Drive Auto",
+                "Electrical Repair",
+                "Fighting (Brawl)",
+                "First Aid",
+                "Mechanical Repair",
+                "Operating Heavy Machinery",
+                "Throw",
+                "Any Skill"
+            ]
+        },
+        {
+            "name": { "en": "Worker - Lumberjack", "cn": "工人-伐木工" },
+            "minimum_credit_rating": 9,
+            "maximum_credit_rating": 30,
+            "description": {
+                "en": "A laborer skilled in cutting timber and working in forest environments.",
+                "cn": "伐木工擅长砍伐木材及林区作业。"
+            },
+            "attributes": ["str", "dex"],
+            "skills": [
+                "Climb",
+                "Dodge",
+                "Fighting (Chainsaw)",
+                "First Aid",
+                "Jump",
+                "Mechanical Repair",
+                ["Natural World", "Science (Biology)", "Science (Botany)"],
+                "Throw"
+            ]
+        },
+        {
+            "name": { "en": "Worker - Miner", "cn": "工人-矿工" },
+            "minimum_credit_rating": 9,
+            "maximum_credit_rating": 30,
+            "description": {
+                "en": "A laborer who extracts minerals from mines and works underground.",
+                "cn": "矿工负责开采矿产并在地下作业。"
+            },
+            "attributes": ["str", "dex"],
+            "skills": [
+                "Climb",
+                "Science (Geology)",
+                "Jump",
+                "Mechanical Repair",
+                "Operating Heavy Machinery",
+                "Stealth",
+                "Spot Hidden",
+                "Any Skill"
+            ]
+        },
+        {
+            "name": { "en": "Lawyer", "cn": "律师" },
+            "minimum_credit_rating": 30,
+            "maximum_credit_rating": 80,
+            "description": {
+                "en": "A legal professional who provides counsel and represents clients in court.",
+                "cn": "律师为客户提供法律咨询，并在法庭上辩护。"
+            },
+            "attributes": ["edu"],
+            "skills": [
+                "Accounting",
+                "Law",
+                "Library Use",
+                "Social Skill",
+                "Social Skill",
+                "Psychology",
+                "Any Skill",
+                "Any Skill"
+            ]
+        },
+        {
+            "name": { "en": "Librarian", "cn": "图书馆管理员（原作）" },
+            "minimum_credit_rating": 9,
+            "maximum_credit_rating": 35,
+            "description": {
+                "en": "A custodian of books and information, managing library collections.",
+                "cn": "图书馆管理员负责管理图书和信息收藏。"
+            },
+            "attributes": ["edu"],
+            "skills": [
+                "Accounting",
+                "Library Use",
+                "Language (Other)",
+                "Language (Own)",
+                "Any Skill",
+                "Any Skill",
+                "Any Skill",
+                "Any Skill"
+            ]
+        },
+        {
+            "name": { "en": "Technician", "cn": "技师" },
+            "minimum_credit_rating": 9,
+            "maximum_credit_rating": 40,
+            "description": {
+                "en": "A technical specialist skilled in various trades and repairs.",
+                "cn": "技师精通木工、焊接、管道等多种技术。"
+            },
+            "attributes": ["edu"],
+            "skills": [
+                "Craft (Woodworking, Welding, Plumbing, etc.)",
+                "Climb",
+                "Drive Auto",
+                "Electrical Repair",
+                "Mechanical Repair",
+                "Operating Heavy Machinery",
+                "Any Skill",
+                "Any Skill"
+            ]
+        },
+        {
+            "name": { "en": "Officer", "cn": "军官" },
+            "minimum_credit_rating": 20,
+            "maximum_credit_rating": 70,
+            "description": {
+                "en": "A military leader skilled in tactics, combat, and leadership.",
+                "cn": "军官精通战术、战斗和领导能力。"
+            },
+            "attributes": ["str", "dex"],
+            "skills": [
+                "Accounting",
+                "Firearms (Handgun)",
+                "Navigation",
+                "First Aid",
+                "Social Skill",
+                "Social Skill",
+                "Psychology",
+                "Any Skill"
+            ]
+        },
+        {
+            "name": { "en": "Missionary", "cn": "传教士" },
+            "minimum_credit_rating": 0,
+            "maximum_credit_rating": 30,
+            "description": {
+                "en": "A religious emissary who spreads faith and provides humanitarian aid.",
+                "cn": "传教士传播信仰并提供人道援助。"
+            },
+            "attributes": ["app"],
+            "skills": [
+                "Craft (Any)",
+                "First Aid",
+                "Mechanical Repair",
+                "Medicine",
+                "Natural World",
+                "Social Skill",
+                "Any Skill",
+                "Any Skill"
+            ]
+        },
+        {
+            "name": { "en": "Mountaineer", "cn": "登山家" },
+            "minimum_credit_rating": 30,
+            "maximum_credit_rating": 60,
+            "description": {
+                "en": "An adventurer specialized in climbing and surviving in rugged mountain terrains.",
+                "cn": "登山家专长于攀登和在崎岖山地生存。"
+            },
+            "attributes": ["str", "dex"],
+            "skills": [
+                "Climb",
+                "First Aid",
+                "Jump",
+                "Listen",
+                "Navigation",
+                "Language (Other)",
+                "Survival (Alpine or similar)",
+                "Track"
+            ]
+        },
+        {
+            "name": { "en": "Museum Curator", "cn": "博物馆管理员" },
+            "minimum_credit_rating": 10,
+            "maximum_credit_rating": 30,
+            "description": {
+                "en": "A guardian of historical and cultural artifacts in a museum setting.",
+                "cn": "博物馆管理员负责保护历史和文化遗产。"
+            },
+            "attributes": ["edu"],
+            "skills": [
+                "Accounting",
+                "Appraisal",
+                "Archaeology",
+                "History",
+                "Library Use",
+                "Occult",
+                "Language (Other)",
+                "Spot Hidden"
+            ]
+        },
+        {
+            "name": { "en": "Musician", "cn": "音乐家" },
+            "minimum_credit_rating": 9,
+            "maximum_credit_rating": 30,
+            "description": {
+                "en": "A performer who creates and plays music using various instruments.",
+                "cn": "音乐家擅长演奏各种乐器并创作音乐。"
+            },
+            "attributes": ["dex", "pow"],
+            "skills": [
+                "Craft (Musical Instrument)",
+                "Social Skill",
+                "Listen",
+                "Psychology",
+                "Any Skill",
+                "Any Skill",
+                "Any Skill",
+                "Any Skill"
+            ]
+        },
+        {
+            "name": { "en": "Nurse", "cn": "护士" },
+            "minimum_credit_rating": 9,
+            "maximum_credit_rating": 30,
+            "description": {
+                "en": "A healthcare professional who provides patient care and medical support.",
+                "cn": "护士负责病患护理及医疗支持。"
+            },
+            "attributes": ["edu"],
+            "skills": [
+                "First Aid",
+                "Listen",
+                "Medicine",
+                "Social Skill",
+                "Psychology",
+                "Science (Biology)",
+                "Science (Chemistry)",
+                "Spot Hidden"
+            ]
+        },
+        {
+            "name": { "en": "Occultist", "cn": "神秘学家" },
+            "minimum_credit_rating": 9,
+            "maximum_credit_rating": 65,
+            "description": {
+                "en": "A scholar of hidden lore, mysteries, and supernatural phenomena.",
+                "cn": "神秘学家研究隐秘学问和超自然现象。"
+            },
+            "attributes": ["edu"],
+            "skills": [
+                "Anthropology",
+                "History",
+                "Library Use",
+                "Social Skill",
+                "Occult",
+                "Language (Other)",
+                "Science (Astronomy)",
+                "Any Skill"
+            ]
+        },
+        {
+            "name": { "en": "Psychologist/Analyst", "cn": "心理学家､精神分析学家" },
+            "minimum_credit_rating": 10,
+            "maximum_credit_rating": 40,
+            "description": {
+                "en": "A mental health professional focused on behavior, analysis, and therapy.",
+                "cn": "心理学家和精神分析学家专注于行为分析和治疗。"
+            },
+            "attributes": ["edu"],
+            "skills": [
+                "Accounting",
+                "Library Use",
+                "Listen",
+                "Persuade",
+                "Psychoanalysis",
+                "Psychology",
+                "Any Skill",
+                "Any Skill"
+            ]
+        },
+        {
+            "name": { "en": "Researcher", "cn": "研究员" },
+            "minimum_credit_rating": 9,
+            "maximum_credit_rating": 30,
+            "description": {
+                "en": "An academic or scientist who investigates various fields of study.",
+                "cn": "研究员从事各领域的学术或科学研究。"
+            },
+            "attributes": ["edu"],
+            "skills": [
+                "History",
+                "Library Use",
+                "Social Skill",
+                "Language (Other)",
+                "Spot Hidden",
+                "Any Skill",
+                "Any Skill",
+                "Any Skill"
+            ]
+        },
+        {
+            "name": { "en": "Sailor - Navy Sailor", "cn": "海员-军舰海员" },
+            "minimum_credit_rating": 9,
+            "maximum_credit_rating": 30,
+            "description": {
+                "en": "A sailor serving in a navy vessel, skilled in shipboard operations and combat.",
+                "cn": "军舰海员在军舰上作业，精通船上操作和战斗。"
+            },
+            "attributes": ["edu"],
+            "skills": [
+                ["Electrical Repair", "Mechanical Repair"],
+                "Fighting (Brawl)",
+                "Firearms (Handgun)",
+                "First Aid",
+                "Navigation",
+                "_Boat Driving",
+                "Survival (at sea)",
+                "Swim"
+            ]
+        },
+        {
+            "name": { "en": "Sailor - Merchant Marine", "cn": "海员-民船海员" },
+            "minimum_credit_rating": 20,
+            "maximum_credit_rating": 40,
+            "description": {
+                "en": "A crew member of a merchant ship responsible for navigation and vessel maintenance.",
+                "cn": "民船海员负责民船的导航和维护。"
+            },
+            "attributes": ["edu"],
+            "skills": [
+                "First Aid",
+                "Mechanical Repair",
+                "Natural World",
+                "Navigation",
+                "Social Skill",
+                "_Boat Driving",
+                "Spot Hidden",
+                "Swim"
+            ]
+        },
+        {
+            "name": { "en": "Salesperson", "cn": "推销员" },
+            "minimum_credit_rating": 9,
+            "maximum_credit_rating": 40,
+            "description": {
+                "en": "A persuasive individual skilled in selling products or ideas to customers.",
+                "cn": "推销员善于向顾客推销产品或理念。"
+            },
+            "attributes": ["app"],
+            "skills": [
+                "Accounting",
+                "Social Skill",
+                "Social Skill",
+                "Drive Auto",
+                "Listen",
+                "Psychology",
+                ["Stealth", "Sleight of Hand"],
+                "Any Skill"
+            ]
+        },
+        {
+            "name": { "en": "Scientist", "cn": "科学家" },
+            "minimum_credit_rating": 9,
+            "maximum_credit_rating": 50,
+            "description": {
+                "en": "A researcher in one or more scientific fields who advances knowledge.",
+                "cn": "科学家在一个或多个科学领域推进知识。"
+            },
+            "attributes": ["edu"],
+            "skills": [
+                "Any Skill",
+                "Any Skill",
+                "Any Skill",
+                "Computer Use or Library Use",
+                "Language (Other)",
+                "Language (Own)",
+                "Social Skill",
+                "Spot Hidden"
+            ]
+        },
+        {
+            "name": { "en": "Secretary", "cn": "秘书" },
+            "minimum_credit_rating": 9,
+            "maximum_credit_rating": 30,
+            "description": {
+                "en": "An administrative professional skilled in typing, organization, and communication.",
+                "cn": "秘书擅长打字、组织和沟通。"
+            },
+            "attributes": ["dex", "app"],
+            "skills": [
+                "Accounting",
+                "Craft (Typing or Shorthand)",
+                "Social Skill",
+                "Social Skill",
+                "Language (Own)",
+                ["Library Use", "Computer Use"],
+                "Psychology",
+                "Any Skill"
+            ]
+        },
+        {
+            "name": { "en": "Shop Owner", "cn": "店老板" },
+            "minimum_credit_rating": 20,
+            "maximum_credit_rating": 40,
+            "description": {
+                "en": "An entrepreneur who manages a retail establishment.",
+                "cn": "店老板经营零售商店。"
+            },
+            "attributes": ["dex", "app"],
+            "skills": [
+                "Accounting",
+                "Social Skill",
+                "Social Skill",
+                "Electrical Repair",
+                "Listen",
+                "Mechanical Repair",
+                "Psychology",
+                "Spot Hidden"
+            ]
+        },
+        {
+            "name": { "en": "White-Collar Worker - Employee/Supervisor", "cn": "白领工人-职员､主管" },
+            "minimum_credit_rating": 9,
+            "maximum_credit_rating": 20,
+            "description": {
+                "en": "A professional working in an office environment, handling administrative tasks.",
+                "cn": "白领工人从事办公室行政工作。"
+            },
+            "attributes": ["edu"],
+            "skills": [
+                "Accounting",
+                "Language (Own)",
+                "Law",
+                "Library or Computer Use",
+                "Listen",
+                "Social Skill",
+                "Any Skill",
+                "Any Skill"
+            ]
+        },
+        {
+            "name": { "en": "White-Collar Worker - Middle/Upper Management", "cn": "白领工人-中高层管理人员" },
+            "minimum_credit_rating": 20,
+            "maximum_credit_rating": 80,
+            "description": {
+                "en": "A senior professional responsible for strategic decisions and organizational leadership.",
+                "cn": "中高层管理人员负责战略决策与组织领导。"
+            },
+            "attributes": ["edu"],
+            "skills": [
+                "Accounting",
+                "Language (Other)",
+                "Law",
+                "Social Skill",
+                "Social Skill",
+                "Psychology",
+                "Any Skill",
+                "Any Skill"
+            ]
+        },
+        {
+            "name": { "en": "Fanatic", "cn": "狂热者" },
+            "minimum_credit_rating": 0,
+            "maximum_credit_rating": 30,
+            "description": {
+                "en": "An individual driven by extreme enthusiasm and dedication to a cause.",
+                "cn": "狂热者因对某事业的极端热情而行动。"
+            },
+            "attributes": ["app", "pow"],
+            "skills": [
+                "History",
+                "Social Skill",
+                "Social Skill",
+                "Psychology",
+                "Stealth",
+                "Any Skill",
+                "Any Skill",
+                "Any Skill"
+            ]
+        },
+        {
+            "name": { "en": "Animal Keeper", "cn": "饲养员" },
+            "minimum_credit_rating": 9,
+            "maximum_credit_rating": 40,
+            "description": {
+                "en": "A caretaker responsible for feeding and maintaining the well-being of animals.",
+                "cn": "饲养员负责喂养及照顾动物。"
+            },
+            "attributes": ["edu"],
+            "skills": [
+                "Beast Training",
+                "Accounting",
+                "Dodge",
+                "First Aid",
+                "Natural World",
+                "Medicine",
+                "Science (Pharmacology)",
+                "Science (Zoology)"
+            ]
+        }
+    ]
+}
