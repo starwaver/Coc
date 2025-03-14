@@ -134,7 +134,7 @@
     },
     {
       "name": {
-        "en": "Drive Auto",
+        "en": "Drive (Auto)",
         "cn": "汽车驾驶"
       },
       "description": {
@@ -591,6 +591,369 @@
       "description": {
         "en": "Used for operating and maintaining large-caliber guns and rocket systems.",
         "cn": "用于操作和维护大口径枪炮和火箭系统。"
+      },
+      "base_percent": 1
+    },
+    {
+      "name": {
+        "en": "Science (Engineering)",
+        "cn": "科学（工程学）"
+      },
+      "description": {
+        "en": "Used to understand and apply engineering principles and practices.",
+        "cn": "用于理解和应用工程学原理和实践。"
+      },
+      "base_percent": 1
+    },
+    {
+      "name": {
+        "en": "Science (Zoology)",
+        "cn": "科学（动物学）"
+      },
+      "description": {
+        "en": "Used to understand animal biology, behavior, and classification.",
+        "cn": "用于理解动物生物学、行为和分类。"
+      },
+      "base_percent": 1
+    },
+    {
+      "name": {
+        "en": "Science (Geology)",
+        "cn": "科学（地质学）"
+      },
+      "description": {
+        "en": "Used to understand earth sciences and mineral formations.",
+        "cn": "用于理解地球科学和矿物形成。"
+      },
+      "base_percent": 1
+    },
+    {
+      "name": {
+        "en": "Science (Geography)",
+        "cn": "科学（地理学）"
+      },
+      "description": {
+        "en": "Used to understand physical features of Earth and its atmosphere.",
+        "cn": "用于理解地球及其大气层的物理特征。"
+      },
+      "base_percent": 1
+    },
+    {
+      "name": {
+        "en": "Science (Astronomy)",
+        "cn": "科学（天文学）"
+      },
+      "description": {
+        "en": "Used to study celestial objects, phenomena, and the universe.",
+        "cn": "用于研究天体、天象和宇宙。"
+      },
+      "base_percent": 1
+    },
+    {
+      "name": {
+        "en": "Science (Botany)",
+        "cn": "科学（植物学）"
+      },
+      "description": {
+        "en": "Used to study plant life and classification.",
+        "cn": "用于研究植物生命和分类。"
+      },
+      "base_percent": 1
+    },
+    {
+      "name": {
+        "en": "Science (Forensics)",
+        "cn": "科学（法医学）"
+      },
+      "description": {
+        "en": "Used to apply scientific methods in criminal investigation.",
+        "cn": "用于在刑事调查中应用科学方法。"
+      },
+      "base_percent": 1
+    },
+    {
+      "name": {
+        "en": "Science (Pharmacology)",
+        "cn": "科学（药理学）"
+      },
+      "description": {
+        "en": "Used to understand drugs and their effects on living systems.",
+        "cn": "用于理解药物及其对生命系统的影响。"
+      },
+      "base_percent": 1
+    },
+    {
+      "name": {
+        "en": "Science (Mathematics)",
+        "cn": "科学（数学）"
+      },
+      "description": {
+        "en": "Used to understand and apply mathematical concepts and calculations.",
+        "cn": "用于理解和应用数学概念和计算。"
+      },
+      "base_percent": 1
+    },
+    {
+      "name": {
+        "en": "Fighting (Chainsaw)",
+        "cn": "格斗（电锯）"
+      },
+      "description": {
+        "en": "Used to effectively wield and fight with chainsaws.",
+        "cn": "用于有效使用电锯进行战斗。"
+      },
+      "base_percent": 15
+    },
+    {
+      "name": {
+        "en": "Art and Craft (Typing)",
+        "cn": "技艺（打字）"
+      },
+      "description": {
+        "en": "Used for efficient and accurate typing and word processing.",
+        "cn": "用于高效准确的打字和文字处理。"
+      },
+      "base_percent": 5
+    },
+    {
+      "name": {
+        "en": "Art and Craft (Shorthand)",
+        "cn": "技艺（速记）"
+      },
+      "description": {
+        "en": "Used for rapid note-taking using abbreviated symbolic writing.",
+        "cn": "用于使用简化符号进行快速记录。"
+      },
+      "base_percent": 5
+    },
+    {
+      "name": {
+        "en": "Art and Craft (Technical Drawing)",
+        "cn": "技艺（工程制图）"
+      },
+      "description": {
+        "en": "Used to create precise technical and engineering drawings.",
+        "cn": "用于创建精确的技术和工程图纸。"
+      },
+      "base_percent": 5
+    },
+    {
+      "name": {
+        "en": "Art and Craft (Photography)",
+        "cn": "技艺（摄影）"
+      },
+      "description": {
+        "en": "Used to capture and process photographic images.",
+        "cn": "用于拍摄和处理照片图像。"
+      },
+      "base_percent": 5
+    },
+    {
+      "name": {
+        "en": "Art and Craft (Literature)",
+        "cn": "技艺（文学）"
+      },
+      "description": {
+        "en": "Used to create written works of artistic or cultural value.",
+        "cn": "用于创作具有艺术或文化价值的文学作品。"
+      },
+      "base_percent": 5
+    },
+    {
+      "name": {
+        "en": "Art and Craft (Acting)",
+        "cn": "技艺（表演）"
+      },
+      "description": {
+        "en": "Used to portray characters and emotions in theatrical performances.",
+        "cn": "用于在戏剧表演中塑造角色和表达情感。"
+      },
+      "base_percent": 5
+    },
+    {
+      "name": {
+        "en": "Art and Craft (Performing)",
+        "cn": "技艺（演艺）"
+      },
+      "description": {
+        "en": "Used for general stage performance and entertainment.",
+        "cn": "用于舞台表演和娱乐演出。"
+      },
+      "base_percent": 5
+    },
+    {
+      "name": {
+        "en": "Art and Craft (Singing)",
+        "cn": "技艺（歌唱）"
+      },
+      "description": {
+        "en": "Used to perform vocal music and control singing technique.",
+        "cn": "用于演唱音乐和控制歌唱技巧。"
+      },
+      "base_percent": 5
+    },
+    {
+      "name": {
+        "en": "Art and Craft (Comedy)",
+        "cn": "技艺（喜剧）"
+      },
+      "description": {
+        "en": "Used to create and perform humorous entertainment.",
+        "cn": "用于创作和表演幽默娱乐。"
+      },
+      "base_percent": 5
+    },
+    {
+      "name": {
+        "en": "Art and Craft (Musical Instrument)",
+        "cn": "技艺（乐器）"
+      },
+      "description": {
+        "en": "Used to play and perform with musical instruments.",
+        "cn": "用于演奏乐器和音乐表演。"
+      },
+      "base_percent": 5
+    },
+    {
+      "name": {
+        "en": "Art and Craft (Woodworking)",
+        "cn": "技艺（木工）"
+      },
+      "description": {
+        "en": "Used to create and repair wooden objects and structures.",
+        "cn": "用于创作和修理木制物品和结构。"
+      },
+      "base_percent": 5
+    },
+    {
+      "name": {
+        "en": "Art and Craft (Welding)",
+        "cn": "技艺（焊接）"
+      },
+      "description": {
+        "en": "Used to join metals through fusion and repair metal structures.",
+        "cn": "用于通过熔接连接金属和修理金属结构。"
+      },
+      "base_percent": 5
+    },
+    {
+      "name": {
+        "en": "Art and Craft (Plumbing)",
+        "cn": "技艺（管道工）"
+      },
+      "description": {
+        "en": "Used to install and repair pipe systems and plumbing fixtures.",
+        "cn": "用于安装和修理管道系统和管道设备。"
+      },
+      "base_percent": 5
+    },
+    {
+      "name": {
+        "en": "Art and Craft (Farming)",
+        "cn": "技艺（农业）"
+      },
+      "description": {
+        "en": "Used to cultivate crops and manage agricultural operations.",
+        "cn": "用于种植农作物和管理农业操作。"
+      },
+      "base_percent": 5
+    },
+    {
+      "name": {
+        "en": "Art and Craft (Forgery)",
+        "cn": "技艺（伪造）"
+      },
+      "description": {
+        "en": "Used to create convincing copies of documents or artworks.",
+        "cn": "用于创作令人信服的文件或艺术品复制品。"
+      },
+      "base_percent": 5
+    },
+    {
+      "name": {
+        "en": "Drive (Aircraft)",
+        "cn": "驾驶（飞行器）"
+      },
+      "description": {
+        "en": "Used to operate and control various types of aircraft.",
+        "cn": "用于操作和控制各种类型的飞行器。"
+      },
+      "base_percent": 1
+    },
+    {
+      "name": {
+        "en": "Drive (Boat/Ship)",
+        "cn": "驾驶（船舶）"
+      },
+      "description": {
+        "en": "Used to operate and navigate watercraft of various sizes.",
+        "cn": "用于操作和驾驶各种大小的船只。"
+      },
+      "base_percent": 1
+    },
+    {
+      "name": {
+        "en": "Drive (Tractor)",
+        "cn": "驾驶（拖拉机）"
+      },
+      "description": {
+        "en": "Used to operate agricultural and construction tractors.",
+        "cn": "用于操作农业和建筑用拖拉机。"
+      },
+      "base_percent": 1
+    },
+    {
+      "name": {
+        "en": "Language (Latin)",
+        "cn": "语言（拉丁语）"
+      },
+      "description": {
+        "en": "Used to read and understand classical Latin texts.",
+        "cn": "用于阅读和理解古典拉丁文本。"
+      },
+      "base_percent": 1
+    },
+    {
+      "name": {
+        "en": "Survival (Alpine)",
+        "cn": "生存（高山）"
+      },
+      "description": {
+        "en": "Used to survive in mountainous and alpine environments.",
+        "cn": "用于在山地和高山环境中生存。"
+      },
+      "base_percent": 10
+    },
+    {
+      "name": {
+        "en": "Survival (At Sea)",
+        "cn": "生存（海上）"
+      },
+      "description": {
+        "en": "Used to survive in marine and oceanic environments.",
+        "cn": "用于在海洋环境中生存。"
+      },
+      "base_percent": 10
+    },
+    {
+      "name": {
+        "en": "Science (Biology)",
+        "cn": "科学（生物学）"
+      },
+      "description": {
+        "en": "Used to understand life processes and living organisms.",
+        "cn": "用于理解生命过程和生物体。"
+      },
+      "base_percent": 1
+    },
+    {
+      "name": {
+        "en": "Science (Physics)",
+        "cn": "科学（物理学）"
+      },
+      "description": {
+        "en": "Used to understand matter, energy, and their interactions.",
+        "cn": "用于理解物质、能量及其相互作用。"
       },
       "base_percent": 1
     }
