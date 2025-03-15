@@ -49,6 +49,20 @@ export const translations = {
     searchSkills: "Search Skills",
     totalAttributePoints: "Total Attribute Points (excluding Luck)",
 
+    // Skill Rolling
+    rollSkill: "Roll Skill Check",
+    criticalSuccess: "Critical Success",
+    extremeSuccess: "Extreme Success",
+    hardSuccess: "Hard Success",
+    regularSuccess: "Regular Success",
+    regularFailure: "Failure",
+    criticalFailure: "Critical Failure",
+    diceTotal: "Dice Total",
+    finalResult: "Final Result",
+    rollAgain: "Roll Again",
+    confirm: "Confirm",
+    rolling: "Rolling",
+
     // Health and Sanity
     currentHp: "Current HP",
     currentMp: "Current MP",
@@ -123,7 +137,17 @@ export const translations = {
     female: "Female",
     other: "Other",
 
-    
+    // Dice Rolling Controls
+    penalty: "Penalty",
+    bonus: "Bonus",
+    rollWithPenalty: "Roll with Penalty",
+    rollWithBonus: "Roll with Bonus",
+    manualRoll: "Manual Roll",
+    enterRoll: "Enter roll (1-100)",
+    apply: "Apply",
+    allRolls: "All rolls",
+    usingHighest: "using highest",
+    usingLowest: "using lowest",
   },
   cn: {
     // Character Attributes
@@ -174,7 +198,21 @@ export const translations = {
     filterInterestSkills: "仅显示兴趣技能",
     searchSkills: "搜索技能",
     totalAttributePoints: "总属性点数（不包括幸运）",
-    
+
+    // Skill Rolling
+    rollSkill: "进行技能检定",
+    criticalSuccess: "大成功",
+    extremeSuccess: "极难成功",
+    hardSuccess: "困难成功",
+    regularSuccess: "成功",
+    regularFailure: "失败",
+    criticalFailure: "大失败",
+    diceTotal: "骰子总值",
+    finalResult: "最终结果",
+    rollAgain: "重新投掷",
+    confirm: "确认",
+    rolling: "投掷中",
+
     // Health and Sanity
     currentHp: "当前HP",
     currentMp: "当前MP",
@@ -249,7 +287,17 @@ export const translations = {
     female: "女性",
     other: "其他",
 
-    
+    // Dice Rolling Controls
+    penalty: "惩罚",
+    bonus: "奖励",
+    rollWithPenalty: "惩罚骰投掷",
+    rollWithBonus: "奖励骰投掷",
+    manualRoll: "手动投掷",
+    enterRoll: "输入点数 (1-100)",
+    apply: "应用",
+    allRolls: "所有结果",
+    usingHighest: "使用最高值",
+    usingLowest: "使用最低值",
   }
 } as const;
 

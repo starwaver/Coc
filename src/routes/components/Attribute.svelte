@@ -5,12 +5,15 @@
     import { rollDice } from '$lib/utils';
     import { languageStore } from '$lib/stores/languageStore';
     import { translations, type Language, type TranslationKeys } from '$lib/i18n/translations';
+    import RollDiceModal from './Modals/RollDiceModal.svelte';
+    
     export let attribute: { name: string; value: number };
     export let isEditing: boolean;
   
     const dispatch = createEventDispatcher();
   
     let newValue = attribute.value;
+    let showDiceModal = false;
   
     $: if (!isEditing) {
       newValue = attribute.value;
@@ -47,6 +50,31 @@
       }
     }
 
+    // Get the dice configuration for the current attribute
+    function getDiceConfig() {
+      switch (attributeKey) {
+        case 'str':
+        case 'con':
+        case 'dex':
+        case 'app':
+        case 'pow':
+        case 'luck':
+          return { dice: '3d6', multiply: 5, add: 0 };
+        case 'siz':
+        case 'int':
+        case 'edu':
+          return { dice: '2d6', multiply: 5, add: 30 }; // 30 is equivalent to (6 × 5)
+        default:
+          return { dice: '3d6', multiply: 5, add: 0 };
+      }
+    }
+
+    function handleRoll(event: CustomEvent<{ total: number }>) {
+      newValue = event.detail.total;
+      updateValue();
+      showDiceModal = false;
+    }
+
   function getRandomAttributeValue(): number {
     switch (attributeKey) {
       case 'str':
@@ -69,6 +97,8 @@
     newValue = getRandomAttributeValue();
     updateValue();
   }
+
+  $: diceConfig = getDiceConfig();
 </script>
   
 <div class="attribute">
@@ -85,7 +115,7 @@
       />
       <button 
         class="attribute-button"
-        on:click={rollRandomAndUpdate}
+        on:click={() => showDiceModal = true}
       >
         <FontAwesomeIcon icon={faDice} />
       </button>
@@ -99,6 +129,15 @@
     <span class="attribute-fifth">{Math.floor(attribute.value / 5)}</span>
   </div>
 </div>
+
+<RollDiceModal 
+  bind:showModal={showDiceModal}
+  defaultDice={diceConfig.dice}
+  multiplyResult={diceConfig.multiply}
+  addToResult={diceConfig.add}
+  on:close={() => showDiceModal = false}
+  on:roll={handleRoll}
+/>
   
 <style>
   .attribute {
@@ -108,7 +147,7 @@
     padding: 10px;
     background-color: #3a3a3a;
     border-radius: 5px;
-    box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
   }
   
   .attribute-name {
