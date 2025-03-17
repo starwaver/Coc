@@ -190,43 +190,6 @@
             <td>{t.occupation}:</td>
             <td>
               {#if isEditingDetails}
-                
-                <!-- <div class="join items-center justify-between w-full h-11/12">
-                  {editedDetails.occupation}
-                  <button class="btn btn-primary h-full" on:click={openOccupationModal}>{t.select}</button>
-                  <dialog id="my_modal_1" class="modal" bind:this={occupationModal}>
-                    <div class="modal-box">
-                      <h3 class="text-lg font-bold">Select a job</h3>
-                      <div class="join join-vertical w-full">
-                        <div class="collapse collapse-arrow join-item border-base-300 border">
-                          <input type="radio" name="my-accordion-4" on:change={() => editedDetails.occupation = "Lawyer"} />
-                          <div class="collapse-title font-semibold">Lawyer</div>
-                          <div class="collapse-content text-sm">This is the job of a lawyer.</div>
-                        </div>
-                        <div class="collapse collapse-arrow join-item border-base-300 border">
-                          <input type="radio" name="my-accordion-4" on:change={() => editedDetails.occupation = "Educator"} />
-                          <div class="collapse-title font-semibold">Educator</div>
-                          <div class="collapse-content text-sm">This is the job of an educator.</div>
-                        </div>
-                        <div class="collapse collapse-arrow join-item border-base-300 border">
-                          <input type="radio" name="my-accordion-4" on:change={() => editedDetails.occupation = "Accountant"} />
-                          <div class="collapse-title font-semibold">Accountant</div>
-                          <div class="collapse-content text-sm">This is the job of an accountant</div>
-                        </div>
-                        <div class="collapse collapse-arrow join-item border-base-300 border">
-                          <input type="radio" name="my-accordion-4" on:change={() => editedDetails.occupation = "Enter an occupation"} />
-                          <div class="collapse-title font-semibold">Accountant</div>
-                          <input class="input w-full h-11/12" type="text" bind:value={editedDetails.occupation}>
-                        </div>
-                      </div>
-                      <div class="modal-action">
-                        <form method="dialog">
-                          <button class="btn btn-primary">Confirm</button>
-                        </form>
-                      </div>
-                    </div>
-                  </dialog>
-                </div> -->
                 <OccupationSelectionModal bind:selectedOccupation={editedDetails.occupation}></OccupationSelectionModal>
               {:else}
                 {$characterStore?.occupation ?? ''}

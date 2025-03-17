@@ -13,10 +13,11 @@
                 "Accounting",
                 "Law",
                 "Library Use",
-                "Listening",
-                "Persuasion",
-                "Investigation",
-                "Any two other personal or era-specific specialties"
+                "Listen",
+                "Persuade",
+                "Spot Hidden",
+                "Any Skill",
+                "Any Skill"
             ]
         },
         {
@@ -29,13 +30,14 @@
             },
             "attributes": ["dex"],
             "skills": [
-                "Climbing",
-                "Dodging",
-                "Jumping",
-                "Throwing",
-                "Investigation",
-                "Swimming",
-                "Any two other personal or era-specific specialties"
+                "Climb",
+                "Dodge",
+                "Jump",
+                "Throw",
+                "Spot Hidden",
+                "Swim",
+                "Any Skill",
+                "Any Skill"
             ]
         },
         {
@@ -48,13 +50,14 @@
             },
             "attributes": ["app"],
             "skills": [
-                "Performing Art",
+                "Art and Craft",
                 "Disguise",
-                "Fighting",
+                "Fighting (Brawl)",
                 "History",
-                "Two social skills",
+                "Social Skill",
+                "Social Skill",
                 "Psychology",
-                "Any one other personal or era-specific specialty"
+                "Any Skill"
             ]
         },
         {
@@ -67,12 +70,14 @@
             },
             "attributes": ["app"],
             "skills": [
-                "Performing Art",
+                "Art and Craft",
                 "Disguise",
-                "Auto Driving",
-                "Two social skills",
+                "Drive (Auto)",
+                "Social Skill",
+                "Social Skill",
                 "Psychology",
-                "Any two other personal or era-specific specialties"
+                "Any Skill",
+                "Any Skill"
             ]
         },
         {
@@ -85,18 +90,18 @@
             },
             "attributes": ["str", "dex"],
             "skills": [
-                "One social skill",
-                "Fighting (Brawling)",
-                "Shooting",
+                "Social Skill",
+                "Fighting (Brawl)",
+                "Firearms (Handgun)",
                 "Law",
                 "Library Use",
                 "Psychology",
                 "Stealth",
-                "Tracking"
+                "Track"
             ]
         },
         {
-            "name": { "en": "Classic Psychiatrist", "cn": "精神病医生（古典）" },
+            "name": { "en": "Psychiatrist", "cn": "精神病医生（古典）" },
             "minimum_credit_rating": 10,
             "maximum_credit_rating": 60,
             "description": {
@@ -106,12 +111,13 @@
             "attributes": ["edu"],
             "skills": [
                 "Law",
-                "Listening",
+                "Listen",
                 "Medicine",
-                "Foreign Language",
+                "Language (Other)",
                 "Psychoanalysis",
                 "Psychology",
-                "Science (Biology, Chemistry)"
+                "Science (Biology)",    
+                "Science (Chemistry)"
             ]
         },
         {
@@ -124,14 +130,14 @@
             },
             "attributes": ["app", "pow"],
             "skills": [
-                "Jumping",
-                "Listening",
-                "Natural History",
+                "Jump",
+                "Listen",
+                "Natural World",
                 "Psychology",
                 "Science (Zoology)",
                 "Stealth",
-                "Tracking",
-                "Any one other personal or era-specific specialty"
+                "Track",
+                "Any Skill"
             ]
         },
         {
@@ -144,14 +150,14 @@
             },
             "attributes": ["edu"],
             "skills": [
-                "Appraisal",
-                "Craft (Any)",
+                "Appraise",
+                "Art and Craft (Any)",
                 "History",
                 "Library Use",
-                "Foreign Language",
-                "One social skill",
-                "Investigation",
-                "Any one other personal or era-specific specialty"
+                "Language (Other)",
+                "Social Skill",
+                "Spot Hidden",
+                "Any Skill"
             ]
         },
         {
@@ -165,12 +171,13 @@
             "attributes": ["edu"],
             "skills": [
                 "Accounting",
-                "Appraisal",
-                "Auto Driving",
-                "Two social skills",
+                "Appraise",
+                "Drive (Auto)",
+                "Social Skill",
+                "Social Skill",
                 "History",
                 "Library Use",
-                "Navigation"
+                "Navigate"
             ]
         },
         {
@@ -183,14 +190,14 @@
             },
             "attributes": ["edu"],
             "skills": [
-                "Appraisal",
+                "Appraise",
                 "Archaeology",
                 "History",
-                "Foreign Language",
+                "Language (Other)",
                 "Library Use",
-                "Investigation",
+                "Spot Hidden",
                 "Mechanical Repair",
-                "Navigation or Science (e.g., Chemistry, Physics, Geography)"
+                ["Navigate", "Any Science Skill"]
             ]
         },
         {
@@ -204,11 +211,11 @@
             "attributes": ["edu"],
             "skills": [
                 "Accounting",
-                "Craft (Technical Drawing)",
+                "Art and Craft (Technical Drawing)",
                 "Law",
-                "Native Language",
-                "Computer or Library Use",
-                "Persuasion",
+                "Language (Own)",
+                ["Computer Use", "Library Use"],
+                "Persuade",
                 "Psychology",
                 "Science (Mathematics)"
             ]
@@ -223,13 +230,14 @@
             },
             "attributes": ["dex", "pow"],
             "skills": [
-                "Craft (Any)",
-                "History or Natural History",
-                "One social skill",
-                "Foreign Language",
+                "Art and Craft (Any)",
+                ["History", "Natural World"],
+                "Social Skill",
+                "Language (Other)",
                 "Psychology",
-                "Investigation",
-                "Any two other personal or era-specific specialties"
+                "Spot Hidden",
+                "Any Skill",
+                "Any Skill"
             ]
         },
         {
@@ -242,11 +250,12 @@
             },
             "attributes": ["str", "dex"],
             "skills": [
-                "Dodging",
-                "Fighting (Brawling)",
+                "Dodge",
+                "Fighting (Brawl)",
                 "First Aid",
-                "Two social skills",
-                "Listening",
+                "Social Skill",
+                "Social Skill",
+                "Listen",
                 "Psychology",
                 "Stealth"
             ]
@@ -261,14 +270,14 @@
             },
             "attributes": ["str", "dex"],
             "skills": [
-                "Climbing",
-                "Jumping",
-                "Fighting (Brawling)",
-                "Riding",
-                "One social skill",
-                "Swimming",
-                "Throwing",
-                "Any one other personal or era-specific specialty"
+                "Climb",
+                "Jump",
+                "Fighting (Brawl)",
+                "Ride",
+                "Social Skill",
+                "Swim",
+                "Throw",
+                "Any Skill"
             ]
         },
         {
@@ -281,14 +290,14 @@
             },
             "attributes": ["edu"],
             "skills": [
-                "Craft (Literature)",
+                "Art and Craft (Literature)",
                 "History",
                 "Library Use",
-                "Natural History or Occult",
-                "Foreign Language",
-                "Native Language",
+                ["Natural World", "Occult"],
+                "Language (Other)",
+                "Language (Own)",
                 "Psychology",
-                "Any one other personal or era-specific specialty"
+                "Any Skill"
             ]
         },
         {
@@ -302,12 +311,13 @@
             "attributes": ["app"],
             "skills": [
                 "Accounting",
-                "Two social skills",
-                "Fighting (Brawling)",
-                "Listening",
+                "Social Skill",
+                "Social Skill",
+                "Fighting (Brawl)",
+                "Listen",
                 "Psychology",
-                "Investigation",
-                "Any one other personal or era-specific specialty"
+                "Spot Hidden",
+                "Any Skill"
             ]
         },
         {
@@ -320,14 +330,14 @@
             },
             "attributes": ["str", "dex"],
             "skills": [
-                "Shooting",
-                "Listening or Investigation",
-                "Natural History",
-                "Navigation",
-                "Foreign Language or Survival (any)",
-                "Science (Biology or Botany)",
+                "Firearms (Handgun)",
+                ["Listen", "Spot Hidden"],
+                "Natural World",
+                "Navigate",
+                ["Language (Other)", "Survival"],
+                ["Science (Biology)", "Science (Botany)"],
                 "Stealth",
-                "Tracking"
+                "Track"
             ]
         },
         {
@@ -341,13 +351,13 @@
             "attributes": ["edu"],
             "skills": [
                 "Accounting",
-                "Appraisal",
-                "Auto Driving",
+                "Appraise",
+                "Drive (Auto)",
                 "History",
                 "Library Use",
-                "Native Language",
-                "Foreign Language",
-                "One social skill"
+                "Language (Own)",
+                "Language (Other)",
+                "Social Skill"
             ]
         },
         {
@@ -360,13 +370,13 @@
             },
             "attributes": ["str", "dex"],
             "skills": [
-                "Auto Driving",
-                "Electronics or Electrical Repair",
-                "Fighting or Shooting",
-                "One social skill",
+                "Drive (Auto)",
+                ["Electronics", "Electrical Repair"],
+                ["Fighting (Brawl)", "Firearms (Handgun)"],
+                "Social Skill",
                 "Law",
                 "Psychology",
-                "Tracking",
+                "Track",
                 "Stealth"
             ]
         },
@@ -380,13 +390,14 @@
             },
             "attributes": ["str"],
             "skills": [
-                "Dodging",
-                "Fighting (Brawling)",
-                "Intimidation",
-                "Jumping",
+                "Dodge",
+                "Fighting (Brawl)",
+                "Intimidate",
+                "Jump",
                 "Psychology",
-                "Investigation",
-                "Any two other personal or era-specific specialties"
+                "Spot Hidden",
+                "Any Skill",
+                "Any Skill"
             ]
         },
         {
@@ -399,14 +410,14 @@
             },
             "attributes": ["edu"],
             "skills": [
-                "Accounting or Appraisal",
-                "Craft (Any, e.g., Cooking, Tailoring, Hairdressing)",
+                ["Accounting", "Appraise"],
+                "Art and Craft (Any, e.g., Cooking, Tailoring, Hairdressing)",
                 "First Aid",
-                "Listening",
-                "Foreign Language",
+                "Listen",
+                "Language (Other)",
                 "Psychology",
-                "Investigation",
-                "Any one other personal or era-specific specialty"
+                "Spot Hidden",
+                "Any Skill"
             ]
         },
         {
@@ -422,11 +433,11 @@
                 "Accounting",
                 "History",
                 "Library Use",
-                "Listening",
-                "Foreign Language",
-                "One social skill",
+                "Listen",
+                "Language (Other)",
+                "Social Skill",
                 "Psychology",
-                "Any one other skill"
+                "Any Skill"
             ]
         },
         {
@@ -439,13 +450,14 @@
             },
             "attributes": ["edu"],
             "skills": [
-                "Computer",
+                ["Computer Use", "Library Use"],
                 "Electrical Repair",
                 "Electronics",
                 "Library Use",
                 "Science (Mathematics)",
-                "Investigation",
-                "Any two other personal or era-specific specialties"
+                "Spot Hidden",
+                "Any Skill",
+                "Any Skill"
             ]
         },
         {
@@ -458,13 +470,14 @@
             },
             "attributes": ["edu"],
             "skills": [
-                "Computer",
+                ["Computer Use", "Library Use"],
                 "Electrical Repair",
                 "Electronics",
                 "Library Use",
-                "Investigation",
-                "One social skill",
-                "Any two other skills"
+                "Spot Hidden",
+                "Social Skill",
+                "Any Skill",
+                "Any Skill"
             ]
         },
         {
@@ -472,19 +485,19 @@
             "minimum_credit_rating": 9,
             "maximum_credit_rating": 20,
             "description": {
-                "en": "A rugged individual skilled in riding, roping, and outdoor survival.",
+                "en": "A rugged individual skilled in Ride, roping, and outdoor survival.",
                 "cn": "牛仔精于骑乘、套索和野外生存。"
             },
             "attributes": ["str", "dex"],
             "skills": [
-                "Dodging",
-                "Fighting or Shooting",
-                "First Aid or Natural History",
-                "Jumping",
-                "Riding",
+                "Dodge",
+                ["Fighting (Brawl)", "Firearms (Handgun)"],
+                ["First Aid", "Natural World"],
+                "Jump",
+                "Ride",
                 "Survival (any)",
-                "Throwing",
-                "Tracking"
+                "Throw",
+                "Track"
             ]
         },
         {
@@ -498,11 +511,13 @@
             "attributes": ["dex"],
             "skills": [
                 "Accounting",
-                "Craft (Any two)",
+                "Art and Craft (Any)",
+                "Art and Craft (Any)",
                 "Mechanical Repair",
-                "Natural History",
-                "Investigation",
-                "Any two other personal or era-specific specialties"
+                "Natural World",
+                "Spot Hidden",
+                "Any Skill",
+                "Any Skill"
             ]
         },
         {
@@ -517,9 +532,9 @@
             "skills": [
                 "Disguise",
                 "Electrical Repair",
-                "Fighting",
-                "Shooting",
-                "Lockpicking",
+                "Fighting (Brawl)",
+                "Firearms (Handgun)",
+                "Locksmith",
                 "Mechanical Repair",
                 "Stealth",
                 "Psychology"
@@ -535,14 +550,14 @@
             },
             "attributes": ["str", "dex"],
             "skills": [
-                "Auto Driving",
-                "Electrical Repair or Mechanical Repair",
-                "Fighting",
-                "Shooting",
-                "Intimidation",
-                "Lockpicking",
-                "Operating Heavy Machinery",
-                "Any one other personal or era-specific specialty"
+                "Drive (Auto)",
+                ["Electrical Repair", "Mechanical Repair"],
+                "Fighting (Brawl)",
+                "Firearms (Handgun)",
+                "Intimidate",
+                "Locksmith",
+                "Operate Heavy Machinery",
+                "Any Skill"
             ]
         },
         {
@@ -555,13 +570,14 @@
             },
             "attributes": ["str"],
             "skills": [
-                "Auto Driving",
-                "Fighting",
-                "Shooting",
-                "Two social skills",
+                "Drive (Auto)",
+                "Fighting (Brawl)",
+                "Firearms (Handgun)",
+                "Social Skill",
+                "Social Skill",
                 "Psychology",
                 "Stealth",
-                "Investigation"
+                "Spot Hidden"
             ]
         },
         {
@@ -574,14 +590,14 @@
             },
             "attributes": ["dex"],
             "skills": [
-                "Appraisal",
-                "Climbing",
-                "Electrical Repair or Mechanical Repair",
-                "Listening",
-                "Lockpicking",
+                "Appraise",
+                "Climb",
+                ["Electrical Repair", "Mechanical Repair"],
+                "Listen",
+                "Locksmith",
                 "Sleight of Hand",
                 "Stealth",
-                "Investigation"
+                "Spot Hidden"
             ]
         },
         {
@@ -594,11 +610,12 @@
             },
             "attributes": ["app"],
             "skills": [
-                "Appraisal",
-                "Craft (Performing)",
-                "Law or Foreign Language",
-                "Listening",
-                "Two social skills",
+                "Appraise",
+                "Art and Craft (Performing)",
+                ["Law", "Language (Other)"],  
+                "Listen",
+                "Social Skill",
+                "Social Skill",
                 "Psychology",
                 "Sleight of Hand"
             ]
@@ -613,14 +630,14 @@
             },
             "attributes": ["dex", "app"],
             "skills": [
-                "Craft (Performing) or Disguise",
-                "Appraisal",
-                "One social skill",
-                "Fighting or Shooting",
-                "Lockpicking or Mechanical Repair",
+                ["Art and Craft (Performing)", "Disguise"],
+                "Appraise",
+                "Social Skill",
+                ["Fighting (Brawl)", "Firearms (Handgun)"],
+                ["Locksmith", "Mechanical Repair"],
                 "Stealth",
                 "Psychology",
-                "Investigation"
+                "Spot Hidden"
             ]
         },
         {
@@ -633,13 +650,14 @@
             },
             "attributes": ["app"],
             "skills": [
-                "Craft (Any)",
-                "Two social skills",
-                "Fighting (Brawling) or Shooting (Handgun)",
-                "Auto Driving",
-                "Listening",
+                "Art and Craft (Any)",
+                "Social Skill",
+                "Social Skill",
+                ["Fighting (Brawl)", "Firearms (Handgun)"],
+                "Drive (Auto)",
+                "Listen",
                 "Stealth",
-                "Any one other personal or era-specific specialty"
+                "Any Skill"
             ]
         },
         {
@@ -653,13 +671,13 @@
             "attributes": ["app"],
             "skills": [
                 "Accounting",
-                "Appraisal",
-                "Craft (Forgery)",
+                "Appraise",
+                "Art and Craft (Forgery)",
                 "History",
-                "One social skill",
+                "Social Skill",
                 "Library Use",
-                "Investigation",
-                "Any one other skill"
+                "Spot Hidden",
+                "Any Skill"
             ]
         },
         {
@@ -673,13 +691,13 @@
             "attributes": ["edu"],
             "skills": [
                 "Accounting",
-                "Appraisal",
-                "Craft (Forgery)",
+                "Appraise",
+                "Art and Craft (Forgery)",
                 "History",
                 "Library Use",
-                "Investigation",
+                "Spot Hidden",
                 "Sleight of Hand",
-                "Any one other personal or era-specific specialty (e.g., Computer)"
+                "Any Skill"
             ]
         },
         {
@@ -692,14 +710,14 @@
             },
             "attributes": ["dex", "app"],
             "skills": [
-                "Shooting",
-                "Listening",
-                "Navigation",
-                "One social skill",
-                "Auto Driving or Driving (Aircraft or Ship)",
+                "Firearms (Handgun)",
+                "Listen",
+                "Navigate",
+                "Social Skill",
+                ["Drive (Auto)", "Pilot", "Drive (Boat/Ship)"],
                 "Psychology",
                 "Sleight of Hand",
-                "Investigation"
+                "Spot Hidden"
             ]
         },
         {
@@ -712,14 +730,14 @@
             },
             "attributes": ["str", "dex"],
             "skills": [
-                "Climbing",
-                "One social skill",
-                "Fighting",
-                "Shooting",
-                "Jumping",
+                "Climb",
+                "Social Skill",
+                "Fighting (Brawl)",
+                "Firearms (Handgun)",
+                "Jump",
                 "Sleight of Hand",
                 "Stealth",
-                "Throwing"
+                "Throw"
             ]
         },
         {
@@ -733,11 +751,13 @@
             "attributes": ["edu"],
             "skills": [
                 "Accounting",
-                "Two social skills",
+                "Social Skill",
+                "Social Skill",
                 "Occult",
                 "Psychology",
-                "Investigation",
-                "Any two other personal specialties"
+                "Spot Hidden",
+                "Any Skill",
+                "Any Skill"
             ]
         },
         {
@@ -746,13 +766,14 @@
             "maximum_credit_rating": 50,
             "description": {
                 "en": "A specialist who deals with the removal of malevolent influences, sometimes using hypnosis.",
-                "cn": "除魅师处理负面影响，经KP允许可用催眠替换一项技能。"
+                "cn": "除魅师处理负面影响, 经KP允许可用催眠替换一项技能。"
             },
             "attributes": ["edu"],
             "skills": [
-                "Two social skills",
-                "Auto Driving",
-                "Fighting (Brawling) or Shooting",
+                "Social Skill",
+                "Social Skill",
+                "Drive (Auto)",
+                ["Fighting (Brawl)", "Firearms (Handgun)"], 
                 "History",
                 "Occult",
                 "Psychology",
@@ -770,13 +791,13 @@
             "attributes": ["edu"],
             "skills": [
                 "Accounting",
-                "Craft (Photography)",
-                "Craft (Any)",
-                "Computer or Library Use",
+                "Art and Craft (Photography)",
+                "Art and Craft (Any)",
+                ["Computer Use", "Library Use"],
                 "Mechanical Repair",
                 "Psychology",
-                "Investigation",
-                "Any one other personal specialty"
+                "Spot Hidden",
+                "Any Skill"
             ]
         },
         {
@@ -789,12 +810,14 @@
             },
             "attributes": ["app"],
             "skills": [
-                "Craft (Any)",
-                "Shooting",
-                "Foreign Language",
-                "Riding",
-                "One social skill",
-                "Any three other personal or era-specific specialties"
+                "Art and Craft (Any)",
+                "Firearms (Handgun)",
+                "Language (Other)",
+                "Ride",
+                "Social Skill",
+                "Any Skill",
+                "Any Skill",
+                "Any Skill"
             ]
         },
         {
@@ -810,11 +833,11 @@
                 "Diving",
                 "First Aid",
                 "Mechanical Repair",
-                "Boat Driving",
+                "Drive (Boat/Ship)",
                 "Science (Biology)",
-                "Investigation",
-                "Swimming",
-                "Any one other personal or era-specific specialty"
+                "Spot Hidden",
+                "Swim",
+                "Any Skill"
             ]
         },
         {
@@ -829,10 +852,12 @@
             "skills": [
                 "First Aid",
                 "Medicine",
-                "Foreign Language (Latin)",
+                ["Language (Other)", "Language (Latin)"],
                 "Psychology",
-                "Science (Biology, Pharmacology)",
-                "Any two other academic or personal specialties"
+                "Science (Biology)", 
+                "Science (Pharmacology)",
+                "Any Skill",
+                "Any Skill"
             ]
         },
         {
@@ -845,13 +870,14 @@
             },
             "attributes": ["app", "dex", "str"],
             "skills": [
-                "Climbing",
-                "Jumping",
-                "Listening",
-                "Navigation",
-                "One social skill",
+                "Climb",
+                "Jump",
+                "Listen",
+                "Navigate",
+                "Social Skill",
                 "Stealth",
-                "Any two other personal or era-specific specialties"
+                "Any Skill",
+                "Any Skill"
             ]
         },
         {
@@ -864,13 +890,14 @@
             },
             "attributes": ["dex"],
             "skills": [
-                "Auto Driving",
-                "Two social skills",
-                "Listening",
+                "Drive (Auto)",
+                "Social Skill",
+                "Social Skill",
+                "Listen",
                 "Mechanical Repair",
-                "Navigation",
-                "Investigation",
-                "Any one other personal or era-specific specialty"
+                "Navigate",
+                "Spot Hidden",
+                "Any Skill"
             ]
         },
         {
@@ -884,13 +911,13 @@
             "attributes": ["str", "dex"],
             "skills": [
                 "Accounting",
-                "Auto Driving",
-                "Listening",
-                "One social skill",
+                "Drive (Auto)",
+                "Listen",
+                "Social Skill",
                 "Mechanical Repair",
-                "Navigation",
+                "Navigate",
                 "Psychology",
-                "Any one other personal or era-specific specialty"
+                "Any Skill"
             ]
         },
         {
@@ -904,13 +931,13 @@
             "attributes": ["dex"],
             "skills": [
                 "Accounting",
-                "Auto Driving",
+                "Drive (Auto)",
                 "Electrical Repair",
-                "Verbal Skill",
+                "Fast Talk",
                 "Mechanical Repair",
-                "Navigation",
-                "Investigation",
-                "Any one other personal or era-specific specialty"
+                "Navigate",
+                "Spot Hidden",
+                "Any Skill"
             ]
         },
         {
@@ -925,11 +952,12 @@
             "skills": [
                 "Accounting",
                 "History",
-                "Native Language",
-                "Two social skills",
+                "Language (Own)",
+                "Social Skill",
+                "Social Skill",
                 "Psychology",
-                "Investigation",
-                "Any one other personal or era-specific specialty"
+                "Spot Hidden",
+                "Any Skill"
             ]
         },
         {
@@ -944,11 +972,11 @@
             "skills": [
                 "Charm",
                 "History",
-                "Intimidation",
-                "Verbal Skill",
-                "Listening",
-                "Native Language",
-                "Persuasion",
+                "Intimidate",
+                "Fast Talk",
+                "Listen",
+                "Language (Own)",
+                "Persuade",
                 "Psychology"
             ]
         },
@@ -962,13 +990,14 @@
             },
             "attributes": ["edu"],
             "skills": [
-                "Craft (Technical Drawing)",
+                "Art and Craft (Technical Drawing)",
                 "Electrical Repair",
                 "Library Use",
                 "Mechanical Repair",
-                "Operating Heavy Machinery",
-                "Science (Engineering, Physics)",
-                "Any one other personal or era-specific specialty"
+                "Operate Heavy Machinery",
+                "Science (Engineering)",
+                "Science (Physics)",
+                "Any Skill"
             ]
         },
         {
@@ -981,12 +1010,14 @@
             },
             "attributes": ["app"],
             "skills": [
-                "Craft (Performance, e.g., Acting, Singing, Comedy)",
+                ["Art and Craft (Acting)", "Art and Craft (Performing)", "Art and Craft (Singing)", "Art and Craft (Comedy)"],
                 "Disguise",
-                "Two social skills",
-                "Listening",
+                "Social Skill",
+                "Social Skill",
+                "Listen",
                 "Psychology",
-                "Any two other personal or era-specific specialties"
+                "Any Skill",
+                "Any Skill"
             ]
         },
         {
@@ -999,13 +1030,13 @@
             },
             "attributes": ["app", "dex", "str"],
             "skills": [
-                "Climbing or Swimming",
-                "Shooting",
+                ["Climb", "Swim"],
+                "Firearms (Handgun)",
                 "History",
-                "Jumping",
-                "Natural History",
-                "Navigation",
-                "Foreign Language",
+                "Jump",
+                "Natural World",
+                "Navigate",
+                "Language (Other)",
                 "Survival"
             ]
         },
@@ -1019,14 +1050,14 @@
             },
             "attributes": ["str", "dex"],
             "skills": [
-                "Craft (Farming)",
-                "Auto Driving (or Driving a Freight Carriage)",
-                "One social skill",
+                "Art and Craft (Farming)",
+                ["Drive (Auto)", "Drive (Tractor)"],
+                "Social Skill",
                 "Mechanical Repair",
-                "Natural History",
-                "Operating Heavy Machinery",
-                "Tracking",
-                "Any one other personal or era-specific specialty"
+                "Natural World",
+                "Operate Heavy Machinery",
+                "Track",
+                "Any Skill"
             ]
         },
         {
@@ -1039,14 +1070,14 @@
             },
             "attributes": ["edu"],
             "skills": [
-                "Auto Driving",
-                "Fighting (Brawling)",
-                "Shooting",
+                "Drive (Auto)",
+                "Fighting (Brawl)",
+                "Firearms (Handgun)",
                 "Law",
-                "Persuasion",
+                "Persuade",
                 "Stealth",
-                "Investigation",
-                "Any one other personal or era-specific specialty"
+                "Spot Hidden",
+                "Any Skill"
             ]
         },
         {
@@ -1059,14 +1090,14 @@
             },
             "attributes": ["str", "dex"],
             "skills": [
-                "Climbing",
-                "Dodging",
-                "Auto Driving",
+                "Climb",
+                "Dodge",
+                "Drive (Auto)",
                 "First Aid",
-                "Jumping",
+                "Jump",
                 "Mechanical Repair",
-                "Operating Heavy Machinery",
-                "Throwing"
+                "Operate Heavy Machinery",
+                "Throw"
             ]
         },
         {
@@ -1080,12 +1111,13 @@
             "attributes": ["edu"],
             "skills": [
                 "History",
-                "Foreign Language",
-                "Native Language",
-                "Listening",
-                "Two social skills",
+                "Language (Other)",
+                "Language (Own)",
+                "Listen",
+                "Social Skill",
+                "Social Skill",
                 "Psychology",
-                "Any one other personal or era-specific specialty"
+                "Any Skill"
             ]
         },
         {
@@ -1098,12 +1130,14 @@
             },
             "attributes": ["edu"],
             "skills": [
-                "Foreign Language (Latin)",
+                "Language (Latin)",
                 "Library Use",
                 "Medicine",
-                "Persuasion",
-                "Science (Biology, Forensics, Pharmacology)",
-                "Investigation"
+                "Persuade",
+                "Science (Biology)",
+                "Science (Forensics)",
+                "Science (Pharmacology)",
+                "Spot Hidden"
             ]
         },
         {
@@ -1117,12 +1151,13 @@
             "attributes": ["dex", "app"],
             "skills": [
                 "Accounting",
-                "Craft (Performing)",
-                "Two social skills",
-                "Listening",
+                "Art and Craft (Performing)",
+                "Social Skill",
+                "Social Skill",
+                "Listen",
                 "Psychology",
                 "Sleight of Hand",
-                "Investigation"
+                "Spot Hidden"
             ]
         },
         {
@@ -1135,13 +1170,14 @@
             },
             "attributes": ["app"],
             "skills": [
-                "Fighting",
-                "Shooting",
+                "Fighting (Brawl)",
+                "Firearms (Handgun)",
                 "Law",
-                "Listening",
-                "Two social skills",
+                "Listen",
+                "Social Skill",
+                "Social Skill",
                 "Psychology",
-                "Investigation"
+                "Spot Hidden"
             ]
         },
         {
@@ -1154,12 +1190,14 @@
             },
             "attributes": ["str", "dex"],
             "skills": [
-                "Auto Driving",
-                "Fighting",
-                "Shooting",
-                "Two social skills",
+                "Drive (Auto)",
+                "Fighting (Brawl)",
+                "Firearms (Handgun)",
+                "Social Skill",
+                "Social Skill",
                 "Psychology",
-                "Any two other personal or era-specific specialties"
+                "Any Skill",
+                "Any Skill"
             ]
         },
         {
@@ -1172,13 +1210,14 @@
             },
             "attributes": ["app"],
             "skills": [
-                "Craft (Any)",
-                "Two social skills",
-                "Shooting (Rifle/Shotgun)",
+                "Art and Craft (Any)",
+                "Social Skill",
+                "Social Skill",
+                "Firearms (Rifle/Shotgun)",
                 "History",
-                "Foreign Language (Any)",
-                "Navigation",
-                "Riding"
+                "Language (Other)",
+                "Navigate",
+                "Ride"
             ]
         },
         {
@@ -1191,14 +1230,14 @@
             },
             "attributes": ["dex", "app"],
             "skills": [
-                "Craft (Any)",
-                "Climbing",
-                "Jumping",
-                "Listening",
-                "Lockpicking or Sleight of Hand",
-                "Navigation",
+                "Art and Craft (Any)",  
+                "Climb",
+                "Jump",
+                "Listen",
+                ["Locksmith", "Sleight of Hand"],
+                "Navigate",
                 "Stealth",
-                "Any one other personal or era-specific specialty"
+                "Any Skill"
             ]
         },
         {
@@ -1212,10 +1251,10 @@
             "attributes": ["str"],
             "skills": [
                 "Electrical Repair",
-                "One social skill",
-                "Fighting (Brawling)",
+                "Social Skill",
+                "Fighting (Brawl)",
                 "First Aid",
-                "Listening",
+                "Listen",
                 "Mechanical Repair",
                 "Psychology",
                 "Stealth"
@@ -1231,13 +1270,14 @@
             },
             "attributes": ["edu"],
             "skills": [
-                "Craft (Art or Photography)",
-                "One social skill",
+                ["Art and Craft (Art)", "Art and Craft (Photography)"],
+                "Social Skill",
                 "History",
                 "Library Use",
-                "Native Language",
+                "Language (Own)",
                 "Psychology",
-                "Any two other personal or era-specific specialties"
+                "Any Skill",
+                "Any Skill"
             ]
         },
         {
@@ -1250,14 +1290,14 @@
             },
             "attributes": ["edu"],
             "skills": [
-                "Craft (Performing)",
+                "Art and Craft (Performing)",
                 "History",
-                "Listening",
-                "Native Language",
-                "One social skill",
+                "Listen",
+                "Language (Own)",
+                "Social Skill",
                 "Psychology",
                 "Stealth",
-                "Investigation"
+                "Spot Hidden"
             ]
         },
         {
@@ -1271,12 +1311,12 @@
             "attributes": ["edu"],
             "skills": [
                 "History",
-                "Intimidation",
+                "Intimidate",
                 "Law",
                 "Library Use",
-                "Listening",
-                "Native Language",
-                "Persuasion",
+                "Listen",
+                "Language (Own)",
+                "Persuade",
                 "Psychology"
             ]
         },
@@ -1290,12 +1330,14 @@
             },
             "attributes": ["edu"],
             "skills": [
-                "Computer or Library Use",
+                ["Computer Use", "Library Use"],
                 "Electrical Repair",
-                "Foreign Language",
-                "Science (Chemistry and any two others)",
-                "Investigation",
-                "Any one other personal specialty"
+                "Language (Other)",
+                "Science (Chemistry)",
+                "Any Science Skill",
+                "Any Science Skill",
+                "Spot Hidden",
+                "Any Skill"
             ]
         },
         {
@@ -1308,14 +1350,14 @@
             },
             "attributes": ["str", "dex"],
             "skills": [
-                "Auto Driving",
+                "Drive (Auto)",
                 "Electrical Repair",
-                "Fighting",
+                "Fighting (Brawl)",
                 "First Aid",
                 "Mechanical Repair",
-                "Operating Heavy Machinery",
-                "Throwing",
-                "Any one other personal or era-specific specialty"
+                "Operate Heavy Machinery",
+                "Throw",
+                "Any Skill"
             ]
         },
         {
@@ -1328,14 +1370,14 @@
             },
             "attributes": ["str", "dex"],
             "skills": [
-                "Climbing",
-                "Dodging",
+                "Climb",
+                "Dodge",
                 "Fighting (Chainsaw)",
                 "First Aid",
-                "Jumping",
+                "Jump",
                 "Mechanical Repair",
-                "Natural History or Science (Biology or Botany)",
-                "Throwing"
+                ["Natural World", "Science (Biology)", "Science (Botany)"],
+                "Throw"
             ]
         },
         {
@@ -1348,14 +1390,14 @@
             },
             "attributes": ["str", "dex"],
             "skills": [
-                "Climbing",
+                "Climb",
                 "Science (Geology)",
-                "Jumping",
+                "Jump",
                 "Mechanical Repair",
-                "Operating Heavy Machinery",
+                "Operate Heavy Machinery",
                 "Stealth",
-                "Investigation",
-                "Any one other personal or era-specific specialty"
+                "Spot Hidden",
+                "Any Skill"
             ]
         },
         {
@@ -1371,9 +1413,11 @@
                 "Accounting",
                 "Law",
                 "Library Use",
-                "Two social skills",
+                "Social Skill",
+                "Social Skill",
                 "Psychology",
-                "Two other skills"
+                "Any Skill",
+                "Any Skill"
             ]
         },
         {
@@ -1388,9 +1432,12 @@
             "skills": [
                 "Accounting",
                 "Library Use",
-                "Foreign Language",
-                "Native Language",
-                "Any four other personal specialties or academic subjects"
+                "Language (Other)",
+                "Language (Own)",
+                "Any Skill",
+                "Any Skill",
+                "Any Skill",
+                "Any Skill"
             ]
         },
         {
@@ -1403,13 +1450,14 @@
             },
             "attributes": ["edu"],
             "skills": [
-                "Craft (Woodworking, Welding, Plumbing, etc.)",
-                "Climbing",
-                "Auto Driving",
+                ["Art and Craft (Woodworking)", "Art and Craft (Welding)", "Art and Craft (Plumbing)"], 
+                "Climb",
+                "Drive (Auto)",
                 "Electrical Repair",
                 "Mechanical Repair",
-                "Operating Heavy Machinery",
-                "Any two other personal, era, or technical specialties"
+                "Operate Heavy Machinery",
+                "Any Skill",
+                "Any Skill"
             ]
         },
         {
@@ -1423,12 +1471,13 @@
             "attributes": ["str", "dex"],
             "skills": [
                 "Accounting",
-                "Shooting",
-                "Navigation",
+                "Firearms (Handgun)",
+                "Navigate",
                 "First Aid",
-                "Two social skills",
+                "Social Skill",
+                "Social Skill",
                 "Psychology",
-                "Any one other personal or era-specific specialty"
+                "Any Skill"
             ]
         },
         {
@@ -1441,13 +1490,14 @@
             },
             "attributes": ["app"],
             "skills": [
-                "Craft (Any)",
+                "Art and Craft (Any)",
                 "First Aid",
                 "Mechanical Repair",
                 "Medicine",
-                "Natural History",
-                "One social skill",
-                "Any two other personal or era-specific specialties"
+                "Natural World",
+                "Social Skill",
+                "Any Skill",
+                "Any Skill"
             ]
         },
         {
@@ -1460,14 +1510,14 @@
             },
             "attributes": ["str", "dex"],
             "skills": [
-                "Climbing",
+                "Climb",
                 "First Aid",
-                "Jumping",
-                "Listening",
-                "Navigation",
-                "Foreign Language",
-                "Survival (Alpine or similar)",
-                "Tracking"
+                "Jump",
+                "Listen",
+                "Navigate",
+                "Language (Other)",
+                "Survival (Alpine)",
+                "Track"
             ]
         },
         {
@@ -1481,13 +1531,13 @@
             "attributes": ["edu"],
             "skills": [
                 "Accounting",
-                "Appraisal",
+                "Appraise",
                 "Archaeology",
                 "History",
                 "Library Use",
                 "Occult",
-                "Foreign Language",
-                "Investigation"
+                "Language (Other)",
+                "Spot Hidden"
             ]
         },
         {
@@ -1500,11 +1550,14 @@
             },
             "attributes": ["dex", "pow"],
             "skills": [
-                "Craft (Musical Instrument)",
-                "One social skill",
-                "Listening",
+                "Art and Craft (Musical Instrument)",
+                "Social Skill",
+                "Listen",
                 "Psychology",
-                "Four other skills"
+                "Any Skill",
+                "Any Skill",
+                "Any Skill",
+                "Any Skill"
             ]
         },
         {
@@ -1518,12 +1571,13 @@
             "attributes": ["edu"],
             "skills": [
                 "First Aid",
-                "Listening",
+                "Listen",
                 "Medicine",
-                "One social skill",
+                "Social Skill",
                 "Psychology",
-                "Science (Biology, Chemistry)",
-                "Investigation"
+                "Science (Biology)",
+                "Science (Chemistry)",
+                "Spot Hidden"
             ]
         },
         {
@@ -1539,11 +1593,11 @@
                 "Anthropology",
                 "History",
                 "Library Use",
-                "One social skill",
+                "Social Skill",
                 "Occult",
-                "Foreign Language",
+                "Language (Other)",
                 "Science (Astronomy)",
-                "Any one other personal or era-specific specialty"
+                "Any Skill"
             ]
         },
         {
@@ -1558,11 +1612,12 @@
             "skills": [
                 "Accounting",
                 "Library Use",
-                "Listening",
-                "Persuasion",
+                "Listen",
+                "Persuade",
                 "Psychoanalysis",
                 "Psychology",
-                "Any two other academic, personal or era-specific specialties"
+                "Any Skill",
+                "Any Skill"
             ]
         },
         {
@@ -1577,10 +1632,12 @@
             "skills": [
                 "History",
                 "Library Use",
-                "One social skill",
-                "Foreign Language",
-                "Investigation",
-                "Any three other academic fields"
+                "Social Skill",
+                "Language (Other)",
+                "Spot Hidden",
+                "Any Skill",
+                "Any Skill",
+                "Any Skill"
             ]
         },
         {
@@ -1593,14 +1650,14 @@
             },
             "attributes": ["edu"],
             "skills": [
-                "Electrical or Mechanical Repair",
-                "Fighting",
-                "Shooting",
+                ["Electrical Repair", "Mechanical Repair"],
+                "Fighting (Brawl)",
+                "Firearms (Handgun)",
                 "First Aid",
-                "Navigation",
-                "Boat Driving",
-                "Survival (at sea)",
-                "Swimming"
+                "Navigate",
+                "Drive (Boat/Ship)",
+                "Survival (At Sea)",
+                "Swim"
             ]
         },
         {
@@ -1608,19 +1665,19 @@
             "minimum_credit_rating": 20,
             "maximum_credit_rating": 40,
             "description": {
-                "en": "A crew member of a merchant ship responsible for navigation and vessel maintenance.",
+                "en": "A crew member of a merchant ship responsible for Navigate and vessel maintenance.",
                 "cn": "民船海员负责民船的导航和维护。"
             },
             "attributes": ["edu"],
             "skills": [
                 "First Aid",
                 "Mechanical Repair",
-                "Natural History",
-                "Navigation",
-                "One social skill",
-                "Boat Driving",
-                "Investigation",
-                "Swimming"
+                "Natural World",
+                "Navigate",
+                "Social Skill",
+                "Drive (Boat/Ship)",
+                "Spot Hidden",
+                "Swim"
             ]
         },
         {
@@ -1634,12 +1691,13 @@
             "attributes": ["app"],
             "skills": [
                 "Accounting",
-                "Two social skills",
-                "Auto Driving",
-                "Listening",
+                "Social Skill",
+                "Social Skill",
+                "Drive (Auto)",
+                "Listen",
                 "Psychology",
-                "Stealth or Sleight of Hand",
-                "Any one other skill"
+                ["Stealth", "Sleight of Hand"],
+                "Any Skill"
             ]
         },
         {
@@ -1652,12 +1710,14 @@
             },
             "attributes": ["edu"],
             "skills": [
-                "Any three scientific fields",
-                "Computer or Library Use",
-                "Foreign Language",
-                "Native Language",
-                "One social skill",
-                "Investigation"
+                "Any Science Skill",
+                "Any Science Skill",
+                "Any Science Skill",
+                ["Computer Use", "Library Use"],
+                "Language (Other)",
+                "Language (Own)",
+                "Social Skill",
+                "Spot Hidden"
             ]
         },
         {
@@ -1671,12 +1731,13 @@
             "attributes": ["dex", "app"],
             "skills": [
                 "Accounting",
-                "Craft (Typing or Shorthand)",
-                "Two social skills",
-                "Native Language",
-                "Library or Computer Use",
+                ["Art and Craft (Typing)", "Art and Craft (Shorthand)"],
+                "Social Skill",
+                "Social Skill",
+                "Language (Own)",
+                ["Library Use", "Computer Use"],
                 "Psychology",
-                "Any one other personal or era-specific specialty"
+                "Any Skill"
             ]
         },
         {
@@ -1690,12 +1751,13 @@
             "attributes": ["dex", "app"],
             "skills": [
                 "Accounting",
-                "Two social skills",
+                "Social Skill",
+                "Social Skill",
                 "Electrical Repair",
-                "Listening",
+                "Listen",
                 "Mechanical Repair",
                 "Psychology",
-                "Investigation"
+                "Spot Hidden"
             ]
         },
         {
@@ -1709,12 +1771,13 @@
             "attributes": ["edu"],
             "skills": [
                 "Accounting",
-                "Language",
+                "Language (Own)",
                 "Law",
-                "Library or Computer Use",
-                "Listening",
-                "One social skill",
-                "Any two other personal or era-specific specialties"
+                ["Library Use", "Computer Use"],
+                "Listen",
+                "Social Skill",
+                "Any Skill",
+                "Any Skill"
             ]
         },
         {
@@ -1728,11 +1791,13 @@
             "attributes": ["edu"],
             "skills": [
                 "Accounting",
-                "Foreign Language",
+                "Language (Other)",
                 "Law",
-                "Two social skills",
+                "Social Skill",
+                "Social Skill",
                 "Psychology",
-                "Any two other personal or era-specific specialties"
+                "Any Skill",
+                "Any Skill"
             ]
         },
         {
@@ -1746,10 +1811,13 @@
             "attributes": ["app", "pow"],
             "skills": [
                 "History",
-                "Two social skills",
+                "Social Skill",
+                "Social Skill",
                 "Psychology",
                 "Stealth",
-                "Any three other personal or era-specific specialties"
+                "Any Skill",
+                "Any Skill",
+                "Any Skill"
             ]
         },
         {
@@ -1762,13 +1830,34 @@
             },
             "attributes": ["edu"],
             "skills": [
-                "Animal Training",
+                "Beast Training",
                 "Accounting",
-                "Dodging",
+                "Dodge",
                 "First Aid",
-                "Natural History",
+                "Natural World",
                 "Medicine",
-                "Science (Pharmacology, Zoology)"
+                "Science (Pharmacology)",
+                "Science (Zoology)"
+            ]
+        },
+        {
+            "name": { "en": "Student", "cn": "学生" },
+            "minimum_credit_rating": 5,
+            "maximum_credit_rating": 10,
+            "description": {
+                "en": "A student or intern pursuing education and practical experience in their chosen field.",
+                "cn": "学生或实习生在所选领域追求学习和实践经验。"
+            },
+            "attributes": ["edu"],
+            "skills": [
+                ["Language (Own)", "Language (Other)"],
+                "Library Use",
+                "Listen",
+                "Major Skill",
+                "Major Skill",
+                "Major Skill",
+                "Any Skill",
+                "Any Skill"
             ]
         }
     ]

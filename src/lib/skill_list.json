@@ -256,7 +256,7 @@
     {
       "name": {
         "en": "Language (Own)",
-        "cn": "语言（母语）"
+        "cn": "母语"
       },
       "description": {
         "en": "Represents proficiency in the character's native language.",
@@ -267,7 +267,7 @@
     {
       "name": {
         "en": "Language (Other)",
-        "cn": "语言（其他）"
+        "cn": "外语"
       },
       "description": {
         "en": "Represents proficiency in a foreign language.",
@@ -439,17 +439,6 @@
         "cn": "用于在骑乘时控制和操纵动物或车辆。"
       },
       "base_percent": 5
-    },
-    {
-      "name": {
-        "en": "Science",
-        "cn": "科学"
-      },
-      "description": {
-        "en": "Represents knowledge in various scientific disciplines. Specializations can include Biology, Chemistry, etc.",
-        "cn": "代表各种科学学科的知识。专业化可以包括生物学、化学等。"
-      },
-      "base_percent": 1
     },
     {
       "name": {
@@ -905,7 +894,7 @@
     {
       "name": {
         "en": "Language (Latin)",
-        "cn": "语言（拉丁语）"
+        "cn": "拉丁语"
       },
       "description": {
         "en": "Used to read and understand classical Latin texts.",
@@ -956,6 +945,54 @@
         "cn": "用于理解物质、能量及其相互作用。"
       },
       "base_percent": 1
+    },
+    {
+      "name": {
+        "en": "Science (Chemistry)",
+        "cn": "科学（化学）"
+      },
+      "description": {
+        "en": "Used to understand chemical reactions, substances, and their properties.",
+        "cn": "用于理解化学反应、物质及其性质。"
+      },
+      "base_percent": 1
     }
+  ],
+  "social_skills": [
+    "Charm", 
+    "Fast Talk", 
+    "Intimidate", 
+    "Persuade"
+  ],
+  "scientific_skills": [
+    "Science (Biology)",
+    "Science (Chemistry)",
+    "Science (Physics)",
+    "Science (Geography)",
+    "Science (Zoology)",
+    "Science (Geology)",
+    "Science (Astronomy)", 
+    "Science (Botany)",
+    "Science (Forensics)",
+    "Science (Pharmacology)",
+    "Science (Mathematics)",
+    "Science (Engineering)"
+  ],
+  "art_and_craft_skills": [
+    "Art and Craft (Typing)",
+    "Art and Craft (Shorthand)",
+    "Art and Craft (Technical Drawing)",
+    "Art and Craft (Photography)",
+    "Art and Craft (Literature)",
+    "Art and Craft (Acting)",
+    "Art and Craft (Performing)",
+    "Art and Craft (Singing)",
+    "Art and Craft (Comedy)",
+    "Art and Craft (Musical Instrument)",
+    "Art and Craft (Woodworking)",
+    "Art and Craft (Welding)",
+    "Art and Craft (Plumbing)",
+    "Art and Craft (Farming)",
+    "Art and Craft (Forgery)"
   ]
 }

@@ -148,6 +148,14 @@ export const translations = {
     allRolls: "All rolls",
     usingHighest: "using highest",
     usingLowest: "using lowest",
+
+    // New translations
+    anyXSkills: "Any {0} skills",
+    anyXSocialSkills: "Any {0} social skills",
+    or: "or",
+    anyArtAndCraftSkills: "Any {0} Art & Craft Skills",
+    anyMajoringSkill: "Any {0} Major-Related Skill",
+    anyScienceSkills: "Any {0} Science Skills",
   },
   cn: {
     // Character Attributes
@@ -298,6 +306,14 @@ export const translations = {
     allRolls: "所有结果",
     usingHighest: "使用最高值",
     usingLowest: "使用最低值",
+
+    // New translations
+    anyXSkills: "任意{0}项其他个人或时代特长",
+    anyXSocialSkills: "任意{0}项社交技能",
+    or: "或",
+    anyArtAndCraftSkills: "任意{0}项艺术与手艺",
+    anyMajoringSkill: "任意{0}项专业相关技能",
+    anyScienceSkills: "任意{0}项科学技能",
   }
 } as const;
 
