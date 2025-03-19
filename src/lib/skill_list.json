@@ -695,6 +695,17 @@
     },
     {
       "name": {
+        "en": "Art and Craft (Art)",
+        "cn": "技艺（艺术）"
+      },
+      "description": {
+        "en": "Used for creating and manipulating visual art.",
+        "cn": "用于创建和操纵视觉艺术。"
+      },
+      "base_percent": 5
+    },
+    {
+      "name": {
         "en": "Art and Craft (Typing)",
         "cn": "技艺（打字）"
       },
@@ -979,6 +990,7 @@
     "Science (Engineering)"
   ],
   "art_and_craft_skills": [
+    "Art and Craft (Art)",
     "Art and Craft (Typing)",
     "Art and Craft (Shorthand)",
     "Art and Craft (Technical Drawing)",

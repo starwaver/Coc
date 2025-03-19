@@ -411,7 +411,7 @@
             "attributes": ["edu"],
             "skills": [
                 ["Accounting", "Appraise"],
-                "Art and Craft (Any, e.g., Cooking, Tailoring, Hairdressing)",
+                "Art and Craft (Any)",
                 "First Aid",
                 "Listen",
                 "Language (Other)",
@@ -495,7 +495,7 @@
                 ["First Aid", "Natural World"],
                 "Jump",
                 "Ride",
-                "Survival (any)",
+                "Survival",
                 "Throw",
                 "Track"
             ]
