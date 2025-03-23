@@ -81,7 +81,7 @@
   let occupationModal: HTMLDialogElement | null = null;
 
   function openOccupationModal() {
-    occupationModal?.showModal();
+    isOccupationModalOpen = true;
   }
 
   function handleOccupationUpdate(event: CustomEvent<{ occupation: string }>) {
@@ -89,7 +89,7 @@
   }
 
   function closeOccupationModal() {
-    occupationModal?.close();
+    isOccupationModalOpen = false;
   }
 
   let isOccupationModalOpen = false;
@@ -234,7 +234,7 @@
                   />
                   <button 
                     class="btn btn-primary" 
-                    on:click={() => isOccupationModalOpen = true}
+                    on:click={openOccupationModal}
                   >
                     <i class="fa-solid fa-user-plus mr-1"></i>
                     {t.select}
@@ -243,7 +243,7 @@
                 <OccupationSelectionModal 
                   bind:selectedOccupation={editedDetails.occupation}
                   bind:isOpen={isOccupationModalOpen}
-                  on:select={({ detail }) => editedDetails.occupation = detail.occupation}
+                  on:select={handleOccupationUpdate}
                 />
               {:else}
                 <div class="input input-bordered bg-base-200">{$characterStore?.occupation ?? ''}</div>

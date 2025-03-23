@@ -177,7 +177,13 @@
   }
 </script>
 
-<div class="modal" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+<div 
+  class="modal" 
+  class:modal-open={isOpen}
+  role="dialog" 
+  aria-modal="true" 
+  aria-labelledby="modal-title"
+>
   <button 
     class="modal-overlay fixed inset-0 bg-black bg-opacity-50" 
     on:click={handleBackdropClick}
