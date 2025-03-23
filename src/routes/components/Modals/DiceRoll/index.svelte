@@ -64,10 +64,6 @@
         return Math.floor(Math.random() * faces) + 1;
     }
 
-    function rollD100(): number {
-        return Math.floor(Math.random() * 100) + 1;
-    }
-
     function rollD10(): number {
         return Math.floor(Math.random() * 10);
     }
@@ -78,29 +74,6 @@
         // Handle 00-0 as 100
         const total = (tens === 0 && ones === 0) ? 100 : tens * 10 + ones;
         return { tens, ones, total };
-    }
-
-    function rollWithPenaltyBonus(): { 
-        tensDigits: number[];
-        ones: number; 
-        selectedTens: number;
-        total: number 
-    } {
-        // Roll multiple tens dice based on penalty/bonus count plus one base die
-        const numTensDice = Math.max(penaltyDice, bonusDice) + 1;
-        const tensDigits = Array(numTensDice).fill(0).map(() => rollD10());
-        const ones = rollD10();
-        
-        // For penalty die, take the highest tens
-        // For bonus die, take the lowest tens
-        const selectedTens = penaltyDice > 0 
-            ? Math.max(...tensDigits)
-            : Math.min(...tensDigits);
-        
-        // Handle 00-0 as 100
-        const total = (selectedTens === 0 && ones === 0) ? 100 : selectedTens * 10 + ones;
-        
-        return { tensDigits, ones, selectedTens, total };
     }
 
     function rollDice() {
@@ -345,20 +318,20 @@
                     {#if multiplyResult !== 1}× {multiplyResult}{/if} 
                     {#if addToResult !== 0}+ {addToResult}{/if}
                 </h3>
-                
+
                 <div class="grid grid-cols-1 items-start gap-2 sm:gap-4 mb-2 sm:mb-4">
                     {#if numberOfFaces === 100}
                         <BonusPenaltyControls
                             {penaltyDice}
                             {bonusDice}
                             {showBonusPenaltyRoll}
-                            onPenaltyChange={adjustPenaltyDice}
-                            onBonusChange={adjustBonusDice}
-                            onRollAgain={startBonusPenaltyRoll}
+                            on:updatePenalty={(e) => adjustPenaltyDice(e.detail)}
+                            on:updateBonus={(e) => adjustBonusDice(e.detail)}
+                            on:rollAgain={startBonusPenaltyRoll}
                         />
                     {/if}
                 </div>
-                
+
                 <div class="flex-grow">
                     <div class="card bg-base-300 shadow-lg p-2 sm:p-5 text-center h-full">
                         <DiceDisplay
@@ -386,7 +359,7 @@
                             />
                         {/if}
 
-                        {#if showConfirm}
+                        {#if !isRolling}
                             <div class="flex flex-col sm:flex-row gap-2 mt-3 sm:mt-5 justify-center items-stretch sm:items-center">
                                 <button 
                                     class="btn btn-neutral w-full sm:flex-1 sm:max-w-[200px]" 
@@ -394,19 +367,21 @@
                                 >
                                     {t.rollAgain}
                                 </button>
-                                <button 
-                                    class="btn btn-primary w-full sm:flex-1 sm:max-w-[200px]" 
-                                    on:click={confirmRoll}
-                                >
-                                    {t.confirm}
-                                </button>
+                                {#if showConfirm}
+                                    <button 
+                                        class="btn btn-primary w-full sm:flex-1 sm:max-w-[200px]" 
+                                        on:click={confirmRoll}
+                                    >
+                                        {t.confirm}
+                                    </button>
+                                {/if}
                             </div>
 
                             <ManualInput
                                 {showManualInput}
-                                {manualRollInput}
-                                onManualRoll={handleManualRoll}
-                                onToggleManualInput={() => showManualInput = !showManualInput}
+                                bind:manualRollInput
+                                on:manualRoll={handleManualRoll}
+                                on:toggleManualInput={() => showManualInput = !showManualInput}
                             />
                         {/if}
                     </div>
@@ -417,13 +392,6 @@
 {/if}
 
 <style>
-    /* Keep only the modal-specific animations */
-    @keyframes shake {
-        0%, 100% { transform: translateY(0); }
-        25% { transform: translateY(-5px) rotate(-5deg); }
-        75% { transform: translateY(5px) rotate(5deg); }
-    }
-
     :global(.modal-box) {
         margin: 0.5rem !important;
     }

@@ -124,6 +124,7 @@ export const translations = {
     yes: "Yes",
     no: "No",
     select: "Select",
+    close: "Close",
     enterInformation: "Enter Information",
     placeholderCharacterName: "Shi ming zi",
     noInformationAvailable: "No Information Available",
@@ -131,6 +132,10 @@ export const translations = {
     confirmDeleteCharacter: "Are you sure you want to delete this character? This action cannot be undone.",
     maxCharactersReached: "Maximum number of characters reached",
     storageLimitReached: "Storage limit reached",
+    doubleClickToEdit: "Double click to edit",
+    editCharacterInformation: "Edit your character's information below",
+    characterPortrait: "Character Portrait",
+    currentlySelected: "Currently Selected",
 
     // Gender Options
     male: "Male",
@@ -282,6 +287,7 @@ export const translations = {
     yes: "是",
     no: "否",
     select: "选择",
+    close: "关闭",
     enterInformation: "输入信息",
     placeholderCharacterName: "是名字",
     noInformationAvailable: "无内容",
@@ -289,6 +295,10 @@ export const translations = {
     confirmDeleteCharacter: "确定要删除这个角色吗？此操作无法撤消。",
     maxCharactersReached: "已达到最大角色数量",
     storageLimitReached: "已达到存储限制",
+    doubleClickToEdit: "双击编辑",
+    editCharacterInformation: "在下方编辑您的角色信息",
+    characterPortrait: "角色肖像",
+    currentlySelected: "当前选择",
 
     // Gender Options
     male: "男性",

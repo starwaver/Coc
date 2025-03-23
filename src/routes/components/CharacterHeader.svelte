@@ -91,135 +91,189 @@
   function closeOccupationModal() {
     occupationModal?.close();
   }
+
+  let isOccupationModalOpen = false;
 </script>
 
-<div class="flex justify-center items-center w-full m-2 sm:m-6">
-  <div class="flex flex-col sm:flex-row justify-center items-center w-full max-w-4xl gap-4 align-middle">
+<div class="hero min-h-[600px] bg-base-200 rounded-box shadow-xl m-2 sm:m-6">
+  <div class="hero-content flex-col lg:flex-row gap-8 p-4 sm:p-8">
+    <!-- Character Image Section -->
     <div class="w-48 sm:w-64 h-full">
-        {#if isEditingImage}
-          <input
-            type="text"
-            bind:value={editedImageUrl}
-            class="input"
-            placeholder={t.enterImageUrl}
-          />
-          <div class="flex justify-between w-full mt-6">
-            <button class="btn btn-primary btn-sm" on:click={saveImageUrl}>
-              {t.save}
-            </button>
-            <button class="btn btn-secondary btn-sm" on:click={cancelEditImage}>
-              {t.cancel}
-            </button>
-          </div>
-        {:else}
-        <button class="inline-block" on:dblclick={startEditingImage}>
-          <div class="avatar">
-            <div class="ring-primary ring-offset-base-100 w-48 sm:w-64 rounded-full ring ring-offset-2">
-              <img src={$characterStore?.image ?? ''} alt="Character Portrait"/>
+      {#if isEditingImage}
+        <div class="card bg-base-100 shadow-lg">
+          <div class="card-body">
+            <div class="form-control w-full">
+              <label class="label" for="character-image-url">
+                <span class="label-text font-medium">{t.enterImageUrl}</span>
+              </label>
+              <input
+                id="character-image-url"
+                type="text"
+                bind:value={editedImageUrl}
+                class="input input-bordered w-full"
+                placeholder="https://example.com/image.jpg"
+              />
+              <div class="flex justify-between w-full mt-4">
+                <button class="btn btn-primary btn-sm" on:click={saveImageUrl}>
+                  {t.save}
+                </button>
+                <button class="btn btn-ghost btn-sm" on:click={cancelEditImage}>
+                  {t.cancel}
+                </button>
+              </div>
             </div>
           </div>
+        </div>
+      {:else}
+        <button class="group" on:dblclick={startEditingImage}>
+          <div class="avatar">
+            <div class="w-48 sm:w-64 rounded-full ring ring-primary ring-offset-base-100 ring-offset-2 transition-all duration-300 group-hover:ring-offset-4">
+              <img 
+                src={$characterStore?.image ?? ''} 
+                alt={`${$characterStore?.name || t.placeholderCharacterName} ${t.characterPortrait}`} 
+                class="object-cover"
+              />
+            </div>
+          </div>
+          <div class="tooltip tooltip-bottom absolute bottom-0 left-1/2 transform -translate-x-1/2 opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-base-300 text-base-content text-xs px-2 py-1 rounded-full">
+            {t.doubleClickToEdit}
+          </div>
         </button>
-        {/if}
+      {/if}
     </div>
-    <div class="join-vertical w-full sm:w-auto">
-      <table class="table-fixed w-full">
-        <tbody>
-          <tr class="align-top">
-            <td class="w-32 sm:w-40">{t.characterDetails}</td>
-            <td class="w-32 sm:w-40 h-12"> 
-              {#if !isEditingDetails}
-                <button class="btn btn-primary btn-sm" on:click={startEditingDetails}>{t.edit}</button>
-              {:else}
-                <div class="w-full h-full flex flex-row justify-between">
-                  <button class="btn btn-primary btn-sm" on:click={saveDetails}>{t.save}</button>
-                  <button class="btn btn-secondary btn-sm" on:click={cancelEditDetails}>{t.cancel}</button>
-                </div>
-              {/if}
-            </td>
-          </tr>
 
-          <tr class="h-8">
-            <td>{t.name}:</td>
-            <td>
+    <!-- Character Details Section -->
+    <div class="w-full max-w-2xl">
+      <div class="card bg-base-100 shadow-lg">
+        <div class="card-body">
+          <div class="flex justify-between items-center mb-6">
+            <div>
+              <h2 class="card-title text-2xl font-bold">{t.characterDetails}</h2>
+              <p class="text-base-content/70">{t.editCharacterInformation}</p>
+            </div>
+            {#if !isEditingDetails}
+              <button class="btn btn-primary" on:click={startEditingDetails} aria-label={t.edit}>
+                <i class="fa-solid fa-pen-to-square mr-2"></i>
+                {t.edit}
+              </button>
+            {:else}
+              <div class="flex gap-2">
+                <button class="btn btn-primary" on:click={saveDetails} aria-label={t.save}>
+                  <i class="fa-solid fa-check mr-2"></i>
+                  {t.save}
+                </button>
+                <button class="btn btn-ghost" on:click={cancelEditDetails} aria-label={t.cancel}>
+                  <i class="fa-solid fa-xmark mr-2"></i>
+                  {t.cancel}
+                </button>
+              </div>
+            {/if}
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div class="form-control">
+              <label class="label" for="character-name">
+                <span class="label-text font-medium">{t.name}</span>
+              </label>
               {#if isEditingDetails}
-                <input class="input h-11/12 w-full" type="text" bind:value={editedDetails.name}>
+                <input id="character-name" class="input input-bordered" type="text" bind:value={editedDetails.name}>
               {:else}
-                {$characterStore?.name ?? ''}
+                <div class="input input-bordered bg-base-200">{$characterStore?.name ?? ''}</div>
               {/if}
-            </td>
-          </tr>
-          
-          <tr class="h-8">
-            <td>{t.age}:</td>
-            <td>
+            </div>
+
+            <div class="form-control">
+              <label class="label" for="character-age">
+                <span class="label-text font-medium">{t.age}</span>
+              </label>
               {#if isEditingDetails}
-                <input class="input h-11/12 w-full" type="number" bind:value={editedDetails.age} min=0>
+                <input id="character-age" class="input input-bordered" type="number" bind:value={editedDetails.age} min=0>
               {:else}
-                {$characterStore?.age ?? ''}
+                <div class="input input-bordered bg-base-200">{$characterStore?.age ?? ''}</div>
               {/if}
-            </td>
-          </tr>
-          
-          <tr class="h-8">
-            <td>{t.gender}:</td>
-            <td>
+            </div>
+
+            <div class="form-control">
+              <label class="label" for="character-gender">
+                <span class="label-text font-medium">{t.gender}</span>
+              </label>
               {#if isEditingDetails}
-                <select class="select w-full h-11/12" bind:value={editedDetails.gender}>
+                <select id="character-gender" class="select select-bordered w-full" bind:value={editedDetails.gender}>
                   <option value={t.male}>{t.male}</option>
                   <option value={t.female}>{t.female}</option>
                   <option value={t.other}>{t.other}</option>
                 </select>
               {:else}
-                {$characterStore?.gender ?? ''}
+                <div class="input input-bordered bg-base-200">{$characterStore?.gender ?? ''}</div>
               {/if}
-            </td>
-          </tr>
+            </div>
 
-          <tr class="h-8">
-            <td>{t.playerName}:</td>
-            <td>
+            <div class="form-control">
+              <label class="label" for="character-player-name">
+                <span class="label-text font-medium">{t.playerName}</span>
+              </label>
               {#if isEditingDetails}
-                <input class="input w-full h-11/12" type="text" bind:value={editedDetails.playerName}>
+                <input id="character-player-name" class="input input-bordered" type="text" bind:value={editedDetails.playerName}>
               {:else}
-                {$characterStore?.playerName ?? ''}
+                <div class="input input-bordered bg-base-200">{$characterStore?.playerName ?? ''}</div>
               {/if}
-            </td>
-          </tr>
+            </div>
 
-          <tr class="h-8">
-            <td>{t.occupation}:</td>
-            <td>
+            <div class="form-control md:col-span-2">
+              <label class="label" for="character-occupation">
+                <span class="label-text font-medium">{t.occupation}</span>
+              </label>
               {#if isEditingDetails}
-                <OccupationSelectionModal bind:selectedOccupation={editedDetails.occupation}></OccupationSelectionModal>
+                <div class="flex items-center gap-2">
+                  <input 
+                    id="character-occupation"
+                    type="text" 
+                    class="input input-bordered w-full focus:input-primary" 
+                    value={editedDetails.occupation || t.occupation}
+                    readonly 
+                  />
+                  <button 
+                    class="btn btn-primary" 
+                    on:click={() => isOccupationModalOpen = true}
+                  >
+                    <i class="fa-solid fa-user-plus mr-1"></i>
+                    {t.select}
+                  </button>
+                </div>
+                <OccupationSelectionModal 
+                  bind:selectedOccupation={editedDetails.occupation}
+                  bind:isOpen={isOccupationModalOpen}
+                  on:select={({ detail }) => editedDetails.occupation = detail.occupation}
+                />
               {:else}
-                {$characterStore?.occupation ?? ''}
+                <div class="input input-bordered bg-base-200">{$characterStore?.occupation ?? ''}</div>
               {/if}
-            </td>
-          </tr>
+            </div>
 
-          <tr class="h-8">
-            <td>{t.birthplace}:</td>
-            <td>
+            <div class="form-control md:col-span-2">
+              <label class="label" for="character-birthplace">
+                <span class="label-text font-medium">{t.birthplace}</span>
+              </label>
               {#if isEditingDetails}
-                <input class="input w-full h-11/12" type="text" bind:value={editedDetails.birthplace}>
+                <input id="character-birthplace" class="input input-bordered" type="text" bind:value={editedDetails.birthplace}>
               {:else}
-                {$characterStore?.birthplace ?? ''}
+                <div class="input input-bordered bg-base-200">{$characterStore?.birthplace ?? ''}</div>
               {/if}
-            </td>
-          </tr>
+            </div>
 
-          <tr class="h-8">
-            <td>{t.residence}:</td>
-            <td>
+            <div class="form-control md:col-span-2">
+              <label class="label" for="character-residence">
+                <span class="label-text font-medium">{t.residence}</span>
+              </label>
               {#if isEditingDetails}
-                <input class="input w-full h-11/12" type="text" bind:value={editedDetails.residence}>
+                <input id="character-residence" class="input input-bordered" type="text" bind:value={editedDetails.residence}>
               {:else}
-                {$characterStore?.residence ?? ''}
+                <div class="input input-bordered bg-base-200">{$characterStore?.residence ?? ''}</div>
               {/if}
-            </td>
-          </tr>
-        </tbody>
-      </table>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </div>
