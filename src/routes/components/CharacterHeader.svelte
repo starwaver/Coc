@@ -93,9 +93,9 @@
   }
 </script>
 
-<div class="flex justify-center items-center w-full m-6">
-  <div class="flex flex-row justify-center items-center w-full max-w-4xl gap-4 align-middle">
-    <div class="w-64 h-full">
+<div class="flex justify-center items-center w-full m-2 sm:m-6">
+  <div class="flex flex-col sm:flex-row justify-center items-center w-full max-w-4xl gap-4 align-middle">
+    <div class="w-48 sm:w-64 h-full">
         {#if isEditingImage}
           <input
             type="text"
@@ -114,19 +114,19 @@
         {:else}
         <button class="inline-block" on:dblclick={startEditingImage}>
           <div class="avatar">
-            <div class="ring-primary ring-offset-base-100 w-64 rounded-full ring ring-offset-2">
+            <div class="ring-primary ring-offset-base-100 w-48 sm:w-64 rounded-full ring ring-offset-2">
               <img src={$characterStore?.image ?? ''} alt="Character Portrait"/>
             </div>
           </div>
         </button>
         {/if}
     </div>
-    <div class="join-vertical">
-      <table class="table-fixed">
+    <div class="join-vertical w-full sm:w-auto">
+      <table class="table-fixed w-full">
         <tbody>
           <tr class="align-top">
-            <td class="w-40">{t.characterDetails}</td>
-            <td class="w-40 h-12"> 
+            <td class="w-32 sm:w-40">{t.characterDetails}</td>
+            <td class="w-32 sm:w-40 h-12"> 
               {#if !isEditingDetails}
                 <button class="btn btn-primary btn-sm" on:click={startEditingDetails}>{t.edit}</button>
               {:else}
