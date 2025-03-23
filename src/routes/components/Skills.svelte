@@ -5,7 +5,7 @@
     import { translations } from '$lib/i18n/translations';
     import { characterStore } from '$lib/stores/characterStore';
     import { languageStore } from '$lib/stores/languageStore';
-    import RollDiceModal from './Modals/RollDiceModal.svelte';
+    import RollDiceModal from './Modals/DiceRoll/index.svelte';
 
     export let skill: SkillType & { displayName: string };
     export let isEditing: boolean;
