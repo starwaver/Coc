@@ -229,333 +229,180 @@
   }
 </script>
 
-<style>
-  .main-dashboard {
-    position: relative;
-    max-width: 800px;
-    margin: 20px auto;
-    padding: 20px;
-    background-color: #7c7c7c;
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-    color: #f0f0f0;
-    overflow-y: hidden;
-  }
-
-  .section-container {
-    display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: 5px;
-    margin-bottom: 20px;
-    padding: 0px;
-  }
-
-  .section-header {
-    display: flex;
-    align-items: center;
-    overflow: wrap;
-    margin-bottom: 20px;
-    border-bottom: 2px solid #444;
-    padding-bottom: 10px;
-  }
-
-  .section-header h2 {
-    margin: 0;
-    margin-right: 15px;
-  }
-
-  .section-button {
-    background-color: #00cc66;
-    color: #fff;
-    border: none;
-    padding: 5px 10px;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 0.9em;
-  }
-
-  .section-button:hover {
-    background-color: #00b359;
-  }
-
-  .point-totals {
-    font-size: 0.9em;
-    margin-left: 15px;
-  }
-
-  .cancel-button {
-    background-color: #cc0000;
-    margin-left: 10px;
-  }
-
-  .cancel-button:hover {
-    background-color: #b30000;
-  }
-
-  :global(.add-custom-skill) {
-    margin-top: 20px;
-  }
-
-  /* Add these new styles */
-  .dropdown-icon {
-    background: none;
-    border: none;
-    cursor: pointer;
-    margin-left: 10px;
-    font-size: 0.8em;
-    transition: transform 0.3s ease;
-    padding: 0;
-    color: inherit;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-  }
-
-  .dropdown-icon:hover,
-  .dropdown-icon:focus {
-    outline: none;
-    text-decoration: none;
-  }
-
-  .dropdown-icon.open {
-    transform: rotate(-90deg);
-  }
-
-  .backstory-content {
-    transition: max-height 0.3s ease-out, opacity 0.3s ease-out;
-    opacity: 1;
-    overflow: hidden;
-  }
-
-  .backstory-content.hidden {
-    max-height: 0;
-    opacity: 0;
-  }
-
-  /* Add/update these styles */
-  .filter-controls {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
-    align-items: center;
-    margin-left: auto;
-  }
-
-  .filter-controls label {
-    display: flex;
-    align-items: center;
-    gap: 4px;
-    white-space: nowrap;
-    font-size: 0.9em;
-  }
-
-  .search-input {
-    padding: 4px 8px;
-    border-radius: 4px;
-    border: 1px solid #ccc;
-    font-size: 0.9em;
-    min-width: 150px;
-  }
-
-  @media (max-width: 768px) {
-    .section-header {
-      flex-direction: column;
-      align-items: flex-start;
-      gap: 10px;
-    }
-
-    .filter-controls {
-      width: 100%;
-      margin-left: 0;
-    }
-
-    .point-totals {
-      margin-left: 0;
-      width: 100%;
-    }
-
-    .section-container {
-      grid-template-columns: repeat(2, 1fr);
-    }
-
-    .search-input {
-      width: 100%;
-      min-width: unset;
-    }
-  }
-
-  @media (max-width: 360px) {
-    .section-container {
-      grid-template-columns: 1fr;
-    }
-
-    .filter-controls label {
-      font-size: 0.8em;
-    }
-  }
-</style>
-
-{#if $characterStore}
-  <div class="main-dashboard">
-    <CharacterHeader />
-    
-    <!-- Attributes Section -->
-    <section id="attributes" class="section">
-      <div class="section-header">
-        <h2>{t.attributes}</h2>
-        <div>
-          {#if $isEditingAttributes}
-          <button class="section-button" on:click={() => toggleAttributesEditMode(true)}>
-            {t.save}
-          </button>
-          <button class="section-button cancel-button" on:click={cancelAttributesEdit}>
-            {t.cancel}
-          </button>
-          {:else}
-            <button class="section-button" on:click={() => toggleAttributesEditMode(true)}>
-              {t.editAttributes}
-            </button>
-          {/if}
-        </div>
-        <div class="point-totals">
-          {t.totalAttributePoints}: {$totalAttributePoints}
-        </div>
-      </div>
-      <div class="section-container">
-        {#each sortedAttributeKeys as key}
-          <Attribute 
-            attribute={{ name: key.toLowerCase(), value: $characterStore.attributes[key] }} 
-            on:updateValue={updateAttributeValue}
-            isEditing={$isEditingAttributes}
-          />
-        {/each}
-      </div>
-    </section>
-
-    <!-- Derived Attributes Section -->
-    <section id="derived-attributes" class="section">
-      <div class="section-header">
-        <h2>{t.derivedAttributes}</h2>
-      </div>
-      <DerivedAttributes />
-    </section>
-
-    <!-- Backstory Section -->
-    <section id="backstory" class="section">
-      <div class="section-header">
-        <h2>{t.backstory}</h2>
-        <div>
-          {#if $isEditingBackstory}
-            <button class="section-button" on:click={() => saveBackstoryEdits()}>
-              {t.save}
-            </button>
-            <button class="section-button cancel-button" on:click={() => cancelBackstoryEdits()}>
-              {t.cancel}
-            </button>
-          {:else}
-            <button class="section-button" on:click={() => startEditingBackstory()}>
-            {t.editBackstory}
-            </button>
-          {/if}
-        </div>
-        <!-- Update this span for the left/down facing icon -->
-        <button 
-          class="dropdown-icon {isBackstoryVisible ? 'open' : ''}"
-          on:click={() => isBackstoryVisible = !isBackstoryVisible}
-        >
-          ◀
-        </button>
-      </div>
-      <div class="backstory-content {isBackstoryVisible ? '' : 'hidden'}">
-        <Backstory bind:this={backstoryComponent} isEditing={$isEditingBackstory} />
-      </div>
-    </section>
-
-    <!-- Skills Section -->
-    <section id="skills" class="section">
-      <div class="section-header">
-        <h2>{t.skills}</h2>
-        <div>
-          {#if $isEditingSkills}
-            <button class="section-button" on:click={() => toggleSkillsEditMode(true)}>
-              {t.save}
-          </button>
-          <button class="section-button cancel-button" on:click={cancelSkillsEdit}>
-            {t.cancel}
-          </button>
-          <div class="point-totals">
-            <div>{t.totalOccupationPoints}: {$skillPointTotals.occupationTotal}</div>
-            <div>{t.totalInterestPoints}: {$skillPointTotals.interestTotal}</div>
+<div class="min-h-screen bg-base-200">
+  {#if $characterStore}
+    <div class="card bg-base-100 shadow-xl max-w-4xl mx-auto my-8 p-6">
+      <CharacterHeader />
+      
+      <!-- Attributes Section -->
+      <section id="attributes" class="card bg-base-200 shadow-md mb-6">
+        <div class="card-body">
+          <div class="flex flex-wrap items-center justify-between gap-4 mb-4">
+            <h2 class="card-title text-2xl">{t.attributes}</h2>
+            <div class="flex items-center gap-2">
+              {#if $isEditingAttributes}
+                <button class="btn btn-primary" on:click={() => toggleAttributesEditMode(true)}>
+                  {t.save}
+                </button>
+                <button class="btn btn-error" on:click={cancelAttributesEdit}>
+                  {t.cancel}
+                </button>
+              {:else}
+                <button class="btn btn-primary" on:click={() => toggleAttributesEditMode(true)}>
+                  {t.editAttributes}
+                </button>
+              {/if}
+            </div>
+            <div class="text-sm">
+              {t.totalAttributePoints}: {$totalAttributePoints}
+            </div>
           </div>
-          {:else}
-            <button class="section-button" on:click={() => toggleSkillsEditMode(true)}>
-              {t.editSkills}
-          </button>
-        {/if} 
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+            {#each sortedAttributeKeys as key}
+              <Attribute 
+                attribute={{ name: key.toLowerCase(), value: $characterStore.attributes[key] }} 
+                on:updateValue={updateAttributeValue}
+                isEditing={$isEditingAttributes}
+              />
+            {/each}
+          </div>
         </div>
-        <div class="filter-controls">
-          <input
-            type="text"
-            class="search-input"
-            placeholder={t.searchSkills}
-            bind:value={$searchQuery}
-          />
-          <label>
-            <input type="checkbox" bind:checked={$showOccupationSkills}>
-            {t.filterOccupationSkills}
-          </label>
-          <label>
-            <input type="checkbox" bind:checked={$showInterestSkills}>
-            {t.filterInterestSkills}
-          </label>
-        </div>
-      </div>
-      <div class="section-container">
-        {#each Object.entries($filteredSkills) as [key, skillData] (key)}
-          <Skill 
-            skill={{
-              ...skillData,
-              ...($editedSkills[key] || {}),
-              displayName: skillData.name[currentLanguage] || skillData.name.en,
-              hasSucceeded: $characterStore.skills[key]?.hasSucceeded || false
-            }}
-            on:updateValue={updateSkillValue}
-            on:deleteSkill={() => deleteCustomSkill(key)}
-            isEditing={$isEditingSkills}
-            isCustom={!skillList.skills.some(s => s.name.en === key)}
-          />
-        {/each}
-      </div>
-      {#if $isEditingSkills}
-        <AddCustomSkill on:addSkill={addCustomSkill} {currentLanguage} />
-      {/if}
-    </section>
+      </section>
 
-    <!-- Inventory Section -->
-    <section id="inventory" class="section">
-      <div class="section-header">
-        <h2>{t.inventory}</h2>
-        <div>
-          {#if $isEditingInventory}
-            <button class="section-button" on:click={() => toggleInventoryEditMode(true)}>
-              {t.save}
-            </button>
-            <button class="section-button cancel-button" on:click={cancelInventoryEdit}>
-              {t.cancel}
-            </button>
-          {:else}
-            <button class="section-button" on:click={() => toggleInventoryEditMode(true)}>
-              {t.editInventory}
-            </button>
+      <!-- Derived Attributes Section -->
+      <section id="derived-attributes" class="card bg-base-200 shadow-md mb-6">
+        <div class="card-body">
+          <h2 class="card-title text-2xl mb-4">{t.derivedAttributes}</h2>
+          <DerivedAttributes />
+        </div>
+      </section>
+
+      <!-- Backstory Section -->
+      <section id="backstory" class="card bg-base-200 shadow-md mb-6">
+        <div class="card-body">
+          <div class="flex flex-wrap items-center justify-between gap-4 mb-4">
+            <h2 class="card-title text-2xl">{t.backstory}</h2>
+            <div class="flex items-center gap-2">
+              {#if $isEditingBackstory}
+                <button class="btn btn-primary" on:click={() => saveBackstoryEdits()}>
+                  {t.save}
+                </button>
+                <button class="btn btn-error" on:click={() => cancelBackstoryEdits()}>
+                  {t.cancel}
+                </button>
+              {:else}
+                <button class="btn btn-primary" on:click={() => startEditingBackstory()}>
+                  {t.editBackstory}
+                </button>
+              {/if}
+              <button 
+                class="btn btn-ghost btn-circle"
+                on:click={() => isBackstoryVisible = !isBackstoryVisible}
+              >
+                <svg class="w-6 h-6 transform transition-transform {isBackstoryVisible ? 'rotate-90' : ''}" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                </svg>
+              </button>
+            </div>
+          </div>
+          <div class="transition-all duration-300 ease-in-out {isBackstoryVisible ? 'max-h-[2000px] opacity-100' : 'max-h-0 opacity-0 overflow-hidden'}">
+            <Backstory bind:this={backstoryComponent} isEditing={$isEditingBackstory} />
+          </div>
+        </div>
+      </section>
+
+      <!-- Skills Section -->
+      <section id="skills" class="card bg-base-200 shadow-md mb-6">
+        <div class="card-body">
+          <div class="flex flex-wrap items-center justify-between gap-4 mb-4">
+            <h2 class="card-title text-2xl">{t.skills}</h2>
+            <div class="flex items-center gap-2">
+              {#if $isEditingSkills}
+                <button class="btn btn-primary" on:click={() => toggleSkillsEditMode(true)}>
+                  {t.save}
+                </button>
+                <button class="btn btn-error" on:click={cancelSkillsEdit}>
+                  {t.cancel}
+                </button>
+                <div class="text-sm">
+                  <div>{t.totalOccupationPoints}: {$skillPointTotals.occupationTotal}</div>
+                  <div>{t.totalInterestPoints}: {$skillPointTotals.interestTotal}</div>
+                </div>
+              {:else}
+                <button class="btn btn-primary" on:click={() => toggleSkillsEditMode(true)}>
+                  {t.editSkills}
+                </button>
+              {/if}
+            </div>
+          </div>
+          <div class="flex flex-wrap gap-4 mb-4">
+            <input
+              type="text"
+              class="input input-bordered flex-1 min-w-[200px]"
+              placeholder={t.searchSkills}
+              bind:value={$searchQuery}
+            />
+            <label class="label cursor-pointer gap-2">
+              <input type="checkbox" class="checkbox" bind:checked={$showOccupationSkills}>
+              <span class="label-text">{t.filterOccupationSkills}</span>
+            </label>
+            <label class="label cursor-pointer gap-2">
+              <input type="checkbox" class="checkbox" bind:checked={$showInterestSkills}>
+              <span class="label-text">{t.filterInterestSkills}</span>
+            </label>
+          </div>
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+            {#each Object.entries($filteredSkills) as [key, skillData] (key)}
+              <Skill 
+                skill={{
+                  ...skillData,
+                  ...($editedSkills[key] || {}),
+                  displayName: skillData.name[currentLanguage] || skillData.name.en,
+                  hasSucceeded: $characterStore.skills[key]?.hasSucceeded || false
+                }}
+                on:updateValue={updateSkillValue}
+                on:deleteSkill={() => deleteCustomSkill(key)}
+                isEditing={$isEditingSkills}
+                isCustom={!skillList.skills.some(s => s.name.en === key)}
+              />
+            {/each}
+          </div>
+          {#if $isEditingSkills}
+            <AddCustomSkill on:addSkill={addCustomSkill} {currentLanguage} />
           {/if}
         </div>
-      </div>
-      <Inventory bind:this={inventoryComponent} isEditing={$isEditingInventory} />
-    </section>
-  </div>
-{:else}
-  <p>{t.loadingCharacterData}</p>
-{/if}
+      </section>
+
+      <!-- Inventory Section -->
+      <section id="inventory" class="card bg-base-200 shadow-md">
+        <div class="card-body">
+          <div class="flex flex-wrap items-center justify-between gap-4 mb-4">
+            <h2 class="card-title text-2xl">{t.inventory}</h2>
+            <div class="flex items-center gap-2">
+              {#if $isEditingInventory}
+                <button class="btn btn-primary" on:click={() => toggleInventoryEditMode(true)}>
+                  {t.save}
+                </button>
+                <button class="btn btn-error" on:click={cancelInventoryEdit}>
+                  {t.cancel}
+                </button>
+              {:else}
+                <button class="btn btn-primary" on:click={() => toggleInventoryEditMode(true)}>
+                  {t.editInventory}
+                </button>
+              {/if}
+            </div>
+          </div>
+          <Inventory bind:this={inventoryComponent} isEditing={$isEditingInventory} />
+        </div>
+      </section>
+    </div>
+  {:else}
+    <div class="flex justify-center items-center min-h-screen">
+      <p class="text-lg">{t.loadingCharacterData}</p>
+    </div>
+  {/if}
+</div>
 
 
 
