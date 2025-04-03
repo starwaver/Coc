@@ -121,14 +121,14 @@
   
 <div 
   in:fade={{ duration: 300 }}
-  class="relative overflow-hidden bg-slate-800 border border-slate-700 backdrop-blur-sm rounded-lg shadow-lg"
+  class="relative overflow-hidden bg-base-300 border border-base-200 backdrop-blur-sm rounded-lg shadow-lg"
 >
-  <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-blue-500 to-blue-400 opacity-80"></div>
+  <div class="absolute top-0 left-0 w-full h-1 bg-primary opacity-80"></div>
   
   <div class="p-5">
     <div class="flex justify-between items-start mb-4">
       <div>
-        <h2 class="text-2xl font-bold text-white flex items-center gap-2">
+        <h2 class="text-2xl font-bold text-base-content flex items-center gap-2">
           {t[attributeKey]}
         </h2>
       </div>
@@ -139,34 +139,34 @@
             type="number" 
             bind:value={newValue} 
             on:change={updateValue}
-            class="w-20 text-xl font-bold text-blue-300 bg-slate-700 border-b-2 border-blue-400 px-2 py-1 rounded-md" 
+            class="w-20 text-xl font-bold text-primary bg-base-200 border-b-2 border-primary px-2 py-1 rounded-md" 
           />
-          <span class="block text-xs text-slate-400 mt-1 italic">{getCalculationMethod()}</span>
+          <span class="block text-xs text-base-content/60 mt-1 italic">{getCalculationMethod()}</span>
         </div>
         
       {:else}
-        <div class="text-3xl font-bold text-blue-300 relative">
+        <div class="text-3xl font-bold text-primary relative">
           {attribute.value}
         </div>
       {/if}
     </div>
     
     <div class="flex justify-between items-center">
-      <div class="bg-slate-700 rounded-md flex divide-x divide-slate-600">
+      <div class="bg-base-200 rounded-md flex divide-x divide-base-300">
         <div class="px-2 py-1 text-center">
-          <p class="text-base font-medium text-blue-300">{Math.floor(attribute.value / 2)}</p>
+          <p class="text-base font-medium text-primary">{Math.floor(attribute.value / 2)}</p>
         </div>
         <div class="px-2 py-1 text-center">
-          <p class="text-base font-medium text-blue-300">{Math.floor(attribute.value / 5)}</p>
+          <p class="text-base font-medium text-primary">{Math.floor(attribute.value / 5)}</p>
         </div>
       </div>
       
       {#if !isEditing}
         <button 
           on:click={openSkillRollModal}
-          class="rounded-full h-10 w-10 bg-gradient-to-br from-blue-500 to-blue-600 hover:from-blue-400 hover:to-blue-500 shadow-lg hover:shadow-blue-500/20 transition-all duration-200 flex items-center justify-center text-white"
+          class="rounded-full h-10 w-10 bg-primary hover:bg-primary-focus shadow-lg hover:shadow-primary/20 transition-all duration-200 flex items-center justify-center text-base-content"
         >
-          <FontAwesomeIcon icon={faDiceSix} class="h-4 w-4" />
+          <FontAwesomeIcon icon={faDiceSix} class="h-4 w-4 text-accent" />
           <span class="sr-only">Roll 1d100 for {t[attributeKey]}</span>
         </button>
       {/if}
