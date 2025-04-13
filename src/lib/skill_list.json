@@ -399,7 +399,7 @@
     {
       "name": {
         "en": "Pilot",
-        "cn": "驾驶"
+        "cn": "飞机驾驶"
       },
       "description": {
         "en": "Used to operate aircraft. Specializations can include specific types like Airplanes, Helicopters, etc.",
