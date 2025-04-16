@@ -32,6 +32,7 @@ export const translations = {
 
     // Attributes and Skills
     attributes: "Attributes",
+    attributeChart: "Attribute Chart",
     derivedAttributes: "Derived Attributes",
     skills: "Skills",
     editAttributes: "Edit Attributes",
@@ -195,6 +196,7 @@ export const translations = {
 
     // Attributes and Skills
     attributes: "属性",
+    attributeChart: "属性图表",
     derivedAttributes: "衍生属性",
     skills: "技能",
     editAttributes: "编辑属性",
