@@ -11,6 +11,13 @@ export const translations = {
     edu: "EDU",
     luck: "LUCK",   
 
+    // Skill Categories
+    social: "Social",
+    knowledge: "Knowledge",
+    combat: "Combat",
+    life: "Life",
+    otherSkills: "Other",
+
     // Character Creation and Management
     createNewCharacter: "Create New Character",
     importCharacter: "Import Character",
@@ -174,7 +181,14 @@ export const translations = {
     pow: "意志",
     edu: "教育",
     luck: "运气",   
-    
+
+    // Skill Categories
+    social: "交涉",
+    knowledge: "智识",
+    combat: "战斗",
+    life: "生活",
+    otherSkills: "其他",
+
     // Character Creation and Management
     createNewCharacter: "创建新角色",
     importCharacter: "导入角色",

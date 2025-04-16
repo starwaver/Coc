@@ -1006,5 +1006,36 @@
     "Art and Craft (Plumbing)",
     "Art and Craft (Farming)",
     "Art and Craft (Forgery)"
+  ],
+  "combat_skills": [
+    "Fighting (Chainsaw)",
+    "Fighting (Brawl)",
+    "Firearms (Handgun)",
+    "Firearms (Rifle/Shotgun)",
+    "Artillery",
+    "Dodge",
+    "Demolitions",
+    "First Aid",
+    "Throw"
+  ],
+  "knowledge_skills": [
+    "Language (Own)",
+    "Language (Other)",
+    "Language (Latin)",
+    "Library Use",
+    "Occult",
+    "Cthulhu Mythos",
+    "History",
+    "Law",
+    "Natural World",
+    "Archaeology",
+    "Anthropology",
+    "Electronics",
+    "Mechanical Repair",
+    "Computer Use",
+    "Psychology",
+    "Spot Hidden",
+    "Stealth",
+    "Sleight of Hand"
   ]
 }
