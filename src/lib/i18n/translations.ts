@@ -87,6 +87,7 @@ export const translations = {
     db: "Damage Bonus",
     build: "Build",
     move: "Move Rate",
+    armor: "Armor",
 
     // Backstory
     backstory: "Backstory",
@@ -258,6 +259,7 @@ export const translations = {
     db: "伤害加成",
     build: "体型",
     move: "移动",
+    armor: "护甲",
 
     // Backstory
     backstory: "背景故事",

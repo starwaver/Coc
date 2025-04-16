@@ -13,11 +13,6 @@
 
 <div class="container mx-auto p-4">
     <AttributesSection />
-    
-    <!-- Add Attribute Radar Chart -->
-    <div class="mt-6">
-        <AttributeChart characterData={$characterStore} />
-    </div>
 
     <!-- Add Skills Section -->
     <div class="mt-6">
