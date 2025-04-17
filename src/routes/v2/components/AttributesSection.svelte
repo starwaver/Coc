@@ -14,11 +14,11 @@
     $: t = translations[currentLanguage];
 
     // SVG dimensions and calculations
-    const width = 300;
-    const height = 300;
+    const width = 200;
+    const height = 200;
     const centerX = width / 2;
     const centerY = height / 2;
-    const radius = Math.min(width, height) / 2 - 60;
+    const radius = Math.min(width, height) / 2;
     
     // Angle offset to rotate the entire chart (in radians)
     // Rotate by 22.5 degrees (π/8 radians) to align with the reference image
@@ -102,20 +102,27 @@
     $: polygonPoints = chartPoints.length > 0 ? chartPoints.map(p => `${p.x},${p.y}`).join(' ') : '';
 </script>
 
-<div class="card bg-base-200 shadow-lg">
+<div class="card card-xs shadow-sm w-full">
     <div class="card-body">
-        <div class="flex flex-wrap items-center justify-between gap-4 mb-4">
-            <h2 class="card-title text-2xl font-bold text-primary">{t.attributes}</h2>
-        </div>
-        <div class="divider"></div>
         {#if $characterStore && t}
             <div class="flex flex-col items-center">
                 <!-- Spider Chart with Overlaid Labels -->
-                <div class="relative w-full mx-auto">
-                    <svg {width} {height} viewBox="0 0 {width} {height}" class="chart-svg w-full">
+                <div class="flex flex-row-reverse items-center gap-4 w-fit h-50">
+                    <div class="flex flex-col justify-between h-full">
+                        {#each chartPoints.slice(0, 4) as point}
+                            <div class="flex justify-between w-16">
+                                <span class="text-base text-base-content">{point.name}</span>
+                                <span class="text-base font-bold text-base-content">{point.value}</span>
+                            </div>
+                        {/each}
+                    </div>
+                    <svg {width} {height} viewBox="0 0 {width} {height}" class="chart-svg w-full h-full">
                         <!-- Background circles -->
                         {#each circlePaths as path, i}
-                            <path d={path} class="circle-grid" />
+                            <path 
+                                d={path} 
+                                class="fill-none stroke-neutral/20 [stroke-dasharray:2,2]" 
+                            />
                         {/each}
                         
                         <!-- Axes -->
@@ -126,24 +133,24 @@
                                     y1={centerY} 
                                     x2={centerX + radius * Math.cos(point.angle)} 
                                     y2={centerY + radius * Math.sin(point.angle)} 
-                                    class="axis-line" 
+                                    class="stroke-neutral/20 [stroke-dasharray:3,2]"
                                 />
                             {/each}
                         {/if}
                         
                         <!-- Chart area -->
                         {#if polygonPoints}
-                            <polygon points={polygonPoints} class="chart-area stroke-secondary fill-secondary/50" />
+                            <polygon points={polygonPoints} class="stroke-secondary fill-secondary/50" />
                         {/if}
                         
                         <!-- Points -->
                         {#if chartPoints.length > 0}
                             {#each chartPoints as point}
-                                <circle cx={point.x} cy={point.y} r="3" class="data-point stroke-secondary fill-secondary" />
+                                <circle cx={point.x} cy={point.y} r="3" class="stroke-secondary fill-secondary" />
                             {/each}
                         {/if}
 
-                        <!-- Value labels first (behind attribute labels) -->
+                        <!-- 
                         {#if chartPoints.length > 0}
                             {#each chartPoints as point}
                                 <text 
@@ -158,7 +165,7 @@
                             {/each}
                         {/if}
 
-                        <!-- Attribute name labels on top -->
+
                         {#if chartPoints.length > 0}
                             {#each chartPoints as point}
                                 <text 
@@ -173,11 +180,20 @@
                                 </text>
                             {/each}
                         {/if}
+                    -->
                     </svg>
+                    <div class="flex flex-col justify-between h-full">
+                        {#each chartPoints.slice(4, 8).reverse() as point}
+                        <div class="flex justify-between w-16">
+                            <span class="text-base text-base-content">{point.name}</span>
+                            <span class="text-base font-bold text-base-content">{point.value}</span>
+                        </div>
+                        {/each}
+                    </div>
                 </div>
-
+                <div class="divider mt-2 mb-0"></div>
                 <!-- Additional Stats -->
-                <div class="mt-4 flex justify-center gap-6">
+                <div class="flex justify-center gap-6">
                     <div class="flex items-center gap-1">
                         <span class="text-base text-base-content">{t.move}</span>
                         <span class="text-base text-base-content">{$characterStore?.derivedAttributes?.move}</span>
@@ -203,19 +219,6 @@
 </div>
 
 <style>
-    /* SVG-specific styles with explicit colors that match the reference image */
-    
-    .axis-line {
-        stroke: rgba(200, 200, 200, 0.5);
-        stroke-width: 0.8;
-        stroke-dasharray: 3 2;
-    }
-    
-    .circle-grid {
-        fill: none;
-        stroke-width: 0.8;
-        stroke-dasharray: 2 2;
-        opacity: 0.5;
-    }
+
 
 </style> 
