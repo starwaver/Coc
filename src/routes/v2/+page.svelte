@@ -2,6 +2,7 @@
     import AttributeChart from '../components/AttributeChart.svelte';
     import AttributesSection from './components/AttributesSection.svelte';
     import SkillsSection from './components/SkillsSection.svelte';
+    import StatusSection from './components/StatusSection.svelte';
     import { characterStore } from '$lib/stores/characterStore';
     import { languageStore } from '$lib/stores/languageStore';
     import { translations, type Language } from '$lib/i18n/translations';
@@ -11,11 +12,8 @@
     $: t = translations[currentLanguage];
 </script>
 
-<div class="container mx-auto p-4">
+<div class="container flex flex-col gap-4 mb-4">
+    <StatusSection />
     <AttributesSection />
-
-    <!-- Add Skills Section -->
-    <div class="mt-6">
-        <SkillsSection />
-    </div>
+    <SkillsSection />
 </div> 
