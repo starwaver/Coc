@@ -3,22 +3,32 @@
   import { characterStore, initializeCharacter, clearCharacterStorage } from '$lib/stores/characterStore';
   import { charactersStore, currentCharacterIndex, loadCharacters, removeCharacter, StorageError, MAX_CHARACTERS } from '$lib/stores/multiCharacterStore';
   import { languageStore } from '$lib/stores/languageStore';
+  import { themeStore, type Theme, allThemes } from '$lib/stores/themeStore';
   import { translations, type Language } from '$lib/i18n/translations';
   import { FontAwesomeIcon } from '@fortawesome/svelte-fontawesome';
-  import { faTrash, faArrowUp } from '@fortawesome/free-solid-svg-icons';
+  import { faTrash, faArrowUp, faSun, faMoon } from '@fortawesome/free-solid-svg-icons';
   import { browser } from '$app/environment';
   import { fade } from 'svelte/transition';
   import "../app.css";
 
   $: currentLanguage = $languageStore as Language;
   $: t = translations[currentLanguage];
+  $: currentTheme = $themeStore as Theme;
 
+  // Popular themes for the dropdown (no longer used, keeping for reference)
+  // const popularThemes: Theme[] = ['light', 'dark', 'cupcake', 'synthwave', 'retro', 'cyberpunk', 'valentine', 'halloween', 'forest', 'aqua', 'dracula'];
+  
   let errorMessage = '';
   let showError = false;
   let showScrollButton = false;
   let scrollTimeout: ReturnType<typeof setTimeout>;
 
   onMount(() => {
+    // Apply the theme immediately on mount
+    if (browser) {
+      document.documentElement.setAttribute('data-theme', $themeStore);
+    }
+    
     loadCharacters();
     if ($charactersStore.length === 0) {
       initializeCharacter();
@@ -120,6 +130,15 @@
     }
   }
 
+  function toggleTheme() {
+    themeStore.update(currentTheme => currentTheme === 'light' ? 'dark' : 'light');
+  }
+
+  function changeTheme(event: Event) {
+    const select = event.target as HTMLSelectElement;
+    themeStore.set(select.value as Theme);
+  }
+
   function scrollToTop() {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }
@@ -144,12 +163,41 @@
           </label>
         </div>
 
-        <!-- Language selector - always visible -->
-        <div class="flex-none">
+        <!-- Language and Theme selectors - always visible -->
+        <div class="flex-none flex gap-2 items-center">
           <select bind:value={$languageStore} class="select select-bordered select-sm">
             <option value="en">English</option>
             <option value="cn">中文</option>
           </select>
+          
+          <!-- Theme toggle button (quick light/dark) -->
+          <button 
+            class="btn btn-square btn-sm btn-ghost" 
+            on:click={toggleTheme} 
+            title={currentTheme === 'light' ? 'Switch to dark mode' : 'Switch to light mode'}
+          >
+            <FontAwesomeIcon icon={currentTheme === 'light' ? faMoon : faSun} />
+          </button>
+          
+          <!-- Theme dropdown (for more themes) -->
+          <div class="dropdown dropdown-end">
+            <button tabindex="0" class="btn btn-sm btn-ghost">
+              <span class="hidden sm:inline">Theme</span>
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" class="inline-block w-4 h-4 stroke-current"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+            </button>
+            <ul class="dropdown-content z-[1] p-2 shadow-lg bg-base-100 text-base-content rounded-box w-52 max-h-96 overflow-y-auto">
+              {#each allThemes as theme}
+                <li>
+                  <button 
+                    class="w-full text-left py-2 px-4 hover:bg-base-200 rounded-lg {theme === currentTheme ? 'bg-primary text-primary-content' : ''}"
+                    on:click={() => themeStore.set(theme)}
+                  >
+                    {theme}
+                  </button>
+                </li>
+              {/each}
+            </ul>
+          </div>
         </div>
         
         <!-- Character selector - hidden on mobile -->
@@ -229,6 +277,37 @@
     <div class="menu p-4 w-80 min-h-full bg-base-200 text-base-content">
       <!-- Sidebar content -->
       <div class="mb-4 font-bold text-lg">{t.menu}</div>
+      
+      <!-- Theme settings for mobile -->
+      <div class="mb-6">
+        <div class="font-medium mb-2">Theme</div>
+        <div class="flex flex-col gap-2">
+          <div class="flex justify-between items-center">
+            <button 
+              class="btn btn-sm {currentTheme === 'light' ? 'btn-primary' : 'btn-outline'}"
+              on:click={() => themeStore.set('light')}
+            >
+              <FontAwesomeIcon icon={faSun} class="mr-2" />
+              Light
+            </button>
+            <button 
+              class="btn btn-sm {currentTheme === 'dark' ? 'btn-primary' : 'btn-outline'}"
+              on:click={() => themeStore.set('dark')}
+            >
+              <FontAwesomeIcon icon={faMoon} class="mr-2" />
+              Dark
+            </button>
+          </div>
+          <select 
+            bind:value={$themeStore} 
+            class="select select-bordered w-full mt-2"
+          >
+            {#each allThemes as theme}
+              <option value={theme}>{theme}</option>
+            {/each}
+          </select>
+        </div>
+      </div>
       
       <!-- Character selector for mobile -->
       <div class="mb-6">
