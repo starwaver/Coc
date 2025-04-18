@@ -1,5 +1,4 @@
 <script lang="ts">
-    import AttributeChart from '../components/AttributeChart.svelte';
     import AttributesSection from './components/AttributesSection.svelte';
     import SkillsSection from './components/SkillsSection.svelte';
     import StatusSection from './components/StatusSection.svelte';
