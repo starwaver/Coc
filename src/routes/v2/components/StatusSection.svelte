@@ -45,10 +45,15 @@
 
   // Track damage with timer
   function startDamageTimer() {
-    // Check for unconsciousness
+    // Check for unconsciousness - this should take precedence over any other status
     if (hp === 0 && healthStatus !== HealthStatus.Dead) {
       setHealthStatus(HealthStatus.Unconscious);
-      return;
+      // Clear any existing damage timer when unconscious
+      if (damageTimer !== null) {
+        clearTimeout(damageTimer);
+        damageTimer = null;
+      }
+      return; // Exit early - unconsciousness takes precedence
     }
 
     // Only start a new timer if one isn't already running
@@ -74,8 +79,6 @@
         damageTimer = null;
       }
     }
-    
-    
   }
 
   // Function to update health status
@@ -92,7 +95,6 @@
   // Create config for status items
   $: statusConfigs = [
     {
-      id: 'hp' as StatusType,
       label: 'HP',
       value: hp,
       max: maxHp,
@@ -103,24 +105,22 @@
       onValueChange: updateHp
     },
     {
-      id: 'mp' as StatusType,
       label: 'MP',
       value: mp,
       max: maxMp,
       icon: './mp icon.png',
       statusClass: '',
-      barColor: 'bg-primary',
+      barColor: 'bg-secondary',
       hideLabel: false,
       onValueChange: updateMp
     },
     {
-      id: 'san' as StatusType,
       label: 'SAN',
       value: san,
       max: maxSan,
       icon: './sanity icon.png',
       statusClass: getSanityStatusClass(insanityStatus),
-      barColor: 'bg-secondary',
+      barColor: 'bg-primary',
       hideLabel: true,
       onValueChange: updateSan
     }
@@ -130,17 +130,40 @@
   function updateHp(newValue: number) {
     if (!$characterStore) return;
     
+    // First, check for unconsciousness
+    if (newValue === 0) {
+      characterStore.update(character => {
+        if (!character) return character;
+        
+        character.derivedAttributes.currentHp = newValue;
+        
+        // Only update if not already dead
+        if (character.derivedAttributes.healthStatus !== HealthStatus.Dead) {
+          // If character has major wound and HP reaches 0, set to dying
+          if (character.derivedAttributes.healthStatus === HealthStatus.MajorWound) {
+            character.derivedAttributes.healthStatus = HealthStatus.Dying;
+          } else {
+            character.derivedAttributes.healthStatus = HealthStatus.Unconscious;
+          }
+        }
+        
+        return character;
+      });
+      
+      // Clear any existing damage timer when unconscious
+      if (damageTimer !== null) {
+        clearTimeout(damageTimer);
+        damageTimer = null;
+      }
+      
+      return; // Exit early - unconsciousness takes precedence
+    }
+    
+    // Standard HP update if not unconscious
     characterStore.update(character => {
       if (!character) return character;
       
-      const oldValue = character.derivedAttributes.currentHp;
       character.derivedAttributes.currentHp = newValue;
-      
-      // Check for unconsciousness when updating directly
-      if (newValue === 0 && character.derivedAttributes.healthStatus !== HealthStatus.Dead) {
-        character.derivedAttributes.healthStatus = HealthStatus.Unconscious;
-      }
-      
       return character;
     });
     
@@ -203,12 +226,37 @@
 
 <div class="card card-xs shadow-sm w-full">
   <div class="card-body p-4">
+    
     {#if $characterStore}
+        {#if healthStatus !== HealthStatus.Normal || insanityStatus !== InsanityStatus.Normal}
+            <div class="flex flex-wrap gap-2 justify-center">
+            {#if healthStatus !== HealthStatus.Normal}
+                <StatusBadge 
+                type="health" 
+                status={healthStatus} 
+                badgeClass={
+                  healthStatus === HealthStatus.MajorWound ? 'badge-warning' :
+                  healthStatus === HealthStatus.Unconscious ? 'badge-error opacity-70' :
+                  healthStatus === HealthStatus.Dying ? 'badge-neutral' :
+                  'badge-error'
+                }
+                />
+            {/if}
+            
+            {#if insanityStatus !== InsanityStatus.Normal}
+                <StatusBadge 
+                type="mental" 
+                status={insanityStatus} 
+                badgeClass={insanityStatus === InsanityStatus.TemporaryInsanity ? 'badge-primary' : 'badge-secondary'} 
+                />
+            {/if}
+            </div>
+            <div class="divider my-0"></div>
+        {/if}
       <div class="flex flex-col">
-        <div class="flex justify-between items-center flex-wrap gap-4">
-          {#each statusConfigs as config (config.id)}
+        <div class="flex justify-around items-center flex-wrap gap-4">
+          {#each statusConfigs as config}
             <StatusItem 
-              id={config.id}
               label={config.label}
               bind:value={config.value}
               max={config.max}
@@ -220,27 +268,6 @@
             />
           {/each}
         </div>
-        
-        {#if healthStatus !== HealthStatus.Normal || insanityStatus !== InsanityStatus.Normal}
-          <div class="divider my-2"></div>
-          <div class="flex flex-wrap gap-2 justify-center">
-            {#if healthStatus !== HealthStatus.Normal}
-              <StatusBadge 
-                type="health" 
-                status={healthStatus} 
-                variant={healthStatus === HealthStatus.MajorWound ? 'warning' : 'error'} 
-              />
-            {/if}
-            
-            {#if insanityStatus !== InsanityStatus.Normal}
-              <StatusBadge 
-                type="mental" 
-                status={insanityStatus} 
-                variant={insanityStatus === InsanityStatus.TemporaryInsanity ? 'warning' : 'error'} 
-              />
-            {/if}
-          </div>
-        {/if}
       </div>
     {:else}
       <div class="alert alert-info">

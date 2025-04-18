@@ -82,6 +82,20 @@ export const translations = {
     unconscious: "Unconscious",
     dying: "Dying",
     dead: "Dead",
+    
+    // Status Item Component
+    editStatLabel: "Edit {stat} value and status",
+    editStatTitle: "Edit {stat}",
+    progressBarLabel: "{stat} progress",
+    decreaseLabel: "Decrease {stat}",
+    increaseLabel: "Increase {stat}",
+    valueLabel: "Value",
+    healthStatusLabel: "Health Status",
+    mentalStatusLabel: "Mental Status",
+
+    // Status Badge Component
+    dismissStatusLabel: "Dismiss {type} status",
+    resetStatusConfirmation: "Reset {type} status to Normal?",
 
     // Combat-related
     db: "Damage Bonus",
@@ -254,6 +268,20 @@ export const translations = {
     unconscious: "昏迷",
     dying: "濒死",
     dead: "死亡",
+    
+    // Status Item Component
+    editStatLabel: "编辑{stat}值和状态",
+    editStatTitle: "编辑{stat}",
+    progressBarLabel: "{stat}进度",
+    decreaseLabel: "减少{stat}",
+    increaseLabel: "增加{stat}",
+    valueLabel: "数值",
+    healthStatusLabel: "健康状态",
+    mentalStatusLabel: "精神状态",
+    
+    // Status Badge Component
+    dismissStatusLabel: "解除{type}状态",
+    resetStatusConfirmation: "将{type}状态重置为正常？",
 
     // Combat-related
     db: "伤害加成",
