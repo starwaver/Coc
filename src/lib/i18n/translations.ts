@@ -159,6 +159,8 @@ export const translations = {
     editCharacterInformation: "Edit your character's information below",
     characterPortrait: "Character Portrait",
     currentlySelected: "Currently Selected",
+    menu: "Menu",
+    selectCharacter: "Select Character",
 
     // Gender Options
     male: "Male",
@@ -345,6 +347,8 @@ export const translations = {
     editCharacterInformation: "在下方编辑您的角色信息",
     characterPortrait: "角色肖像",
     currentlySelected: "当前选择",
+    menu: "菜单",
+    selectCharacter: "选择角色",
 
     // Gender Options
     male: "男性",

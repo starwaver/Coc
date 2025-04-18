@@ -129,243 +129,154 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </svelte:head>
 
-<nav class="navbar">
-    <div class="navbar-content">
-        <div class="language-container">
-            <select bind:value={$languageStore} class="language-select">
-                <option value="en">English</option>
-                <option value="cn">中文</option>
-            </select>
+<div class="drawer">
+  <input id="my-drawer" type="checkbox" class="drawer-toggle" />
+  <div class="drawer-content">
+    <!-- Navbar -->
+    <nav class="bg-neutral text-neutral-content p-3 w-full">
+      <div class="container mx-auto flex flex-wrap gap-3 justify-between items-center">
+        <!-- Burger menu button for mobile -->
+        <div class="flex-none md:hidden">
+          <label for="my-drawer" class="btn btn-square btn-ghost drawer-button">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" class="inline-block w-6 h-6 stroke-current">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+            </svg>
+          </label>
         </div>
-        <div class="character-selector">
-            <select 
-              value={$currentCharacterIndex} 
-              on:change={switchCharacter}
-              class="character-select"
+
+        <!-- Language selector - always visible -->
+        <div class="flex-none">
+          <select bind:value={$languageStore} class="select select-bordered select-sm">
+            <option value="en">English</option>
+            <option value="cn">中文</option>
+          </select>
+        </div>
+        
+        <!-- Character selector - hidden on mobile -->
+        <div class="hidden md:flex flex-1 items-center gap-2 min-w-[200px]">
+          <select 
+            value={$currentCharacterIndex} 
+            on:change={switchCharacter}
+            class="select select-bordered w-full"
+          >
+            {#each $charactersStore as character, i}
+              <option value={i}>{character.name}</option>
+            {/each}
+          </select>
+          
+          {#if $charactersStore.length > 0}
+            <button 
+              class="btn btn-error btn-sm" 
+              on:click={() => deleteCharacter($currentCharacterIndex)}
+              title={t.deleteCharacter}
             >
-              {#each $charactersStore as character, i}
-                <option value={i}>{character.name}</option>
-              {/each}
-            </select>
-            {#if $charactersStore.length > 0}
-              <button 
-                class="delete-button" 
-                on:click={() => deleteCharacter($currentCharacterIndex)}
-                title={t.deleteCharacter}
-              >
-                <FontAwesomeIcon icon={faTrash} />
-              </button>
-            {/if}
-        </div>
-        <div class="character-actions">
-            <button class="action-button" on:click={createNewCharacter}>
-                {t.createNewCharacter}
+              <FontAwesomeIcon icon={faTrash} />
             </button>
-            <label class="action-button" for="import-file">
-                {t.importCharacter}
-            </label>
-            <input
-                id="import-file"
-                class="file-input"
-                type="file"
-                accept=".json"
-                on:change={importCharacter}
-            />
-            <button class="action-button" on:click={exportCharacter}>
-                {t.exportCharacter}
-            </button>
+          {/if}
         </div>
-    </div>
-</nav>
+        
+        <!-- Action buttons - hidden on mobile -->
+        <div class="hidden md:flex md:flex-wrap gap-2 justify-end">
+          <button class="btn btn-primary btn-sm" on:click={createNewCharacter}>
+            {t.createNewCharacter}
+          </button>
+          
+          <label class="btn btn-primary btn-sm" for="import-file">
+            {t.importCharacter}
+          </label>
+          <input
+            id="import-file"
+            class="hidden"
+            type="file"
+            accept=".json"
+            on:change={importCharacter}
+          />
+          
+          <button class="btn btn-primary btn-sm" on:click={exportCharacter}>
+            {t.exportCharacter}
+          </button>
+        </div>
+      </div>
+    </nav>
 
-{#if showError}
-  <div class="error-message">
-    {errorMessage}
+    {#if showError}
+      <div class="toast toast-top toast-end z-50">
+        <div class="alert alert-error">
+          <span>{errorMessage}</span>
+        </div>
+      </div>
+    {/if}
+
+    {#if showScrollButton}
+      <button 
+        class="btn btn-circle fixed bottom-12 right-12 z-50 bg-neutral text-neutral-content shadow-lg"
+        on:click={scrollToTop}
+        aria-label="Scroll to top"
+        transition:fade={{ duration: 300 }}
+      >
+        <FontAwesomeIcon icon={faArrowUp} />
+      </button>
+    {/if}
+
+    <main class="container mx-auto p-4">
+      <slot />
+    </main>
   </div>
-{/if}
 
-{#if showScrollButton}
-  <button 
-    class="scroll-to-top" 
-    on:click={scrollToTop}
-    aria-label="Scroll to top"
-    transition:fade={{ duration: 300 }}
-  >
-    <FontAwesomeIcon icon={faArrowUp} />
-  </button>
-{/if}
-
-<main>
-  <slot />
-</main>
-
-<style>
-  .navbar {
-    background-color: #3a3a3a;
-    padding: 10px;
-    width: 100%;
-    box-sizing: border-box;
-  }
-
-  .navbar-content {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
-    justify-content: space-between;
-    align-items: center;
-    max-width: 1200px;
-    margin: 0 auto;
-  }
-
-  .language-container {
-    flex: 0 1 auto;
-  }
-
-  .language-select {
-    padding: 5px 10px;
-    border-radius: 5px;
-    background-color: #4a4a4a;
-    color: #f0f0f0;
-    border: 1px solid #f0f0f0;
-    cursor: pointer;
-    width: 100px;
-  }
-
-  .character-selector {
-    flex: 1 1 auto;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    min-width: 200px;
-  }
-
-  .character-select {
-    flex: 1;
-    padding: 5px 10px;
-    border-radius: 5px;
-    background-color: #4a4a4a;
-    color: #f0f0f0;
-    border: 1px solid #f0f0f0;
-    cursor: pointer;
-  }
-
-  .character-actions {
-    flex: 1 1 auto;
-    display: flex;
-    gap: 10px;
-    flex-wrap: wrap;
-    justify-content: flex-end;
-  }
-
-  .action-button {
-    background-color: #4a4a4a;
-    color: #f0f0f0;
-    border: none;
-    padding: 8px 12px;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 0.9em;
-    white-space: nowrap;
-  }
-
-  .delete-button {
-    background-color: #cc0000;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    padding: 5px 10px;
-    cursor: pointer;
-  }
-
-  .file-input {
-    display: none;
-  }
-
-  @media (max-width: 768px) {
-    .navbar-content {
-      flex-direction: column;
-      align-items: stretch;
-    }
-
-    .language-container {
-      order: 1;
-    }
-
-    .character-selector {
-      order: 2;
-      width: 100%;
-    }
-
-    .character-actions {
-      order: 3;
-      justify-content: center;
-      width: 100%;
-    }
-
-    .language-select {
-      width: 100%;
-    }
-
-    .action-button {
-      flex: 1 1 auto;
-      text-align: center;
-      min-width: 120px;
-    }
-  }
-
-  @media (max-width: 480px) {
-    .character-actions {
-      flex-direction: column;
-    }
-
-    .action-button {
-      width: 100%;
-    }
-
-    .navbar {
-      padding: 5px;
-    }
-  }
-
-  .error-message {
-    position: fixed;
-    top: 20px;
-    right: 20px;
-    background-color: #ff4444;
-    color: white;
-    padding: 10px 20px;
-    border-radius: 5px;
-    z-index: 1000;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
-  }
-
-  .scroll-to-top {
-    position: fixed;
-    bottom: 50px;
-    right: 50px;
-    background-color: #4a4a4a;
-    color: #f0f0f0;
-    border: none;
-    border-radius: 50%;
-    width: 40px;
-    height: 40px;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-    z-index: 1000;
-    font-size: 16px;
-  }
-
-  .scroll-to-top:hover {
-    background-color: #666666;
-  }
-
-  @media (max-width: 768px) {
-    .scroll-to-top {
-      bottom: 50px;
-      right: 50px;
-    }
-  }
-</style>
+  <!-- Drawer side for mobile menu -->
+  <div class="drawer-side z-40">
+    <label for="my-drawer" aria-label="close sidebar" class="drawer-overlay"></label>
+    <div class="menu p-4 w-80 min-h-full bg-base-200 text-base-content">
+      <!-- Sidebar content -->
+      <div class="mb-4 font-bold text-lg">{t.menu}</div>
+      
+      <!-- Character selector for mobile -->
+      <div class="mb-6">
+        <div class="font-medium mb-2">{t.selectCharacter}</div>
+        <div class="flex flex-col gap-2">
+          <select 
+            value={$currentCharacterIndex} 
+            on:change={switchCharacter}
+            class="select select-bordered w-full"
+          >
+            {#each $charactersStore as character, i}
+              <option value={i}>{character.name}</option>
+            {/each}
+          </select>
+          
+          {#if $charactersStore.length > 0}
+            <button 
+              class="btn btn-error btn-sm w-full" 
+              on:click={() => deleteCharacter($currentCharacterIndex)}
+            >
+              <FontAwesomeIcon icon={faTrash} class="mr-2" />
+              {t.deleteCharacter}
+            </button>
+          {/if}
+        </div>
+      </div>
+      
+      <!-- Actions for mobile -->
+      <div class="flex flex-col gap-2">
+        <button class="btn btn-primary w-full" on:click={createNewCharacter}>
+          {t.createNewCharacter}
+        </button>
+        
+        <label class="btn btn-primary w-full" for="import-file-mobile">
+          {t.importCharacter}
+        </label>
+        <input
+          id="import-file-mobile"
+          class="hidden"
+          type="file"
+          accept=".json"
+          on:change={importCharacter}
+        />
+        
+        <button class="btn btn-primary w-full" on:click={exportCharacter}>
+          {t.exportCharacter}
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
