@@ -16,7 +16,6 @@
   export let icon: string;
   export let statusClass: string = '';
   export let barColor: string = 'bg-primary';
-  export let hideLabel = false;
   export let onValueChange: ((newValue: number) => void) | null = null;  // Optional callback for additional side effects
   
   // Calculate percentage for progress bars
@@ -98,7 +97,7 @@
 
 <div class="flex flex-col items-center">
   <div 
-    class="flex items-center gap-2 cursor-pointer hover:bg-base-200 rounded transition-colors" 
+    class="flex items-center gap-1 cursor-pointer hover:bg-base-200 rounded transition-colors" 
     on:click={openModal}
     on:keydown={e => e.key === 'Enter' && openModal()}
     role="button"
@@ -106,9 +105,6 @@
     aria-label="{t?.editStatLabel?.replace('{stat}', label) || `Edit ${label} value and status`}"
   >
     <img src={icon} alt={label} class="w-8 h-8" />
-    {#if !hideLabel}
-      <span class="font-bold text-base text-base-content">{label}</span>
-    {/if}
     <span class="text-base font-bold w-10 text-center {statusClass}">{value}/{max}</span>
   </div>
   

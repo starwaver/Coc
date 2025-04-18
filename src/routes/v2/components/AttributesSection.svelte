@@ -107,7 +107,7 @@
         {#if $characterStore && t}
             <div class="flex flex-col items-center">
                 <!-- Spider Chart with Overlaid Labels -->
-                <div class="flex flex-row-reverse items-center gap-4 w-fit h-50">
+                <div class="flex flex-row-reverse items-center gap-0 w-fit h-50">
                     <div class="flex flex-col justify-between h-full">
                         {#each chartPoints.slice(0, 4) as point}
                             <div class="flex justify-between w-16">

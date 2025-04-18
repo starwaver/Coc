@@ -101,7 +101,6 @@
       icon: './hp icon.png',
       statusClass: getHealthStatusClass(healthStatus),
       barColor: 'bg-error',
-      hideLabel: false,
       onValueChange: updateHp
     },
     {
@@ -111,7 +110,6 @@
       icon: './mp icon.png',
       statusClass: '',
       barColor: 'bg-secondary',
-      hideLabel: false,
       onValueChange: updateMp
     },
     {
@@ -121,7 +119,6 @@
       icon: './sanity icon.png',
       statusClass: getSanityStatusClass(insanityStatus),
       barColor: 'bg-primary',
-      hideLabel: true,
       onValueChange: updateSan
     }
   ];
@@ -263,7 +260,6 @@
               icon={config.icon}
               statusClass={config.statusClass}
               barColor={config.barColor}
-              hideLabel={config.hideLabel}
               onValueChange={config.onValueChange}
             />
           {/each}
