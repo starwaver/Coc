@@ -36,6 +36,7 @@ export type DerivedAttributeType = {
   db: string,
   build: number,
   move: number,
+  armor: number,
   healthStatus: HealthStatus,
   insanityStatus: InsanityStatus,
 };

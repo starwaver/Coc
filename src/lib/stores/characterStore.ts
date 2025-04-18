@@ -27,6 +27,7 @@ const defaultCharacterData: CharacterType = {
     initialSan: 0, currentSan: 0,
     maxMp: 0, currentMp: 0,
     db: "0", build: 0, move: 0,
+    armor: 0,
     healthStatus: HealthStatus.Normal,
     insanityStatus: InsanityStatus.Normal,
   },
@@ -74,6 +75,7 @@ const derivedAttributeUtils = {
     db: derivedAttributeUtils.calculateDamageBonus(attributes.str, attributes.siz),
     build: derivedAttributeUtils.calculateBuild(attributes.str, attributes.siz),
     move: derivedAttributeUtils.calculateMove(attributes.dex, attributes.str, attributes.siz),
+    armor: 0, // TODO: Implement armor calculation
     healthStatus: HealthStatus.Normal,
     insanityStatus: InsanityStatus.Normal,
   }),

@@ -200,7 +200,7 @@
                     </div>
                     <div class="flex items-center gap-1">
                         <span class="text-base text-base-content">{t.armor}</span>
-                        <span class="text-base text-base-content">5</span>
+                        <span class="text-base text-base-content">{$characterStore?.derivedAttributes?.armor}</span>
                     </div>
                     <div class="flex items-center gap-1">
                         <span class="text-base text-base-content">{t.luck}</span>
