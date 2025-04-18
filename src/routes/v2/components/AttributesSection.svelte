@@ -116,7 +116,7 @@
                             </div>
                         {/each}
                     </div>
-                    <svg {width} {height} viewBox="0 0 {width} {height}" class="chart-svg w-full h-full">
+                    <svg {width} {height} viewBox="0 0 {width} {height}" class="chart-svg p-4">
                         <!-- Background circles -->
                         {#each circlePaths as path, i}
                             <path 
