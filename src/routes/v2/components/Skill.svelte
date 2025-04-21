@@ -2,6 +2,7 @@
     import { languageStore } from '$lib/stores/languageStore';
     import { translations, type Language, type TranslationKeys } from '$lib/i18n/translations';
     import type { SkillType } from '$lib/types';
+    import StatModal from './StatModal.svelte';
 
     export let skillName: string;
     export let skill: SkillType;
@@ -19,9 +20,16 @@
 
     // Format the skill name based on translation if available
     $: displayName = skill.name[currentLanguage] || t[skillName as TranslationKeys] || skillName;
+    
+    // Modal state
+    let showSkillModal = false;
+    
+    function openSkillModal() {
+        showSkillModal = true;
+    }
 </script>
 
-<div class="w-full flex px-3 items-center justify-between hover:ring-2 hover:rounded-md hover:ring-base-300 transition-shadow">
+<button class="w-full flex px-3 items-center justify-between hover:ring-2 hover:rounded-md hover:ring-base-300 transition-shadow cursor-pointer" on:click={openSkillModal}>
     <div class="text-base text-base-content">{displayName}</div>
     <div class="flex items-center">
         <div class="flex items-center gap-1">
@@ -32,4 +40,10 @@
             <span class="text-base text-base-content">{fifthValue}</span>
         </div>
     </div>
-</div>
+</button>
+
+<StatModal 
+    bind:isOpen={showSkillModal}
+    {skillName}
+    {skill}
+/>

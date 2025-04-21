@@ -4,6 +4,7 @@
     import { translations, type Language, type TranslationKeys } from '$lib/i18n/translations';
     import type { AttributeType } from '$lib/types';
     import { writable } from 'svelte/store';
+    import Attribute from './Attribute.svelte';
 
     // Define the attribute order to match the image
     // Attributes are arranged clockwise starting from top-right
@@ -109,11 +110,12 @@
                 <!-- Spider Chart with Overlaid Labels -->
                 <div class="flex flex-row-reverse items-center gap-0 w-fit h-50">
                     <div class="flex flex-col justify-between h-full">
-                        {#each chartPoints.slice(0, 4) as point}
-                            <div class="flex justify-between w-16">
-                                <span class="text-base text-base-content">{point.name}</span>
-                                <span class="text-base font-bold text-base-content">{point.value}</span>
-                            </div>
+                        {#each chartPoints.slice(0, 4) as point, i}
+                            <Attribute 
+                                name={point.name} 
+                                value={point.value} 
+                                attributeName={attributeOrder[i]} 
+                            />
                         {/each}
                     </div>
                     <svg {width} {height} viewBox="0 0 {width} {height}" class="chart-svg p-4">
@@ -149,45 +151,14 @@
                                 <circle cx={point.x} cy={point.y} r="3" class="stroke-secondary fill-secondary" />
                             {/each}
                         {/if}
-
-                        <!-- 
-                        {#if chartPoints.length > 0}
-                            {#each chartPoints as point}
-                                <text 
-                                    x={point.valueX} 
-                                    y={point.valueY} 
-                                    text-anchor={point.textAnchor}
-                                    dominant-baseline="middle"
-                                    class="text-base stroke-primary"
-                                >
-                                    {point.value}
-                                </text>
-                            {/each}
-                        {/if}
-
-
-                        {#if chartPoints.length > 0}
-                            {#each chartPoints as point}
-                                <text 
-                                    x={point.labelX} 
-                                    y={point.labelY} 
-                                    text-anchor={point.textAnchor}
-                                    dominant-baseline="middle"
-                                    dy={point.dy}
-                                    class="text-base stroke-primary"
-                                >
-                                    {point.name}
-                                </text>
-                            {/each}
-                        {/if}
-                    -->
                     </svg>
                     <div class="flex flex-col justify-between h-full">
-                        {#each chartPoints.slice(4, 8).reverse() as point}
-                        <div class="flex justify-between w-16">
-                            <span class="text-base text-base-content">{point.name}</span>
-                            <span class="text-base font-bold text-base-content">{point.value}</span>
-                        </div>
+                        {#each chartPoints.slice(4, 8).reverse() as point, i}
+                            <Attribute 
+                                name={point.name} 
+                                value={point.value} 
+                                attributeName={attributeOrder[i+4]} 
+                            />
                         {/each}
                     </div>
                 </div>
